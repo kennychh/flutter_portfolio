@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.only(left: 12),
               child: Builder(
                 builder: (context) => IconButton(
-                    onPressed: () => Scaffold.of(context).openDrawer(),
+                    onPressed: () => Scaffold.of(context).openEndDrawer(),
                     icon: Icon(Icons.menu)),
               )),
           backgroundColor: lightColorScheme.surface,
@@ -73,16 +73,56 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                  height: MediaQuery.of(context).size.height,
+              Container(
+                  constraints: BoxConstraints(
+                      minHeight: MediaQuery.of(context).size.height),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Hi, I\'m Kenny!',
                         style: TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.w600),
+                            color: lightColorScheme.primary,
+                            fontSize: 32,
+                            fontWeight: FontWeight.w600),
                       ),
+                      Container(
+                        height: 20,
+                      ),
+                      Text(
+                        'I build things for mobile',
+                        style: TextStyle(
+                            color: lightColorScheme.secondary,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Container(height: 20),
+                      Text(
+                        'I\'m a software developer currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing (and sometimes designing) elegant and user friendly digital experiences.',
+                        style: TextStyle(
+                            color: lightColorScheme.secondary,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Container(height: 200),
+                      TextButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.chat_bubble_outline,
+                            color: lightColorScheme.onPrimaryContainer,
+                          ),
+                          label: Text('Let\'s chat!',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: lightColorScheme.onPrimaryContainer)),
+                          style: TextButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 28, horizontal: 22),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18)),
+                              backgroundColor:
+                                  lightColorScheme.primaryContainer)),
                     ],
                   )),
               for (final item in items)
