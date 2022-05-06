@@ -1,29 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class ExampleParallax extends StatelessWidget {
-  const ExampleParallax({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          for (final item in items)
-            ListItem(
-              imageUrl: item.imageUrl,
-              name: item.title,
-              subtitle: item.subtitle,
-              description: item.description,
-            ),
-        ],
-      ),
-    );
-  }
-}
-
 class ListItem extends StatelessWidget {
   ListItem({
     Key? key,
@@ -42,7 +19,7 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       child: AspectRatio(
         aspectRatio: 16 / 9,
         child: ClipRRect(
@@ -50,8 +27,6 @@ class ListItem extends StatelessWidget {
           child: Stack(
             children: [
               _buildParallaxBackground(context),
-              _buildGradient(),
-              _buildTitleAndSubtitle(),
             ],
           ),
         ),
@@ -314,7 +289,7 @@ const items = [
   ParallaxItem(
       title: 'Mount Rushmore',
       subtitle: 'U.S.A',
-      imageUrl: '$urlPrefix/01-mount-rushmore.jpg',
+      imageUrl: '/assets/weather.png',
       description: ''),
   ParallaxItem(
       title: 'Gardens By The Bay',
