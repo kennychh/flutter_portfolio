@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'parallax.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          fontFamily: 'Poppins',
+          textTheme: GoogleFonts.poppinsTextTheme(),
           backgroundColor: lightColorScheme.background,
           useMaterial3: true),
       home: const MyHomePage(title: 'Kenny Chan'),
@@ -56,15 +57,15 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.only(left: 12),
               child: Builder(
                 builder: (context) => IconButton(
-                    onPressed: () => Scaffold.of(context).openEndDrawer(),
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                    color: lightColorScheme.primary,
                     icon: Icon(Icons.menu)),
               )),
           backgroundColor: lightColorScheme.surface,
           title: Text(
             widget.title,
             style: TextStyle(
-                color: lightColorScheme.onBackground,
-                fontWeight: FontWeight.w600),
+                color: lightColorScheme.primary, fontWeight: FontWeight.w700),
           ),
         ),
         body: SingleChildScrollView(
@@ -85,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(
                             color: lightColorScheme.primary,
                             fontSize: 32,
-                            fontWeight: FontWeight.w600),
+                            fontWeight: FontWeight.w700),
                       ),
                       Container(
                         height: 20,
@@ -103,29 +104,36 @@ class _MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(
                             color: lightColorScheme.secondary,
                             fontSize: 15,
-                            fontWeight: FontWeight.w500),
+                            fontWeight: FontWeight.w400),
                       ),
                       Container(height: 200),
-                      TextButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.chat_bubble_outline,
-                            color: lightColorScheme.onPrimaryContainer,
-                          ),
-                          label: Text('Let\'s chat!',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: lightColorScheme.onPrimaryContainer)),
-                          style: TextButton.styleFrom(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 28, horizontal: 22),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18)),
-                              backgroundColor:
-                                  lightColorScheme.primaryContainer)),
                     ],
                   )),
-              for (final item in items)
+              Text(
+                'Work Experience',
+                style: TextStyle(
+                    color: lightColorScheme.onSurface,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600),
+              ),
+              Container(height: 50),
+              for (final item in workExperienceItems)
+                ListItem(
+                  imageUrl: item.imageUrl,
+                  name: item.title,
+                  subtitle: item.subtitle,
+                  description: item.description,
+                ),
+              Container(height: 50),
+              Text(
+                'Projects',
+                style: TextStyle(
+                    color: lightColorScheme.onSurface,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600),
+              ),
+              Container(height: 50),
+              for (final item in projectsItems)
                 ListItem(
                   imageUrl: item.imageUrl,
                   name: item.title,
@@ -139,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: lightColorScheme.primaryContainer,
         ),
         floatingActionButton: Padding(
-          padding: EdgeInsets.only(right: 8),
+          padding: EdgeInsets.only(right: 7, bottom: 7),
           child: FloatingActionButton(
             backgroundColor: lightColorScheme.primaryContainer,
             onPressed: _incrementCounter,

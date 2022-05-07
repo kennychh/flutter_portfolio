@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'constants.dart';
 
 class ListItem extends StatelessWidget {
   ListItem({
@@ -18,19 +19,49 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: AspectRatio(
-        aspectRatio: 16 / 9,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: Stack(
-            children: [
-              _buildParallaxBackground(context),
-            ],
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: _buildParallaxBackground(context),
+            ),
           ),
         ),
-      ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            name,
+            style: TextStyle(
+                color: lightColorScheme.onSurface,
+                fontSize: 28,
+                fontWeight: FontWeight.w600),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            subtitle,
+            style: TextStyle(
+                color: lightColorScheme.onSurface,
+                fontSize: 18,
+                fontWeight: FontWeight.w600),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            description,
+            style: TextStyle(
+                color: lightColorScheme.secondary,
+                fontSize: 15,
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+      ],
     );
   }
 
@@ -285,20 +316,20 @@ class ParallaxItem {
 
 const urlPrefix =
     'https://docs.flutter.dev/cookbook/img-files/effects/parallax';
-const items = [
+
+const workExperienceItems = [
   ParallaxItem(
-      title: 'Mount Rushmore',
-      subtitle: 'U.S.A',
+      title: 'HelloFresh',
+      subtitle: 'Junior Software Developer',
+      imageUrl: '/assets/hellofresh.jpg',
+      description:
+          'Implementing a variety of projects on mobile for HelloFresh\'s sub brands.'),
+];
+const projectsItems = [
+  ParallaxItem(
+      title: 'Weather',
+      subtitle: 'Personal Projecty',
       imageUrl: '/assets/weather.png',
-      description: ''),
-  ParallaxItem(
-      title: 'Gardens By The Bay',
-      subtitle: 'Singapore',
-      imageUrl: '$urlPrefix/02-singapore.jpg',
-      description: ''),
-  ParallaxItem(
-      title: 'Machu Picchu',
-      subtitle: 'Peru',
-      imageUrl: '$urlPrefix/03-machu-picchu.jpg',
-      description: ''),
+      description:
+          'Designing and implementing a beautiful weather app with API integration.'),
 ];
