@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'constants.dart';
 
 class ListItem extends StatelessWidget {
@@ -35,7 +36,7 @@ class ListItem extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             name,
-            style: TextStyle(
+            style: GoogleFonts.poppins(
                 color: lightColorScheme.onSurface,
                 fontSize: 28,
                 fontWeight: FontWeight.w600),
@@ -45,7 +46,7 @@ class ListItem extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             subtitle,
-            style: TextStyle(
+            style: GoogleFonts.poppins(
                 color: lightColorScheme.onSurface,
                 fontSize: 18,
                 fontWeight: FontWeight.w600),
@@ -55,7 +56,7 @@ class ListItem extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Text(
             description,
-            style: TextStyle(
+            style: GoogleFonts.poppins(
                 color: lightColorScheme.secondary,
                 fontSize: 15,
                 fontWeight: FontWeight.w400),
@@ -107,7 +108,7 @@ class ListItem extends StatelessWidget {
         children: [
           Text(
             name,
-            style: const TextStyle(
+            style: GoogleFonts.poppins(
               color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -115,7 +116,7 @@ class ListItem extends StatelessWidget {
           ),
           Text(
             subtitle,
-            style: const TextStyle(
+            style: GoogleFonts.poppins(
               color: Colors.white,
               fontSize: 14,
             ),

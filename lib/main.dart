@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: lightColorScheme.background,
         appBar: AppBar(
+          centerTitle: true,
           iconTheme: IconThemeData(color: lightColorScheme.onBackground),
           elevation: 0,
           leading: Padding(
@@ -64,8 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: lightColorScheme.surface,
           title: Text(
             widget.title,
-            style: TextStyle(
-                color: lightColorScheme.primary, fontWeight: FontWeight.w700),
+            style: GoogleFonts.poppins(
+                color: lightColorScheme.primary, fontWeight: FontWeight.w600),
           ),
         ),
         body: SingleChildScrollView(
@@ -81,19 +82,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Hi, I\'m Kenny!',
-                        style: TextStyle(
-                            color: lightColorScheme.primary,
-                            fontSize: 32,
-                            fontWeight: FontWeight.w700),
-                      ),
+                      Text('Hi, I\'m Kenny!',
+                          style: GoogleFonts.poppins(
+                              color: lightColorScheme.primary,
+                              fontSize: 32,
+                              fontWeight: FontWeight.w600)),
                       Container(
                         height: 20,
                       ),
                       Text(
                         'I build things for mobile',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                             color: lightColorScheme.secondary,
                             fontSize: 22,
                             fontWeight: FontWeight.w600),
@@ -101,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(height: 20),
                       Text(
                         'I\'m a software developer currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing (and sometimes designing) elegant and user friendly digital experiences.',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                             color: lightColorScheme.secondary,
                             fontSize: 15,
                             fontWeight: FontWeight.w400),
@@ -111,12 +110,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   )),
               Text(
                 'Work Experience',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                     color: lightColorScheme.onSurface,
                     fontSize: 28,
                     fontWeight: FontWeight.w600),
               ),
-              Container(height: 50),
+              Container(height: 25),
               for (final item in workExperienceItems)
                 ListItem(
                   imageUrl: item.imageUrl,
@@ -127,12 +126,12 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(height: 50),
               Text(
                 'Projects',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                     color: lightColorScheme.onSurface,
                     fontSize: 28,
                     fontWeight: FontWeight.w600),
               ),
-              Container(height: 50),
+              Container(height: 25),
               for (final item in projectsItems)
                 ListItem(
                   imageUrl: item.imageUrl,
@@ -144,18 +143,18 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         )),
         drawer: Drawer(
-          backgroundColor: lightColorScheme.primaryContainer,
+          backgroundColor: lightColorScheme.secondaryContainer,
         ),
         floatingActionButton: Padding(
           padding: EdgeInsets.only(right: 7, bottom: 7),
           child: FloatingActionButton(
-            backgroundColor: lightColorScheme.primaryContainer,
+            backgroundColor: lightColorScheme.primary,
             onPressed: _incrementCounter,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             child: Icon(
               Icons.chat_bubble_outline,
-              color: lightColorScheme.onPrimaryContainer,
+              color: lightColorScheme.onPrimary,
             ),
           ),
         ));
