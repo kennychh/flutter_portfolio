@@ -37,7 +37,7 @@ class ListItem extends StatelessWidget {
           child: Text(
             name,
             style: GoogleFonts.poppins(
-                color: lightColorScheme.onSurface,
+                color: colorScheme.onSurface,
                 fontSize: 28,
                 fontWeight: FontWeight.w600),
           ),
@@ -47,7 +47,7 @@ class ListItem extends StatelessWidget {
           child: Text(
             subtitle,
             style: GoogleFonts.poppins(
-                color: lightColorScheme.onSurface,
+                color: colorScheme.onSurface,
                 fontSize: 18,
                 fontWeight: FontWeight.w600),
           ),
@@ -57,7 +57,7 @@ class ListItem extends StatelessWidget {
           child: Text(
             description,
             style: GoogleFonts.poppins(
-                color: lightColorScheme.secondary,
+                color: colorScheme.secondary,
                 fontSize: 15,
                 fontWeight: FontWeight.w400),
           ),
@@ -329,7 +329,7 @@ const workExperienceItems = [
 const projectsItems = [
   ParallaxItem(
       title: 'Weather',
-      subtitle: 'Personal Projecty',
+      subtitle: 'Personal Project',
       imageUrl: '/assets/weather.png',
       description:
           'Designing and implementing a beautiful weather app with API integration.'),

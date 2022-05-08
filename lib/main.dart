@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           textTheme: GoogleFonts.poppinsTextTheme(),
-          backgroundColor: lightColorScheme.background,
+          backgroundColor: colorScheme.background,
           useMaterial3: true),
       home: const MyHomePage(title: 'Kenny Chan'),
     );
@@ -38,35 +38,47 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
+  void _setColorScheme() {
     setState(() {
-      _counter++;
+      if (colorScheme == darkColorScheme) {
+        colorScheme = lightColorScheme;
+      } else {
+        colorScheme = darkColorScheme;
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: lightColorScheme.background,
+        backgroundColor: colorScheme.background,
         appBar: AppBar(
-          centerTitle: true,
-          iconTheme: IconThemeData(color: lightColorScheme.onBackground),
+          iconTheme: IconThemeData(color: colorScheme.onBackground),
           elevation: 0,
+          centerTitle: true,
           leading: Padding(
-              padding: EdgeInsets.only(left: 12),
+              padding: EdgeInsets.only(left: 10),
               child: Builder(
                 builder: (context) => IconButton(
                     onPressed: () => Scaffold.of(context).openDrawer(),
-                    color: lightColorScheme.primary,
+                    color: colorScheme.primary,
                     icon: Icon(Icons.menu)),
               )),
-          backgroundColor: lightColorScheme.surface,
+          actions: [
+            Padding(
+                padding: EdgeInsets.only(right: 15),
+                child: IconButton(
+                    onPressed: _setColorScheme,
+                    color: colorScheme.primary,
+                    icon: Icon(colorScheme == darkColorScheme
+                        ? Icons.light_mode_outlined
+                        : Icons.dark_mode_outlined)))
+          ],
+          backgroundColor: colorScheme.surface,
           title: Text(
             widget.title,
             style: GoogleFonts.poppins(
-                color: lightColorScheme.primary, fontWeight: FontWeight.w600),
+                color: colorScheme.primary, fontWeight: FontWeight.w600),
           ),
         ),
         body: SingleChildScrollView(
@@ -80,11 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       minHeight: MediaQuery.of(context).size.height),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Hi, I\'m Kenny!',
                           style: GoogleFonts.poppins(
-                              color: lightColorScheme.primary,
+                              color: colorScheme.primary,
                               fontSize: 32,
                               fontWeight: FontWeight.w600)),
                       Container(
@@ -93,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text(
                         'I build things for mobile',
                         style: GoogleFonts.poppins(
-                            color: lightColorScheme.secondary,
+                            color: colorScheme.onSurface,
                             fontSize: 22,
                             fontWeight: FontWeight.w600),
                       ),
@@ -101,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text(
                         'I\'m a software developer currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing (and sometimes designing) elegant and user friendly digital experiences.',
                         style: GoogleFonts.poppins(
-                            color: lightColorScheme.secondary,
+                            color: colorScheme.secondary,
                             fontSize: 15,
                             fontWeight: FontWeight.w400),
                       ),
@@ -111,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 'Work Experience',
                 style: GoogleFonts.poppins(
-                    color: lightColorScheme.onSurface,
+                    color: colorScheme.onSurface,
                     fontSize: 28,
                     fontWeight: FontWeight.w600),
               ),
@@ -127,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 'Projects',
                 style: GoogleFonts.poppins(
-                    color: lightColorScheme.onSurface,
+                    color: colorScheme.onSurface,
                     fontSize: 28,
                     fontWeight: FontWeight.w600),
               ),
@@ -139,22 +150,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   subtitle: item.subtitle,
                   description: item.description,
                 ),
+              Container(height: 200),
             ],
           ),
         )),
         drawer: Drawer(
-          backgroundColor: lightColorScheme.secondaryContainer,
+          backgroundColor: colorScheme.secondaryContainer,
         ),
         floatingActionButton: Padding(
           padding: EdgeInsets.only(right: 7, bottom: 7),
           child: FloatingActionButton(
-            backgroundColor: lightColorScheme.primary,
-            onPressed: _incrementCounter,
+            backgroundColor: colorScheme.primary,
+            onPressed: () {},
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             child: Icon(
               Icons.chat_bubble_outline,
-              color: lightColorScheme.onPrimary,
+              color: colorScheme.onPrimary,
             ),
           ),
         ));
