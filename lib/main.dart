@@ -110,20 +110,20 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: GoogleFonts.poppins(
                               color: colorScheme.primary,
                               fontSize: 32,
-                              fontWeight: FontWeight.w600)),
+                              fontWeight: FontWeight.w500)),
                       Container(
                         height: 20,
                       ),
                       Text(
-                        'I build things for mobile',
+                        'Front End Developer',
                         style: GoogleFonts.poppins(
                             color: colorScheme.secondary,
                             fontSize: 22,
-                            fontWeight: FontWeight.w600),
+                            fontWeight: FontWeight.w500),
                       ),
                       Container(height: 20),
                       Text(
-                        'I\'m a software developer currently studying at University of Toronto. I specialize in implementing elegant and user friendly digital experiences.',
+                        'I\'m currently majoring in Cognitive Science and minoring in computer science at University of Toronto. I specialize in implementing elegant and user friendly digital experiences.',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                             color: colorScheme.secondary,
@@ -138,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: GoogleFonts.poppins(
                     color: colorScheme.onSurface,
                     fontSize: 28,
-                    fontWeight: FontWeight.w600),
+                    fontWeight: FontWeight.w500),
               ),
               Container(height: 25),
               for (final item in workExperienceItems)
@@ -154,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: GoogleFonts.poppins(
                     color: colorScheme.onSurface,
                     fontSize: 28,
-                    fontWeight: FontWeight.w600),
+                    fontWeight: FontWeight.w500),
               ),
               Container(height: 25),
               for (final item in projectsItems)
@@ -170,6 +170,66 @@ class _MyHomePageState extends State<MyHomePage> {
         )),
         drawer: Drawer(
           backgroundColor: colorScheme.secondaryContainer,
+          child: Column(children: [
+            Container(
+              height: 56,
+            ),
+            ListTile(
+              leading: Icon(Icons.home_outlined,
+                  color: colorScheme.onSecondaryContainer),
+              title: Text(
+                'Home',
+                style: TextStyle(color: colorScheme.onSecondaryContainer),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person_outline,
+                  color: colorScheme.onSecondaryContainer),
+              title: Text(
+                'About',
+                style: TextStyle(color: colorScheme.onSecondaryContainer),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.psychology_outlined,
+                  color: colorScheme.onSecondaryContainer),
+              title: Text(
+                'Skills',
+                style: TextStyle(color: colorScheme.onSecondaryContainer),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.data_object_outlined,
+                  color: colorScheme.onSecondaryContainer),
+              title: Text(
+                'Work',
+                style: TextStyle(color: colorScheme.onSecondaryContainer),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.forum_outlined,
+                  color: colorScheme.onSecondaryContainer),
+              title: Text(
+                'Contact',
+                style: TextStyle(color: colorScheme.onSecondaryContainer),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ]),
         ),
         floatingActionButton: Padding(
           padding: EdgeInsets.only(right: 7, bottom: 7),

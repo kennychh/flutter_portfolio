@@ -56,7 +56,7 @@ class ListItem extends StatelessWidget {
             style: GoogleFonts.poppins(
                 color: colorScheme.onSurface,
                 fontSize: 28,
-                fontWeight: FontWeight.w600),
+                fontWeight: FontWeight.w500),
           ),
         ),
         Align(
@@ -66,7 +66,7 @@ class ListItem extends StatelessWidget {
             style: GoogleFonts.poppins(
                 color: colorScheme.secondary,
                 fontSize: 18,
-                fontWeight: FontWeight.w600),
+                fontWeight: FontWeight.w500),
           ),
         ),
         Container(
