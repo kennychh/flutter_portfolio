@@ -7,15 +7,21 @@ class ListItem extends StatelessWidget {
   ListItem({
     Key? key,
     required this.imageUrl,
-    required this.name,
-    required this.subtitle,
-    required this.description,
+    this.name = '',
+    this.subtitle = '',
+    this.description = '',
+    this.aspectRatio = 16 / 9,
+    this.borderRadius = 64,
+    this.showText = true,
   }) : super(key: key);
 
   final String imageUrl;
   final String name;
   final String subtitle;
   final String description;
+  final double aspectRatio;
+  final double borderRadius;
+  final bool showText;
   final GlobalKey _backgroundImageKey = GlobalKey();
 
   @override
@@ -25,12 +31,23 @@ class ListItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: AspectRatio(
-            aspectRatio: 16 / 9,
+            aspectRatio: aspectRatio,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(borderRadius),
               child: _buildParallaxBackground(context),
             ),
           ),
+        ),
+        if (showText) _listItemText(context)
+      ],
+    );
+  }
+
+  Widget _listItemText(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: 20,
         ),
         Align(
           alignment: Alignment.centerLeft,
@@ -47,10 +64,13 @@ class ListItem extends StatelessWidget {
           child: Text(
             subtitle,
             style: GoogleFonts.poppins(
-                color: colorScheme.onSurface,
+                color: colorScheme.secondary,
                 fontSize: 18,
                 fontWeight: FontWeight.w600),
           ),
+        ),
+        Container(
+          height: 10,
         ),
         Align(
           alignment: Alignment.centerLeft,
@@ -303,10 +323,10 @@ class RenderParallax extends RenderBox
 
 class ParallaxItem {
   const ParallaxItem({
-    required this.title,
-    required this.subtitle,
     required this.imageUrl,
-    required this.description,
+    this.title = '',
+    this.subtitle = '',
+    this.description = '',
   });
 
   final String title;
@@ -334,3 +354,7 @@ const projectsItems = [
       description:
           'Designing and implementing a beautiful weather app with API integration.'),
 ];
+
+const gradientImage = ParallaxItem(
+  imageUrl: '/assets/gradient.jpg',
+);

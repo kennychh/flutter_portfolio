@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: colorScheme.background,
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
           iconTheme: IconThemeData(color: colorScheme.onBackground),
           elevation: 0,
@@ -74,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ? Icons.light_mode_outlined
                         : Icons.dark_mode_outlined)))
           ],
-          backgroundColor: colorScheme.surface,
+          backgroundColor: colorScheme.surface.withOpacity(0.7),
           title: Text(
             widget.title,
             style: GoogleFonts.poppins(
@@ -88,11 +89,23 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
+                height: AppBar().preferredSize.height,
+              ),
+              Container(
                   constraints: BoxConstraints(
                       minHeight: MediaQuery.of(context).size.height),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      ListItem(
+                        imageUrl: gradientImage.imageUrl,
+                        aspectRatio: 1,
+                        showText: false,
+                        borderRadius: 80,
+                      ),
+                      Container(
+                        height: 20,
+                      ),
                       Text('Hi, I\'m Kenny!',
                           style: GoogleFonts.poppins(
                               color: colorScheme.primary,
@@ -104,13 +117,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text(
                         'I build things for mobile',
                         style: GoogleFonts.poppins(
-                            color: colorScheme.onSurface,
+                            color: colorScheme.secondary,
                             fontSize: 22,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(height: 20),
                       Text(
-                        'I\'m a software developer currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing (and sometimes designing) elegant and user friendly digital experiences.',
+                        'I\'m a software developer currently studying at University of Toronto. I specialize in implementing elegant and user friendly digital experiences.',
+                        textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                             color: colorScheme.secondary,
                             fontSize: 15,
