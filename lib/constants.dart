@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+final GlobalKey<ScaffoldState> homeKey = GlobalKey();
+final GlobalKey<ScaffoldState> workKey = GlobalKey();
+final GlobalKey<ScaffoldState> aboutKey = GlobalKey();
+final GlobalKey<ScaffoldState> skillsKey = GlobalKey();
+final GlobalKey<ScaffoldState> contactKey = GlobalKey();
 var brightness = SchedulerBinding.instance!.window.platformBrightness;
 bool isDarkMode = brightness == Brightness.dark;
 

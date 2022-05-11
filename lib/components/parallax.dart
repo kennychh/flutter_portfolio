@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'constants.dart';
+import '../../constants.dart';
 
 class ListItem extends StatelessWidget {
   ListItem({
@@ -11,7 +11,7 @@ class ListItem extends StatelessWidget {
     this.subtitle = '',
     this.description = '',
     this.aspectRatio = 16 / 9,
-    this.borderRadius = 64,
+    this.borderRadius = 32,
     this.showText = true,
   }) : super(key: key);
 
@@ -26,63 +26,65 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          child: AspectRatio(
+    return Container(
+      decoration: BoxDecoration(
+          color: showText ? colorScheme.secondaryContainer : null,
+          borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
+      child: Column(
+        children: [
+          AspectRatio(
             aspectRatio: aspectRatio,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(borderRadius),
               child: _buildParallaxBackground(context),
             ),
           ),
-        ),
-        if (showText) _listItemText(context)
-      ],
+          if (showText) _listItemText(context)
+        ],
+      ),
     );
   }
 
   Widget _listItemText(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 20,
-        ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            name,
-            style: GoogleFonts.poppins(
-                color: colorScheme.onSurface,
-                fontSize: 28,
-                fontWeight: FontWeight.w500),
+    return Padding(
+      padding: EdgeInsets.all(32),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              name,
+              style: GoogleFonts.poppins(
+                  color: colorScheme.onSurface,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
-        ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            subtitle,
-            style: GoogleFonts.poppins(
-                color: colorScheme.secondary,
-                fontSize: 18,
-                fontWeight: FontWeight.w500),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              subtitle,
+              style: GoogleFonts.poppins(
+                  color: colorScheme.secondary,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
+            ),
           ),
-        ),
-        Container(
-          height: 10,
-        ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            description,
-            style: GoogleFonts.poppins(
-                color: colorScheme.secondary,
-                fontSize: 15,
-                fontWeight: FontWeight.w400),
+          Container(
+            height: 10,
           ),
-        ),
-      ],
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              description,
+              style: GoogleFonts.poppins(
+                  color: colorScheme.secondary,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

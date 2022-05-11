@@ -66,6 +66,10 @@ flutter:
         - asset: fonts/Poppins-Bold.ttf
         - asset: fonts/Poppins-ExtraBold.ttf
 
+    - family: AppIcons
+      fonts:
+        - asset: fonts/AppIcons.ttf
+
   assets:
     - assets/hellofresh.jpg
     - assets/weather.png
