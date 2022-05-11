@@ -1,15 +1,29 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/components/shared/contact.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'components/shared/about.dart';
 import 'components/shared/drawerItems.dart';
 import 'components/shared/home.dart';
+import 'components/shared/skills.dart';
 import 'components/shared/work.dart';
 import 'constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-ScrollController _scrollController = ScrollController();
 void main() {
   runApp(const MyApp());
+}
+
+final ItemScrollController itemScrollController = ItemScrollController();
+final ItemPositionsListener itemPositionsListener =
+    ItemPositionsListener.create();
+ItemPosition itemPosition =
+    ItemPosition(index: 0, itemLeadingEdge: 0, itemTrailingEdge: 1);
+void getItemPosition() {
+  itemPositionsListener.itemPositions.addListener(() {
+    itemPosition = itemPositionsListener.itemPositions.value.first;
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -40,6 +54,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    getItemPosition();
+  }
+
   void _setColorScheme() {
     setState(() {
       if (colorScheme == darkColorScheme) {
@@ -47,9 +67,17 @@ class _MyHomePageState extends State<MyHomePage> {
       } else {
         colorScheme = darkColorScheme;
       }
+      getItemPosition();
     });
   }
 
+  final List<Widget> componentList = [
+    Home(),
+    About(),
+    Skills(),
+    Work(),
+    Contact()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,26 +112,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: colorScheme.primary, fontWeight: FontWeight.w600),
           ),
         ),
-        body: SingleChildScrollView(
-            controller: _scrollController,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    height: AppBar().preferredSize.height,
-                  ),
-                  Home(key: homeKey),
-                  Work(
-                    key: workKey,
-                  ),
-                ],
-              ),
-            )),
-        drawer: DrawerItems(
-          scrollController: _scrollController,
+        body: ScrollablePositionedList.builder(
+          key: UniqueKey(),
+          initialScrollIndex: itemPosition.index,
+          initialAlignment: itemPosition.itemLeadingEdge,
+          itemScrollController: itemScrollController,
+          itemPositionsListener: itemPositionsListener,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          itemCount: componentList.length,
+          itemBuilder: (context, index) {
+            return Container(
+              child: componentList[index],
+            );
+          },
         ),
+        drawer: DrawerItems(itemScrollController: itemScrollController),
         floatingActionButton: Padding(
           padding: EdgeInsets.only(right: 7, bottom: 7),
           child: FloatingActionButton(

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+var appBarOffsetContainer = Container(
+  height: AppBar().preferredSize.height,
+);
 final GlobalKey<ScaffoldState> homeKey = GlobalKey();
-final GlobalKey<ScaffoldState> workKey = GlobalKey();
 final GlobalKey<ScaffoldState> aboutKey = GlobalKey();
 final GlobalKey<ScaffoldState> skillsKey = GlobalKey();
+final GlobalKey<ScaffoldState> workKey = GlobalKey();
 final GlobalKey<ScaffoldState> contactKey = GlobalKey();
 var brightness = SchedulerBinding.instance!.window.platformBrightness;
 bool isDarkMode = brightness == Brightness.dark;

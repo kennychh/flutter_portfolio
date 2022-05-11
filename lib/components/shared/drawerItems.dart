@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../constants.dart';
 
 class DrawerItems extends StatelessWidget {
-  const DrawerItems({Key? key, required this.scrollController})
-      : super(key: key);
+  const DrawerItems({
+    Key? key,
+    required this.itemScrollController,
+  }) : super(key: key);
 
-  final ScrollController scrollController;
+  final ItemScrollController itemScrollController;
 
-  void scrollTo(GlobalKey<ScaffoldState> key) {
-    RenderBox box = key.currentContext!.findRenderObject() as RenderBox;
-    Offset position = box.localToGlobal(Offset.zero);
-    double y = position.dy;
-    scrollController.animateTo(
-      y - AppBar().preferredSize.height,
-      duration: const Duration(seconds: 1),
-      curve: Curves.ease,
-    );
+  void scrollToIndex(int index) {
+    if (itemScrollController.isAttached) {
+      itemScrollController.scrollTo(
+          index: index,
+          duration: const Duration(seconds: 1),
+          curve: Curves.ease);
+    }
   }
 
   @override
@@ -34,7 +35,8 @@ class DrawerItems extends StatelessWidget {
             style: TextStyle(color: colorScheme.onSecondaryContainer),
           ),
           onTap: () {
-            scrollTo(homeKey);
+            scrollToIndex(0);
+            Navigator.pop(context);
           },
         ),
         ListTile(
@@ -45,7 +47,8 @@ class DrawerItems extends StatelessWidget {
             style: TextStyle(color: colorScheme.onSecondaryContainer),
           ),
           onTap: () {
-            scrollTo(aboutKey);
+            scrollToIndex(1);
+            Navigator.pop(context);
           },
         ),
         ListTile(
@@ -56,7 +59,8 @@ class DrawerItems extends StatelessWidget {
             style: TextStyle(color: colorScheme.onSecondaryContainer),
           ),
           onTap: () {
-            scrollTo(skillsKey);
+            scrollToIndex(2);
+            Navigator.pop(context);
           },
         ),
         ListTile(
@@ -67,20 +71,21 @@ class DrawerItems extends StatelessWidget {
             style: TextStyle(color: colorScheme.onSecondaryContainer),
           ),
           onTap: () {
-            scrollTo(workKey);
+            scrollToIndex(3);
+            Navigator.pop(context);
           },
         ),
         ListTile(
-          leading: Icon(Icons.person_outline,
-              color: colorScheme.onSecondaryContainer),
-          title: Text(
-            'Contact',
-            style: TextStyle(color: colorScheme.onSecondaryContainer),
-          ),
-          onTap: () {
-            scrollTo(contactKey);
-          },
-        ),
+            leading: Icon(Icons.person_outline,
+                color: colorScheme.onSecondaryContainer),
+            title: Text(
+              'Contact',
+              style: TextStyle(color: colorScheme.onSecondaryContainer),
+            ),
+            onTap: () {
+              scrollToIndex(4);
+              Navigator.pop(context);
+            }),
       ]),
     );
   }

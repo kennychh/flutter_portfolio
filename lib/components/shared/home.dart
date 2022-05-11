@@ -14,6 +14,10 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            appBarOffsetContainer,
+            Container(
+              height: 25,
+            ),
             ListItem(
               imageUrl: gradientImage.imageUrl,
               aspectRatio: 1,

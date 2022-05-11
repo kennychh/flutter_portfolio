@@ -13,8 +13,8 @@ class Work extends StatelessWidget {
         constraints:
             BoxConstraints(minHeight: MediaQuery.of(context).size.height),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            appBarOffsetContainer,
             Container(
               height: 25,
             ),
