@@ -100,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         : Icons.dark_mode_outlined)))
           ],
           backgroundColor: colorScheme.surface.withOpacity(0.7),
+          surfaceTintColor: colorScheme.surface.withOpacity(0.7),
           title: Text(
             widget.title,
             style: GoogleFonts.poppins(
@@ -126,8 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
           child: FloatingActionButton(
             backgroundColor: colorScheme.primary,
             onPressed: () {},
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             child: Icon(
               Icons.chat_bubble_outline,
               color: colorScheme.onPrimary,

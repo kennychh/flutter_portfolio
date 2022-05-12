@@ -84,7 +84,7 @@ const workExperienceItems = [
       description: [
         'Implemented a variety of projects on mobile for HelloFresh\'s sub-brands using React Native.',
         'Involved in adding multi-language support, to facilitate global sub-brand integration.',
-        'Developed and shipped front-end implementation of Multiple Payments, allowing users to add their credit cards or Paypal.',
+        'Developed and shipped front-end implementation of Multiple Payments, allowing users to add different credit cards or Paypal.',
         'Contributed extensively on the iOS widget implementation using the WidgetKit framework and the widget API for SwiftUI.'
       ]),
 ];
