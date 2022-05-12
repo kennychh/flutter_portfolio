@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/shared/contact.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'components/shared/about.dart';
 import 'components/shared/drawerItems.dart';
 import 'components/shared/home.dart';
-import 'components/shared/skills.dart';
 import 'components/shared/work.dart';
 import 'constants.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,6 +73,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> componentList = [Home(), About(), Work(), Contact()];
   @override
+  double getPadding(BoxConstraints constraints) {
+    if (constraints.isMobile) {
+      return 24;
+    }
+    if (constraints.isDesktop) {
+      return 200;
+    }
+    return 100;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: colorScheme.background,
@@ -107,17 +117,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: colorScheme.primary, fontWeight: FontWeight.w600),
           ),
         ),
-        body: ScrollablePositionedList.builder(
-          key: UniqueKey(),
-          initialScrollIndex: itemPosition.index,
-          initialAlignment: itemPosition.itemLeadingEdge,
-          itemScrollController: itemScrollController,
-          itemPositionsListener: itemPositionsListener,
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          itemCount: componentList.length,
-          itemBuilder: (context, index) {
-            return Container(
-              child: componentList[index],
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            return ScrollablePositionedList.builder(
+              key: UniqueKey(),
+              initialScrollIndex: itemPosition.index,
+              initialAlignment: itemPosition.itemLeadingEdge,
+              itemScrollController: itemScrollController,
+              itemPositionsListener: itemPositionsListener,
+              padding:
+                  EdgeInsets.symmetric(horizontal: getPadding(constraints)),
+              itemCount: componentList.length,
+              itemBuilder: (context, index) {
+                return AdaptiveContainer(
+                  columnSpan: 12,
+                  child: componentList[index],
+                );
+              },
             );
           },
         ),

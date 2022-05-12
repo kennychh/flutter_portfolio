@@ -1,3 +1,4 @@
+import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -45,11 +46,14 @@ class ListItem extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
       child: Column(
         children: [
-          AspectRatio(
-            aspectRatio: aspectRatio,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(borderRadius),
-              child: _buildParallaxBackground(context),
+          Container(
+            constraints: BoxConstraints(maxHeight: 500),
+            child: AspectRatio(
+              aspectRatio: aspectRatio,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(borderRadius),
+                child: _buildParallaxBackground(context),
+              ),
             ),
           ),
           if (showText) _listItemText(context)

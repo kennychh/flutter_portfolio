@@ -1,9 +1,11 @@
+import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import 'components/shared/parallax.dart';
 
-var appBarOffsetContainer = Container(
+var appBarOffsetContainer = AdaptiveContainer(
+  columnSpan: 12,
   height: AppBar().preferredSize.height,
 );
 
@@ -101,3 +103,9 @@ const projectsItems = [
 const gradientImage = ParallaxItem(
   imageUrl: '/assets/gradient.jpg',
 );
+
+extension BreakpointUtils on BoxConstraints {
+  bool get isTablet => maxWidth > 730;
+  bool get isDesktop => maxWidth > 1200;
+  bool get isMobile => !isTablet && !isDesktop;
+}
