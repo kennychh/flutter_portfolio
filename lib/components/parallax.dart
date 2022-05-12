@@ -9,19 +9,21 @@ class ListItem extends StatelessWidget {
     required this.imageUrl,
     this.name = '',
     this.subtitle = '',
-    this.description = '',
-    this.time = null,
+    this.description = const [''],
+    this.time,
     this.aspectRatio = 16 / 9,
     this.borderRadius = 32,
     this.showText = true,
+    this.fillBackground = true,
   }) : super(key: key);
 
   final String imageUrl;
   final String name;
   final String subtitle;
-  final String description;
+  final List<String> description;
   final double aspectRatio;
   final double borderRadius;
+  final bool fillBackground;
   final time;
   final bool showText;
   final GlobalKey _backgroundImageKey = GlobalKey();
@@ -29,9 +31,18 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          color: showText ? colorScheme.secondaryContainer : null,
-          borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
+      decoration: fillBackground
+          ? BoxDecoration(
+              color: showText ? colorScheme.secondaryContainer : null,
+              borderRadius: BorderRadius.all(Radius.circular(borderRadius)))
+          : BoxDecoration(
+              border: Border.all(
+                color: showText
+                    ? colorScheme.secondaryContainer
+                    : Colors.transparent,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
       child: Column(
         children: [
           AspectRatio(
@@ -90,18 +101,64 @@ class ListItem extends StatelessWidget {
           Container(
             height: 10,
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              description,
-              style: GoogleFonts.poppins(
-                  color: colorScheme.secondary,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
+          description.length == 1
+              ? Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    description[0],
+                    style: GoogleFonts.poppins(
+                        color: colorScheme.secondary,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400),
+                  ),
+                )
+              : _descriptionList(context)
         ],
       ),
+    );
+  }
+
+  Widget _descriptionList(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: description.map((str) {
+        return Column(
+          children: [
+            Container(
+              height: 10,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '\u2022',
+                  style: TextStyle(
+                    color: colorScheme.secondary,
+                    fontSize: 15,
+                    height: 1.55,
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Container(
+                    child: Text(
+                      str,
+                      textAlign: TextAlign.left,
+                      softWrap: true,
+                      style: GoogleFonts.poppins(
+                          color: colorScheme.secondary,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        );
+      }).toList(),
     );
   }
 
@@ -345,38 +402,13 @@ class ParallaxItem {
     required this.imageUrl,
     this.title = '',
     this.subtitle = '',
-    this.description = '',
+    this.description = const [''],
     this.time = null,
   });
 
   final String title;
   final String subtitle;
   final String imageUrl;
-  final String description;
+  final List<String> description;
   final time;
 }
-
-const urlPrefix =
-    'https://docs.flutter.dev/cookbook/img-files/effects/parallax';
-
-const workExperienceItems = [
-  ParallaxItem(
-      title: 'HelloFresh',
-      subtitle: 'Junior Software Developer',
-      imageUrl: '/assets/hellofresh.jpg',
-      time: 'May 2021 - August 2022',
-      description:
-          'Implementing a variety of projects on mobile for HelloFresh\'s sub brands.'),
-];
-const projectsItems = [
-  ParallaxItem(
-      title: 'Weather',
-      subtitle: 'Personal Project',
-      imageUrl: '/assets/weather.png',
-      description:
-          'Designing and implementing a beautiful weather app with API integration.'),
-];
-
-const gradientImage = ParallaxItem(
-  imageUrl: '/assets/gradient.jpg',
-);

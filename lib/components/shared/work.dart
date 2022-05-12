@@ -33,6 +33,7 @@ class Work extends StatelessWidget {
                 subtitle: item.subtitle,
                 time: item.time,
                 description: item.description,
+                fillBackground: false,
               ),
             Container(height: 75),
             Text(
@@ -48,6 +49,7 @@ class Work extends StatelessWidget {
                 imageUrl: item.imageUrl,
                 name: item.title,
                 subtitle: item.subtitle,
+                time: item.time,
                 description: item.description,
               ),
             Container(height: 100),

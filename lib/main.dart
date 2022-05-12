@@ -71,13 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  final List<Widget> componentList = [
-    Home(),
-    About(),
-    Skills(),
-    Work(),
-    Contact()
-  ];
+  final List<Widget> componentList = [Home(), About(), Work(), Contact()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

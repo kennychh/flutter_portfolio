@@ -52,18 +52,6 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.psychology_outlined,
-              color: colorScheme.onSecondaryContainer),
-          title: Text(
-            'Skills',
-            style: TextStyle(color: colorScheme.onSecondaryContainer),
-          ),
-          onTap: () {
-            scrollToIndex(2);
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
           leading: Icon(Icons.code_outlined,
               color: colorScheme.onSecondaryContainer),
           title: Text(
@@ -71,7 +59,7 @@ class DrawerItems extends StatelessWidget {
             style: TextStyle(color: colorScheme.onSecondaryContainer),
           ),
           onTap: () {
-            scrollToIndex(3);
+            scrollToIndex(2);
             Navigator.pop(context);
           },
         ),
@@ -83,7 +71,7 @@ class DrawerItems extends StatelessWidget {
               style: TextStyle(color: colorScheme.onSecondaryContainer),
             ),
             onTap: () {
-              scrollToIndex(4);
+              scrollToIndex(3);
               Navigator.pop(context);
             }),
       ]),

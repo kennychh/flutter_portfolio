@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+import 'components/parallax.dart';
+
 var appBarOffsetContainer = Container(
   height: AppBar().preferredSize.height,
 );
-final GlobalKey<ScaffoldState> homeKey = GlobalKey();
-final GlobalKey<ScaffoldState> aboutKey = GlobalKey();
-final GlobalKey<ScaffoldState> skillsKey = GlobalKey();
-final GlobalKey<ScaffoldState> workKey = GlobalKey();
-final GlobalKey<ScaffoldState> contactKey = GlobalKey();
-var brightness = SchedulerBinding.instance!.window.platformBrightness;
-bool isDarkMode = brightness == Brightness.dark;
 
 const seed = Color(0xFF5F51A4);
 
@@ -76,4 +71,33 @@ const darkColorScheme = ColorScheme(
   shadow: Color(0xFF000000),
 );
 
+var brightness = SchedulerBinding.instance!.window.platformBrightness;
+bool isDarkMode = brightness == Brightness.dark;
 var colorScheme = isDarkMode ? darkColorScheme : lightColorScheme;
+
+const workExperienceItems = [
+  ParallaxItem(
+      title: 'HelloFresh',
+      subtitle: 'Software Developer Co-op',
+      imageUrl: '/assets/hellofresh.jpg',
+      time: 'May 2021 - August 2022',
+      description: [
+        'Implemented a variety of projects on mobile for HelloFresh\'s sub-brands using React Native.',
+        'Involved in adding multi-language support, to facilitate global sub-brand integration.',
+        'Developed and shipped front-end implementation of Multiple Payments, allowing users to add their credit cards or Paypal.',
+        'Contributed extensively on the iOS widget implementation using the WidgetKit framework and the widget API for SwiftUI.'
+      ]),
+];
+const projectsItems = [
+  ParallaxItem(
+      title: 'Weather',
+      subtitle: 'Personal Project',
+      imageUrl: '/assets/weather.png',
+      description: [
+        'Designed and implemented a beautiful weather app with Weather API integration.'
+      ]),
+];
+
+const gradientImage = ParallaxItem(
+  imageUrl: '/assets/gradient.jpg',
+);
