@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import '../../components/parallax.dart';
+import 'parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../constants.dart';
@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
             ),
             Container(height: 20),
             Text(
-              'I\'m currently majoring in Cognitive Science and minoring in computer science at University of Toronto. I specialize in implementing elegant and user friendly digital experiences.',
+              'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                   color: colorScheme.secondary,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-import 'components/parallax.dart';
+import 'components/shared/parallax.dart';
 
 var appBarOffsetContainer = Container(
   height: AppBar().preferredSize.height,
