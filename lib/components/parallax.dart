@@ -10,6 +10,7 @@ class ListItem extends StatelessWidget {
     this.name = '',
     this.subtitle = '',
     this.description = '',
+    this.time = null,
     this.aspectRatio = 16 / 9,
     this.borderRadius = 32,
     this.showText = true,
@@ -21,6 +22,7 @@ class ListItem extends StatelessWidget {
   final String description;
   final double aspectRatio;
   final double borderRadius;
+  final time;
   final bool showText;
   final GlobalKey _backgroundImageKey = GlobalKey();
 
@@ -70,6 +72,21 @@ class ListItem extends StatelessWidget {
                   fontWeight: FontWeight.w500),
             ),
           ),
+          if (time != null)
+            Container(
+              height: 10,
+            ),
+          if (time != null)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                time,
+                style: GoogleFonts.poppins(
+                    color: colorScheme.secondary,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
           Container(
             height: 10,
           ),
@@ -329,12 +346,14 @@ class ParallaxItem {
     this.title = '',
     this.subtitle = '',
     this.description = '',
+    this.time = null,
   });
 
   final String title;
   final String subtitle;
   final String imageUrl;
   final String description;
+  final time;
 }
 
 const urlPrefix =
@@ -345,6 +364,7 @@ const workExperienceItems = [
       title: 'HelloFresh',
       subtitle: 'Junior Software Developer',
       imageUrl: '/assets/hellofresh.jpg',
+      time: 'May 2021 - August 2022',
       description:
           'Implementing a variety of projects on mobile for HelloFresh\'s sub brands.'),
 ];
