@@ -21,11 +21,8 @@ final ItemPositionsListener itemPositionsListener =
     ItemPositionsListener.create();
 ItemPosition itemPosition =
     ItemPosition(index: 0, itemLeadingEdge: 0, itemTrailingEdge: 1);
-void getItemPosition() {
-  itemPositionsListener.itemPositions.addListener(() {
-    itemPosition = itemPositionsListener.itemPositions.value.first;
-  });
-}
+
+GlobalKey<NavigationRailSectionState> navigationRailGlobalKey = GlobalKey();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -55,12 +52,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int pageIndex = 0;
+  int pageIndex = -1;
   bool isNavigationRailExtended = false;
   @override
   void initState() {
     super.initState();
     getItemPosition();
+  }
+
+  void getItemPosition() {
+    itemPositionsListener.itemPositions.addListener(() {
+      itemPosition = itemPositionsListener.itemPositions.value.first;
+      if (itemPosition.index != pageIndex &&
+          itemPosition.itemLeadingEdge > -0.5) {
+        navigationRailGlobalKey.currentState
+            ?.onDestinationSelected(itemPosition.index, shouldScroll: false);
+      }
+      ;
+    });
   }
 
   void _setColorScheme() {
@@ -188,6 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Row(
                   children: <Widget>[
                     NavigationRailSection(
+                      key: navigationRailGlobalKey,
                       onSelectItem: handlePageIndexChanged,
                       selectedIndex: pageIndex,
                       scrollToIndex: scrollToIndex,

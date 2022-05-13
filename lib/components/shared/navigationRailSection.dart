@@ -18,16 +18,23 @@ class NavigationRailSection extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<NavigationRailSection> createState() => _NavigationRailSectionState();
+  State<NavigationRailSection> createState() => NavigationRailSectionState();
 }
 
-class _NavigationRailSectionState extends State<NavigationRailSection> {
+class NavigationRailSectionState extends State<NavigationRailSection> {
   int _selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
     _selectedIndex = widget.selectedIndex;
+  }
+
+  void onDestinationSelected(int index, {bool shouldScroll = true}) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    shouldScroll ? widget.scrollToIndex(index) : null;
   }
 
   @override
@@ -44,24 +51,10 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                FloatingActionButton.extended(
-                  label: Container(
-                      width: 161,
-                      child: Center(
-                        child: Text(
-                          'Contact',
-                          style: TextStyle(
-                              color: colorScheme.onPrimary,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      )),
-                  extendedIconLabelSpacing: widget.isExtended ? 15 : null,
-                  extendedPadding:
-                      !widget.isExtended ? EdgeInsets.all(15) : null,
-                  isExtended: widget.isExtended,
+                FloatingActionButton(
                   backgroundColor: colorScheme.primary,
                   onPressed: () {},
-                  icon: Icon(
+                  child: Icon(
                     Icons.chat_bubble_outline,
                     color: colorScheme.onPrimary,
                   ),
@@ -114,13 +107,10 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
           )
         ],
         selectedIndex: _selectedIndex,
-        useIndicator: false,
+        useIndicator: true,
         labelType: NavigationRailLabelType.none,
         onDestinationSelected: (index) {
-          widget.scrollToIndex(index);
-          setState(() {
-            _selectedIndex = index;
-          });
+          onDestinationSelected(index);
         },
       ),
     );
