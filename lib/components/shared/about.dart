@@ -12,6 +12,7 @@ class About extends StatelessWidget {
         constraints:
             BoxConstraints(minHeight: MediaQuery.of(context).size.height),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             appBarOffsetContainer,
             Container(
@@ -21,7 +22,7 @@ class About extends StatelessWidget {
               'About Me',
               style: GoogleFonts.poppins(
                   color: colorScheme.onSurface,
-                  fontSize: 28,
+                  fontSize: 45,
                   fontWeight: FontWeight.w500),
             ),
           ],

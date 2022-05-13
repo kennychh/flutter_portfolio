@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                       color: colorScheme.secondary,
-                      fontSize: 15,
+                      fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
                 Container(height: 200),

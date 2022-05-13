@@ -9,51 +9,102 @@ class Work extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        constraints:
-            BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-        child: Column(
-          children: [
-            appBarOffsetContainer,
-            Container(
-              height: 25,
-            ),
-            Text(
-              'Work Experience',
-              style: GoogleFonts.poppins(
-                  color: colorScheme.onSurface,
-                  fontSize: 28,
-                  fontWeight: FontWeight.w500),
-            ),
-            Container(height: 25),
-            for (final item in workExperienceItems)
-              ListItem(
-                imageUrl: item.imageUrl,
-                name: item.title,
-                subtitle: item.subtitle,
-                time: item.time,
-                description: item.description,
-                fillBackground: false,
+    return LayoutBuilder(builder: ((context, constraints) {
+      if (constraints.isMobile) {
+        return Container(
+            constraints:
+                BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+            child: Column(
+              children: [
+                appBarOffsetContainer,
+                Container(
+                  height: 25,
+                ),
+                Text(
+                  'Work Experience',
+                  style: GoogleFonts.poppins(
+                      color: colorScheme.onSurface,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w500),
+                ),
+                Container(height: 25),
+                for (final item in workExperienceItems)
+                  ListItem(
+                    imageUrl: item.imageUrl,
+                    name: item.title,
+                    subtitle: item.subtitle,
+                    time: item.time,
+                    description: item.description,
+                    fillBackground: false,
+                  ),
+                Container(height: 75),
+                Text(
+                  'Projects',
+                  style: GoogleFonts.poppins(
+                      color: colorScheme.onSurface,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w500),
+                ),
+                Container(height: 25),
+                for (final item in projectsItems)
+                  ListItem(
+                    imageUrl: item.imageUrl,
+                    name: item.title,
+                    subtitle: item.subtitle,
+                    time: item.time,
+                    description: item.description,
+                  ),
+                Container(height: 100),
+              ],
+            ));
+      }
+      return Container(
+          constraints:
+              BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              appBarOffsetContainer,
+              Container(
+                height: 25,
               ),
-            Container(height: 75),
-            Text(
-              'Projects',
-              style: GoogleFonts.poppins(
-                  color: colorScheme.onSurface,
-                  fontSize: 28,
-                  fontWeight: FontWeight.w500),
-            ),
-            Container(height: 25),
-            for (final item in projectsItems)
-              ListItem(
-                imageUrl: item.imageUrl,
-                name: item.title,
-                subtitle: item.subtitle,
-                time: item.time,
-                description: item.description,
+              Text(
+                'Work Experience',
+                style: GoogleFonts.poppins(
+                    color: colorScheme.onSurface,
+                    fontSize: 45,
+                    fontWeight: FontWeight.w500),
               ),
-            Container(height: 100),
-          ],
-        ));
+              Container(height: 50),
+              for (final item in workExperienceItems)
+                ListItem(
+                  imageUrl: item.imageUrl,
+                  name: item.title,
+                  subtitle: item.subtitle,
+                  time: item.time,
+                  description: item.description,
+                  fillBackground: false,
+                ),
+              Container(height: 75),
+              Text(
+                'Projects',
+                style: GoogleFonts.poppins(
+                    color: colorScheme.onSurface,
+                    fontSize: 45,
+                    fontWeight: FontWeight.w500),
+              ),
+              Container(height: 50),
+              for (final item in projectsItems)
+                ListItem(
+                  imageUrl: item.imageUrl,
+                  name: item.title,
+                  subtitle: item.subtitle,
+                  time: item.time,
+                  description: item.description,
+                ),
+              Container(height: 100),
+            ],
+          ));
+    }));
   }
 }

@@ -14,7 +14,6 @@ class ListItem extends StatelessWidget {
     this.time,
     this.aspectRatio = 16 / 9,
     this.borderRadius = 32,
-    this.showText = true,
     this.fillBackground = true,
   }) : super(key: key);
 
@@ -26,45 +25,97 @@ class ListItem extends StatelessWidget {
   final double borderRadius;
   final bool fillBackground;
   final time;
-  final bool showText;
   final GlobalKey _backgroundImageKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: fillBackground
-          ? BoxDecoration(
-              color: showText ? colorScheme.secondaryContainer : null,
-              borderRadius: BorderRadius.all(Radius.circular(borderRadius)))
-          : BoxDecoration(
-              border: Border.all(
-                color: showText
-                    ? colorScheme.secondaryContainer
-                    : Colors.transparent,
-                width: 2,
+    return LayoutBuilder(builder: ((context, constraints) {
+      if (constraints.isMobile) {
+        return Container(
+          decoration: fillBackground
+              ? BoxDecoration(
+                  color: colorScheme.secondaryContainer,
+                  borderRadius: BorderRadius.all(Radius.circular(borderRadius)))
+              : BoxDecoration(
+                  border: Border.all(
+                    color: colorScheme.secondaryContainer,
+                    width: 2,
+                  ),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(borderRadius))),
+          child: Column(
+            children: [
+              Container(
+                constraints: BoxConstraints(maxHeight: 500),
+                child: AspectRatio(
+                  aspectRatio: aspectRatio,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(borderRadius),
+                    child: _buildParallaxBackground(context),
+                  ),
+                ),
               ),
-              borderRadius: BorderRadius.all(Radius.circular(borderRadius))),
-      child: Column(
-        children: [
-          Container(
-            constraints: BoxConstraints(maxHeight: 500),
-            child: AspectRatio(
-              aspectRatio: aspectRatio,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(borderRadius),
-                child: _buildParallaxBackground(context),
-              ),
-            ),
+              _listItemText(context)
+            ],
           ),
-          if (showText) _listItemText(context)
-        ],
-      ),
-    );
+        );
+      }
+      return Expanded(
+        child: Container(
+            decoration: fillBackground
+                ? BoxDecoration(
+                    color: colorScheme.secondaryContainer,
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(borderRadius + 32)))
+                : BoxDecoration(
+                    border: Border.all(
+                      color: colorScheme.secondaryContainer,
+                      width: 2,
+                    ),
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(borderRadius + 32))),
+            child: Padding(
+              padding: EdgeInsets.all(32),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                      flex: 3,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(maxWidth: 550),
+                          child: _listItemText(context, padding: 0),
+                        ),
+                      )),
+                  Expanded(
+                    child: Container(),
+                  ),
+                  Expanded(
+                      flex: 3,
+                      child: Align(
+                          alignment: Alignment.topRight,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(maxHeight: 500),
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(borderRadius),
+                                child: _buildParallaxBackground(context),
+                              ),
+                            ),
+                          ))),
+                ],
+              ),
+            )),
+      );
+    }));
   }
 
-  Widget _listItemText(BuildContext context) {
+  Widget _listItemText(BuildContext context, {double padding = 32}) {
     return Padding(
-      padding: EdgeInsets.all(32),
+      padding: EdgeInsets.all(padding),
       child: Column(
         children: [
           Align(
@@ -98,7 +149,7 @@ class ListItem extends StatelessWidget {
                 time,
                 style: GoogleFonts.poppins(
                     color: colorScheme.secondary,
-                    fontSize: 15,
+                    fontSize: 16,
                     fontWeight: FontWeight.w400),
               ),
             ),
@@ -112,7 +163,7 @@ class ListItem extends StatelessWidget {
                     description[0],
                     style: GoogleFonts.poppins(
                         color: colorScheme.secondary,
-                        fontSize: 15,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400),
                   ),
                 )
@@ -138,7 +189,7 @@ class ListItem extends StatelessWidget {
                   '\u2022',
                   style: TextStyle(
                     color: colorScheme.secondary,
-                    fontSize: 15,
+                    fontSize: 16,
                     height: 1.55,
                   ),
                 ),
@@ -153,7 +204,7 @@ class ListItem extends StatelessWidget {
                       softWrap: true,
                       style: GoogleFonts.poppins(
                           color: colorScheme.secondary,
-                          fontSize: 15,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400),
                     ),
                   ),

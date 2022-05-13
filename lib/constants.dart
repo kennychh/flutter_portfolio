@@ -109,3 +109,5 @@ extension BreakpointUtils on BoxConstraints {
   bool get isDesktop => maxWidth > 1200;
   bool get isMobile => !isTablet && !isDesktop;
 }
+
+double navigationRailWidth = 75;
