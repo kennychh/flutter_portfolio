@@ -72,7 +72,7 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
             child: Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: EdgeInsets.only(bottom: 20),
+            padding: const EdgeInsets.only(bottom: 20),
             child: IconButton(
                 onPressed: () {
                   widget.setColorScheme();
@@ -90,7 +90,6 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
               'Home',
               style: TextStyle(color: colorScheme.onSecondaryContainer),
             ),
-            selectedIcon: Icon(Icons.home, color: colorScheme.primary),
           ),
           NavigationRailDestination(
             icon: Icon(Icons.face_outlined, color: colorScheme.primary),
@@ -98,11 +97,9 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
               'About',
               style: TextStyle(color: colorScheme.onSecondaryContainer),
             ),
-            selectedIcon: Icon(Icons.face, color: colorScheme.primary),
           ),
           NavigationRailDestination(
             icon: Icon(Icons.code_outlined, color: colorScheme.primary),
-            selectedIcon: Icon(Icons.code, color: colorScheme.primary),
             label: Text(
               'Work',
               style: TextStyle(color: colorScheme.onSecondaryContainer),
@@ -114,11 +111,10 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
               'Contact',
               style: TextStyle(color: colorScheme.onSecondaryContainer),
             ),
-            selectedIcon: Icon(Icons.person, color: colorScheme.primary),
           )
         ],
         selectedIndex: _selectedIndex,
-        useIndicator: true,
+        useIndicator: false,
         labelType: NavigationRailLabelType.none,
         onDestinationSelected: (index) {
           widget.scrollToIndex(index);
