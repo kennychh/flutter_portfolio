@@ -1,59 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../constants.dart';
-
-List<NavigationDestination> appBarDestinations = [
-  NavigationDestination(
-    tooltip: "",
-    icon: Icon(Icons.home_outlined, color: colorScheme.primary),
-    label: 'Home',
-    selectedIcon: Icon(Icons.home_outlined, color: colorScheme.primary),
-  ),
-  NavigationDestination(
-    tooltip: "",
-    icon: Icon(Icons.face_outlined, color: colorScheme.primary),
-    label: 'About',
-    selectedIcon: Icon(Icons.face_outlined, color: colorScheme.primary),
-  ),
-  NavigationDestination(
-    tooltip: "",
-    icon: Icon(Icons.code_outlined, color: colorScheme.primary),
-    selectedIcon: Icon(Icons.code_outlined, color: colorScheme.primary),
-    label: 'Work',
-  ),
-  NavigationDestination(
-    tooltip: "",
-    icon: Icon(Icons.person_outline, color: colorScheme.primary),
-    label: 'Contact',
-    selectedIcon: Icon(Icons.person_outline, color: colorScheme.primary),
-  )
-];
-
-final List<NavigationRailDestination> navRailDestinations = appBarDestinations
-    .map(
-      (destination) => NavigationRailDestination(
-        icon: Tooltip(
-          message: destination.label,
-          child: destination.icon,
-        ),
-        selectedIcon: Tooltip(
-          message: destination.label,
-          child: destination.selectedIcon,
-        ),
-        label: Text(destination.label),
-      ),
-    )
-    .toList();
 
 class NavigationRailSection extends StatefulWidget {
   final void Function(int) onSelectItem;
   final int selectedIndex;
+  final Function(int) scrollToIndex;
 
   const NavigationRailSection({
     Key? key,
     required this.onSelectItem,
     required this.selectedIndex,
+    required this.scrollToIndex,
   }) : super(key: key);
 
   @override
@@ -130,10 +90,10 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
         useIndicator: true,
         labelType: NavigationRailLabelType.none,
         onDestinationSelected: (index) {
+          widget.scrollToIndex(index);
           setState(() {
             _selectedIndex = index;
           });
-          widget.onSelectItem(index);
         },
       ),
     );

@@ -73,6 +73,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void scrollToIndex(int index) {
+    if (itemScrollController.isAttached) {
+      itemScrollController.scrollTo(
+          index: index,
+          duration: const Duration(seconds: 1),
+          curve: Curves.ease);
+    }
+  }
+
   void handlePageIndexChanged(int selectedPage) {
     setState(() {
       pageIndex = selectedPage;
@@ -174,6 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     NavigationRailSection(
                       onSelectItem: handlePageIndexChanged,
                       selectedIndex: pageIndex,
+                      scrollToIndex: scrollToIndex,
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width -
