@@ -8,24 +8,46 @@ class About extends StatelessWidget {
   About({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-        constraints:
-            BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            appBarOffsetContainer,
-            Container(
-              height: 25,
-            ),
-            Text(
-              'About Me',
-              style: GoogleFonts.poppins(
-                  color: colorScheme.onSurface,
-                  fontSize: 45,
-                  fontWeight: FontWeight.w500),
-            ),
-          ],
-        ));
+    return LayoutBuilder(builder: ((context, constraints) {
+      if (constraints.isMobile) {
+        return Container(
+            constraints:
+                BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+            child: Column(
+              children: [
+                appBarOffsetContainer,
+                Container(
+                  height: 25,
+                ),
+                Text(
+                  'About Me',
+                  style: GoogleFonts.poppins(
+                      color: colorScheme.onSurface,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
+            ));
+      }
+      return Container(
+          constraints:
+              BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              appBarOffsetContainer,
+              Container(
+                height: 25,
+              ),
+              Text(
+                'About Me',
+                style: GoogleFonts.poppins(
+                    color: colorScheme.onSurface,
+                    fontSize: 45,
+                    fontWeight: FontWeight.w500),
+              ),
+            ],
+          ));
+    }));
   }
 }

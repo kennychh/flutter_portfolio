@@ -56,6 +56,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int pageIndex = 0;
+  bool isNavigationRailExtended = false;
   @override
   void initState() {
     super.initState();
@@ -88,6 +89,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void handleNavigationRailExtended() {
+    setState(() {
+      isNavigationRailExtended = !isNavigationRailExtended;
+    });
+  }
+
   final List<Widget> componentList = [Home(), About(), Work(), Contact()];
   @override
   double getPadding(BoxConstraints constraints) {
@@ -95,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return 24;
     }
     if (constraints.isDesktop) {
-      return 200;
+      return 150;
     }
     return 100;
   }
@@ -104,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     return LayoutBuilder(builder: ((context, constraints) {
-      if (constraints.isMobile || (constraints.isTablet && isPortrait)) {
+      if (constraints.isMobile) {
         return Scaffold(
             backgroundColor: colorScheme.background,
             extendBodyBehindAppBar: true,
@@ -184,10 +191,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       onSelectItem: handlePageIndexChanged,
                       selectedIndex: pageIndex,
                       scrollToIndex: scrollToIndex,
+                      isExtended: isNavigationRailExtended,
+                      setColorScheme: _setColorScheme,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width -
-                          navigationRailWidth,
+                    Expanded(
                       child: ScrollablePositionedList.builder(
                         key: UniqueKey(),
                         initialScrollIndex: itemPosition.index,
@@ -210,35 +217,39 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: colorScheme.onBackground),
-          elevation: 0,
-          centerTitle: true,
-          leading: Padding(
-            padding: EdgeInsets.only(left: 17),
-            child: IconButton(
-                onPressed: () => Scaffold.of(context).openDrawer(),
-                color: colorScheme.primary,
-                icon: Icon(Icons.menu)),
-          ),
-          actions: [
-            Padding(
-                padding: EdgeInsets.only(right: 22),
-                child: IconButton(
-                    onPressed: _setColorScheme,
-                    color: colorScheme.primary,
-                    icon: Icon(colorScheme == darkColorScheme
-                        ? Icons.light_mode_outlined
-                        : Icons.dark_mode_outlined)))
-          ],
-          backgroundColor: colorScheme.surface.withOpacity(0.7),
-          surfaceTintColor: colorScheme.surface.withOpacity(0.7),
-          title: Text(
-            widget.title,
-            style: GoogleFonts.poppins(
-                color: colorScheme.primary, fontWeight: FontWeight.w500),
-          ),
-        ),
+        appBar: showAppBar
+            ? AppBar(
+                iconTheme: IconThemeData(color: colorScheme.onBackground),
+                elevation: 0,
+                centerTitle: true,
+                leading: Padding(
+                  padding: EdgeInsets.only(left: 17),
+                  child: IconButton(
+                      onPressed: () {
+                        handleNavigationRailExtended();
+                      },
+                      color: colorScheme.primary,
+                      icon: Icon(Icons.menu)),
+                ),
+                actions: [
+                  Padding(
+                      padding: EdgeInsets.only(right: 22),
+                      child: IconButton(
+                          onPressed: _setColorScheme,
+                          color: colorScheme.primary,
+                          icon: Icon(colorScheme == darkColorScheme
+                              ? Icons.light_mode_outlined
+                              : Icons.dark_mode_outlined)))
+                ],
+                backgroundColor: colorScheme.surface.withOpacity(0.7),
+                surfaceTintColor: colorScheme.surface.withOpacity(0.7),
+                title: Text(
+                  widget.title,
+                  style: GoogleFonts.poppins(
+                      color: colorScheme.primary, fontWeight: FontWeight.w500),
+                ),
+              )
+            : null,
       );
     }));
   }

@@ -111,3 +111,6 @@ extension BreakpointUtils on BoxConstraints {
 }
 
 double navigationRailWidth = 75;
+double navigationRailExtendedWidth = 75 + 181;
+
+bool showAppBar = false;
