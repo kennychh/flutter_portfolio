@@ -52,14 +52,26 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.code_outlined,
-              color: colorScheme.onSecondaryContainer),
+          leading:
+              Icon(Icons.work_outline, color: colorScheme.onSecondaryContainer),
           title: Text(
             'Work',
             style: TextStyle(color: colorScheme.onSecondaryContainer),
           ),
           onTap: () {
             scrollToIndex(2);
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.code_outlined,
+              color: colorScheme.onSecondaryContainer),
+          title: Text(
+            'Projects',
+            style: TextStyle(color: colorScheme.onSecondaryContainer),
+          ),
+          onTap: () {
+            scrollToIndex(3);
             Navigator.pop(context);
           },
         ),
@@ -71,7 +83,7 @@ class DrawerItems extends StatelessWidget {
               style: TextStyle(color: colorScheme.onSecondaryContainer),
             ),
             onTap: () {
-              scrollToIndex(3);
+              scrollToIndex(4);
               Navigator.pop(context);
             }),
       ]),

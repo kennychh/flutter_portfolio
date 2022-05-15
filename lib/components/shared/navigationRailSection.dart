@@ -78,28 +78,40 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
         )),
         destinations: [
           NavigationRailDestination(
-            icon: Icon(Icons.home_outlined, color: colorScheme.primary),
+            icon: Icon(Icons.home_outlined,
+                color: colorScheme.onSecondaryContainer),
             label: Text(
               'Home',
               style: TextStyle(color: colorScheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
-            icon: Icon(Icons.face_outlined, color: colorScheme.primary),
+            icon: Icon(Icons.face_outlined,
+                color: colorScheme.onSecondaryContainer),
             label: Text(
               'About',
               style: TextStyle(color: colorScheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
-            icon: Icon(Icons.code_outlined, color: colorScheme.primary),
+            icon: Icon(Icons.work_outline,
+                color: colorScheme.onSecondaryContainer),
             label: Text(
               'Work',
               style: TextStyle(color: colorScheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
-            icon: Icon(Icons.person_outline, color: colorScheme.primary),
+            icon: Icon(Icons.code_outlined,
+                color: colorScheme.onSecondaryContainer),
+            label: Text(
+              'Projects',
+              style: TextStyle(color: colorScheme.onSecondaryContainer),
+            ),
+          ),
+          NavigationRailDestination(
+            icon: Icon(Icons.person_outline,
+                color: colorScheme.onSecondaryContainer),
             label: Text(
               'Contact',
               style: TextStyle(color: colorScheme.onSecondaryContainer),

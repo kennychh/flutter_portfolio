@@ -1,6 +1,7 @@
 import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'components/shared/parallax.dart';
 
@@ -73,7 +74,7 @@ const darkColorScheme = ColorScheme(
   shadow: Color(0xFF000000),
 );
 
-var brightness = SchedulerBinding.instance!.window.platformBrightness;
+var brightness = SchedulerBinding.instance.window.platformBrightness;
 bool isDarkMode = brightness == Brightness.dark;
 var colorScheme = isDarkMode ? darkColorScheme : lightColorScheme;
 
@@ -114,3 +115,55 @@ double navigationRailWidth = 75;
 double navigationRailExtendedWidth = 75 + 181;
 
 bool showAppBar = false;
+
+bool isPortrait(BuildContext context) {
+  return MediaQuery.of(context).orientation == Orientation.portrait;
+}
+
+bool isScreenWide(BuildContext context) {
+  return MediaQuery.of(context).size.width >= 1350;
+}
+
+Widget descriptionList(BuildContext context, List<String> description) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: description.map((str) {
+      return Column(
+        children: [
+          Container(
+            height: 10,
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '\u2022',
+                style: TextStyle(
+                  color: colorScheme.secondary,
+                  fontSize: 16,
+                  height: 1.55,
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                child: Container(
+                  child: Text(
+                    str,
+                    textAlign: TextAlign.left,
+                    softWrap: true,
+                    style: GoogleFonts.poppins(
+                        color: colorScheme.secondary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      );
+    }).toList(),
+  );
+}

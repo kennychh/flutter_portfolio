@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.isMobile) {
+      if (constraints.isMobile && isPortrait(context)) {
         return Container(
             constraints:
                 BoxConstraints(minHeight: MediaQuery.of(context).size.height),
@@ -88,7 +88,7 @@ class Home extends StatelessWidget {
                         'Front End Developer',
                         style: GoogleFonts.poppins(
                             color: colorScheme.secondary,
-                            fontSize: 35,
+                            fontSize: 30,
                             fontWeight: FontWeight.w500),
                       ),
                     ),

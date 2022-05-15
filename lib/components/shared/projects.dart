@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'parallax.dart';
+import './parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants.dart';
+import '../../../constants.dart';
 
-class Work extends StatelessWidget {
-  const Work({Key? key}) : super(key: key);
+class Projects extends StatelessWidget {
+  const Projects({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,22 +21,22 @@ class Work extends StatelessWidget {
                   height: 25,
                 ),
                 Text(
-                  'Work Experience',
+                  'Projects',
                   style: GoogleFonts.poppins(
                       color: colorScheme.onSurface,
                       fontSize: 28,
                       fontWeight: FontWeight.w500),
                 ),
                 Container(height: 25),
-                for (final item in workExperienceItems)
+                for (final item in projectsItems)
                   ListItem(
                     imageUrl: item.imageUrl,
                     name: item.title,
                     subtitle: item.subtitle,
                     time: item.time,
                     description: item.description,
-                    fillBackground: false,
                   ),
+                Container(height: 100),
               ],
             ));
       }
@@ -51,22 +51,22 @@ class Work extends StatelessWidget {
                 height: 25,
               ),
               Text(
-                'Work Experience',
+                'Projects',
                 style: GoogleFonts.poppins(
                     color: colorScheme.onSurface,
                     fontSize: 45,
                     fontWeight: FontWeight.w500),
               ),
               Container(height: 50),
-              for (final item in workExperienceItems)
+              for (final item in projectsItems)
                 ListItem(
                   imageUrl: item.imageUrl,
                   name: item.title,
                   subtitle: item.subtitle,
                   time: item.time,
                   description: item.description,
-                  fillBackground: false,
                 ),
+              Container(height: 100),
             ],
           ));
     }));

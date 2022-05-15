@@ -8,6 +8,7 @@ import 'components/shared/about.dart';
 import 'components/shared/drawerItems.dart';
 import 'components/shared/home.dart';
 import 'components/shared/navigationRailSection.dart';
+import 'components/shared/projects.dart';
 import 'components/shared/work.dart';
 import 'constants.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,8 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void getItemPosition() {
     itemPositionsListener.itemPositions.addListener(() {
       itemPosition = itemPositionsListener.itemPositions.value.first;
-      if (itemPosition.index != pageIndex &&
-          itemPosition.itemLeadingEdge > -0.5) {
+      if (itemPosition.index != pageIndex) {
         navigationRailGlobalKey.currentState
             ?.onDestinationSelected(itemPosition.index, shouldScroll: false);
       }
@@ -104,26 +104,32 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  final List<Widget> componentList = [Home(), About(), Work(), Contact()];
+  final List<Widget> componentList = [
+    Home(),
+    About(),
+    Work(),
+    Projects(),
+    Contact()
+  ];
   @override
   double getPadding(BoxConstraints constraints) {
     if (constraints.isMobile) {
       return 24;
     }
     if (constraints.isDesktop) {
-      return 150;
+      return 250;
     }
     return 100;
   }
 
   @override
   Widget build(BuildContext context) {
-    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     return LayoutBuilder(builder: ((context, constraints) {
       if (constraints.isMobile) {
         return Scaffold(
             backgroundColor: colorScheme.background,
             extendBodyBehindAppBar: true,
+            drawerEnableOpenDragGesture: false,
             appBar: AppBar(
               iconTheme: IconThemeData(color: colorScheme.onBackground),
               elevation: 0,
@@ -204,7 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       isExtended: isNavigationRailExtended,
                       setColorScheme: _setColorScheme,
                     ),
-                    Expanded(
+                    Flexible(
                       child: ScrollablePositionedList.builder(
                         key: UniqueKey(),
                         initialScrollIndex: itemPosition.index,

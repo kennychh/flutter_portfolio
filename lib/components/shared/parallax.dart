@@ -167,53 +167,9 @@ class ListItem extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                 )
-              : _descriptionList(context)
+              : descriptionList(context, description)
         ],
       ),
-    );
-  }
-
-  Widget _descriptionList(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: description.map((str) {
-        return Column(
-          children: [
-            Container(
-              height: 10,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '\u2022',
-                  style: TextStyle(
-                    color: colorScheme.secondary,
-                    fontSize: 16,
-                    height: 1.55,
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Container(
-                    child: Text(
-                      str,
-                      textAlign: TextAlign.left,
-                      softWrap: true,
-                      style: GoogleFonts.poppins(
-                          color: colorScheme.secondary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ],
-        );
-      }).toList(),
     );
   }
 
