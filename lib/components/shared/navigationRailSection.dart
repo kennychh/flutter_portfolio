@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 
+enum Menu { itemOne, itemTwo, itemThree, itemFour }
+
 class NavigationRailSection extends StatefulWidget {
   final void Function(int) onSelectItem;
   final int selectedIndex;
@@ -65,16 +67,47 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
             child: Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: IconButton(
-                onPressed: () {
-                  widget.setColorScheme();
-                },
-                color: colorScheme.primary,
-                icon: Icon(colorScheme == darkColorScheme
-                    ? Icons.light_mode_outlined
-                    : Icons.dark_mode_outlined)),
-          ),
+              padding: const EdgeInsets.only(bottom: 20),
+              child: PopupMenuButton(
+                  tooltip: 'More',
+                  color: colorScheme.secondaryContainer,
+                  icon: Icon(Icons.more_horiz_outlined,
+                      color: colorScheme.primary),
+                  itemBuilder: (context) => [
+                        PopupMenuItem(
+                          child: ListTile(
+                              leading: Icon(Icons.contact_page_outlined),
+                              title: Text('Resume'),
+                              iconColor: colorScheme.onSecondaryContainer,
+                              textColor: colorScheme.onSecondaryContainer),
+                          value: 1,
+                        ),
+                        PopupMenuItem(
+                          child: ListTile(
+                            leading: Icon(Icons.palette_outlined),
+                            title: Text('Colors'),
+                            iconColor: colorScheme.onSecondaryContainer,
+                            textColor: colorScheme.onSecondaryContainer,
+                          ),
+                          value: 1,
+                        ),
+                        PopupMenuItem(
+                          child: ListTile(
+                              onTap: () {
+                                widget.setColorScheme();
+                                Navigator.pop(context);
+                              },
+                              leading: Icon(colorScheme == darkColorScheme
+                                  ? Icons.light_mode_outlined
+                                  : Icons.dark_mode_outlined),
+                              title: colorScheme == darkColorScheme
+                                  ? Text('Light Mode')
+                                  : Text('Dark Mode'),
+                              iconColor: colorScheme.onSecondaryContainer,
+                              textColor: colorScheme.onSecondaryContainer),
+                          value: 1,
+                        ),
+                      ])),
         )),
         destinations: [
           NavigationRailDestination(

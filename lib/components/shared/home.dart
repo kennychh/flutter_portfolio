@@ -60,68 +60,65 @@ class Home extends StatelessWidget {
               ],
             ));
       }
-      return Container(
-          constraints:
-              BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                flex: 3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text('Hi, I\'m Kenny!',
-                          style: GoogleFonts.poppins(
-                              color: colorScheme.primary,
-                              fontSize: 88,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                    Container(
-                      height: 20,
-                    ),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        'Front End Developer',
-                        style: GoogleFonts.poppins(
-                            color: colorScheme.secondary,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    Container(height: 20),
-                    Text(
-                      'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text('Hi, I\'m Kenny!',
                       style: GoogleFonts.poppins(
-                          color: colorScheme.secondary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ],
+                          color: colorScheme.primary,
+                          fontSize: 88,
+                          fontWeight: FontWeight.w500)),
                 ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Container(),
-              ),
-              Flexible(
-                flex: 3,
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(80),
-                    child: Image.network(
-                      gradientImage.imageUrl,
-                      fit: BoxFit.cover,
-                    ),
+                Container(
+                  height: 20,
+                ),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Front End Developer',
+                    style: GoogleFonts.poppins(
+                        color: colorScheme.secondary,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
+                Container(height: 20),
+                Text(
+                  'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
+                  style: GoogleFonts.poppins(
+                      color: colorScheme.secondary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(),
+          ),
+          Flexible(
+            flex: 3,
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(80),
+                child: Image.network(
+                  gradientImage.imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ],
-          ));
+            ),
+          ),
+        ],
+      );
     });
   }
 }

@@ -162,22 +162,33 @@ class About extends StatelessWidget {
           AdaptiveContainer(
             columnSpan: 12,
             child: Text(
-              'Skills',
-              style: GoogleFonts.poppins(
-                  color: colorScheme.onSurface,
-                  fontSize: 45,
-                  fontWeight: FontWeight.w500),
-            ),
-          ),
-          AdaptiveContainer(
-            columnSpan: 12,
-            child: Text(
               'Technical tools I\'ve been working with',
               style: GoogleFonts.poppins(
                   color: colorScheme.secondary,
                   fontSize: 30,
                   fontWeight: FontWeight.w500),
             ),
+          ),
+          AdaptiveContainer(
+            columnSpan: 12,
+            height: 25,
+          ),
+          AdaptiveContainer(
+            columnSpan: 12,
+            child: Flexible(
+                child: Align(
+              alignment: Alignment.topLeft,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 760),
+                child: Text(
+                  'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude digital experiences, using different programming languages, tools, etc. I am most experienced in building mobile apps with React Native, and expanding my knowledge with Flutter. Here are other notable technical skills that I am also proficient with:',
+                  style: GoogleFonts.poppins(
+                      color: colorScheme.secondary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+            )),
           ),
           AdaptiveContainer(
             columnSpan: 12,

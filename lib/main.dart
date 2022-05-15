@@ -208,22 +208,28 @@ class _MyHomePageState extends State<MyHomePage> {
                       setColorScheme: _setColorScheme,
                     ),
                     Flexible(
-                      child: Center(
-                          child: ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: 1350),
-                              child: ScrollablePositionedList.builder(
-                                key: UniqueKey(),
-                                initialScrollIndex: itemPosition.index,
-                                initialAlignment: itemPosition.itemLeadingEdge,
-                                itemScrollController: itemScrollController,
-                                itemPositionsListener: itemPositionsListener,
-                                itemCount: componentList.length,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: getPadding(constraints)),
-                                itemBuilder: (context, index) {
-                                  return componentList[index];
-                                },
-                              ))),
+                      child: ScrollablePositionedList.builder(
+                        key: UniqueKey(),
+                        initialScrollIndex: itemPosition.index,
+                        initialAlignment: itemPosition.itemLeadingEdge,
+                        itemScrollController: itemScrollController,
+                        itemPositionsListener: itemPositionsListener,
+                        itemCount: componentList.length,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getPadding(constraints)),
+                        itemBuilder: (context, index) {
+                          return Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                              constraints: BoxConstraints(
+                                  maxWidth: 1350,
+                                  minHeight:
+                                      MediaQuery.of(context).size.height),
+                              child: componentList[index],
+                            ),
+                          );
+                        },
+                      ),
                     )
                   ],
                 ));
