@@ -66,7 +66,7 @@ class Home extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
+              Flexible(
                 flex: 3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,11 +103,11 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
+              Flexible(
                 flex: 1,
                 child: Container(),
               ),
-              Expanded(
+              Flexible(
                 flex: 3,
                 child: AspectRatio(
                   aspectRatio: 1,

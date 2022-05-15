@@ -116,9 +116,6 @@ class _MyHomePageState extends State<MyHomePage> {
     if (constraints.isMobile) {
       return 24;
     }
-    if (constraints.isDesktop) {
-      return 250;
-    }
     return 100;
   }
 
@@ -211,22 +208,22 @@ class _MyHomePageState extends State<MyHomePage> {
                       setColorScheme: _setColorScheme,
                     ),
                     Flexible(
-                      child: ScrollablePositionedList.builder(
-                        key: UniqueKey(),
-                        initialScrollIndex: itemPosition.index,
-                        initialAlignment: itemPosition.itemLeadingEdge,
-                        itemScrollController: itemScrollController,
-                        itemPositionsListener: itemPositionsListener,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: getPadding(constraints)),
-                        itemCount: componentList.length,
-                        itemBuilder: (context, index) {
-                          return AdaptiveContainer(
-                            columnSpan: 12,
-                            child: componentList[index],
-                          );
-                        },
-                      ),
+                      child: Center(
+                          child: ConstrainedBox(
+                              constraints: BoxConstraints(maxWidth: 1350),
+                              child: ScrollablePositionedList.builder(
+                                key: UniqueKey(),
+                                initialScrollIndex: itemPosition.index,
+                                initialAlignment: itemPosition.itemLeadingEdge,
+                                itemScrollController: itemScrollController,
+                                itemPositionsListener: itemPositionsListener,
+                                itemCount: componentList.length,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: getPadding(constraints)),
+                                itemBuilder: (context, index) {
+                                  return componentList[index];
+                                },
+                              ))),
                     )
                   ],
                 ));
