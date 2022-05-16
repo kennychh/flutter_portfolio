@@ -5,7 +5,7 @@ enum Menu { itemOne, itemTwo, itemThree, itemFour }
 
 class NavigationRailSection extends StatefulWidget {
   final void Function(int) onSelectItem;
-  final int selectedIndex;
+  final int? selectedIndex;
   final Function(int) scrollToIndex;
   final bool isExtended;
   final Function() setColorScheme;
@@ -24,7 +24,7 @@ class NavigationRailSection extends StatefulWidget {
 }
 
 class NavigationRailSectionState extends State<NavigationRailSection> {
-  int _selectedIndex = 0;
+  int? _selectedIndex = 0;
 
   @override
   void initState() {

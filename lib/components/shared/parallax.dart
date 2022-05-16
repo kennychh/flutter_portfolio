@@ -1,4 +1,3 @@
-import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -181,55 +180,12 @@ class ListItem extends StatelessWidget {
         backgroundImageKey: _backgroundImageKey,
       ),
       children: [
-        Image.network(
+        Image.asset(
           imageUrl,
           key: _backgroundImageKey,
           fit: BoxFit.cover,
         ),
       ],
-    );
-  }
-
-  Widget _buildGradient() {
-    return Positioned.fill(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.transparent, Colors.black.withOpacity(0.7)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: const [0.6, 0.95],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTitleAndSubtitle() {
-    return Positioned(
-      left: 20,
-      bottom: 20,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            name,
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            subtitle,
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 14,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -414,7 +370,7 @@ class ParallaxItem {
     this.title = '',
     this.subtitle = '',
     this.description = const [''],
-    this.time = null,
+    this.time,
   });
 
   final String title;

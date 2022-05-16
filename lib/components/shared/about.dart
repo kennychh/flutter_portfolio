@@ -39,19 +39,144 @@ class About extends StatelessWidget {
                   'About Me',
                   style: GoogleFonts.poppins(
                       color: colorScheme.onSurface,
-                      fontSize: 28,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w500),
+                ),
+                Container(
+                  height: 10,
+                ),
+                Text(
+                  'Get to know about me',
+                  style: GoogleFonts.poppins(
+                      color: colorScheme.secondary,
+                      fontSize: 22,
                       fontWeight: FontWeight.w500),
                 ),
                 Container(
                   height: 25,
                 ),
                 Text(
-                  'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
+                  'Hey there! my name is Kenny and I enjoy building and designing things, and bring my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.',
                   style: GoogleFonts.poppins(
                       color: colorScheme.secondary,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
+                Container(
+                  height: 10,
+                ),
+                Text(
+                  'Currently I am in my final year at University of Toronto, majoring in both Cognitive Science and Psychology with a minor in Computer Science. Through their Co-op program, I\'ve had the amazing oppurtunity of working at HelloFresh for 16 months, where I was able to expand my experiences and interests in designing elegant code and user experience for people to use around the world.',
+                  style: GoogleFonts.poppins(
+                      color: colorScheme.secondary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400),
+                ),
+                Container(
+                  height: 50,
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    primary: colorScheme.onSecondaryContainer,
+                    backgroundColor: colorScheme.secondaryContainer,
+                    padding: const EdgeInsets.all(20.0),
+                    textStyle: GoogleFonts.poppins(
+                        fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  onPressed: () {},
+                  child: const Text('Resume'),
+                ),
+                Container(
+                  height: 50,
+                ),
+                Text(
+                  'Technical tools',
+                  style: GoogleFonts.poppins(
+                      color: colorScheme.secondary,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500),
+                ),
+                Container(
+                  height: 25,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'Languages',
+                          style: GoogleFonts.poppins(
+                              color: colorScheme.onSurface,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: descriptionList(context, languageList),
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  height: 25,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'Dev Tools',
+                          style: GoogleFonts.poppins(
+                              color: colorScheme.onSurface,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: descriptionList(context, devToolList),
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  height: 25,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'IDEs',
+                          style: GoogleFonts.poppins(
+                              color: colorScheme.onSurface,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: descriptionList(context, ideList),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ));
       }
@@ -145,7 +270,7 @@ class About extends StatelessWidget {
                             aspectRatio: 1,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(32),
-                              child: Image.network(
+                              child: Image.asset(
                                 gradientImage.imageUrl,
                                 fit: BoxFit.cover,
                               ),

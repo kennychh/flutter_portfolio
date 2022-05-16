@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
                   aspectRatio: 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(80),
-                    child: Image.network(
+                    child: Image.asset(
                       gradientImage.imageUrl,
                       fit: BoxFit.cover,
                     ),
@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                         fontSize: 32,
                         fontWeight: FontWeight.w500)),
                 Container(
-                  height: 20,
+                  height: 10,
                 ),
                 Text(
                   'Front End Developer',
@@ -47,7 +47,7 @@ class Home extends StatelessWidget {
                       fontSize: 22,
                       fontWeight: FontWeight.w500),
                 ),
-                Container(height: 20),
+                Container(height: 25),
                 Text(
                   'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
                   textAlign: TextAlign.center,
@@ -110,7 +110,7 @@ class Home extends StatelessWidget {
               aspectRatio: 1,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(80),
-                child: Image.network(
+                child: Image.asset(
                   gradientImage.imageUrl,
                   fit: BoxFit.cover,
                 ),

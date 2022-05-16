@@ -53,7 +53,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int pageIndex = -1;
+  int? pageIndex;
   bool isNavigationRailExtended = false;
   @override
   void initState() {

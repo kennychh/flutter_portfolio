@@ -82,7 +82,7 @@ const workExperienceItems = [
   ParallaxItem(
       title: 'HelloFresh',
       subtitle: 'Software Developer Co-op',
-      imageUrl: '/assets/hellofresh.jpg',
+      imageUrl: './assets/hellofresh.jpg',
       time: 'May 2021 - August 2022',
       description: [
         'Implemented a variety of projects on mobile for HelloFresh\'s sub-brands using React Native.',
@@ -95,14 +95,14 @@ const projectsItems = [
   ParallaxItem(
       title: 'Weather',
       subtitle: 'Personal Project',
-      imageUrl: '/assets/weather.png',
+      imageUrl: './assets/weather.png',
       description: [
         'Designed and implemented a beautiful weather app with Weather API integration.'
       ]),
 ];
 
 const gradientImage = ParallaxItem(
-  imageUrl: '/assets/gradient.jpg',
+  imageUrl: './assets/gradient.jpg',
 );
 
 extension BreakpointUtils on BoxConstraints {
