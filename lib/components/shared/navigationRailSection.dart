@@ -41,11 +41,12 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return Padding(
       padding: EdgeInsets.only(top: showAppBar ? 56 : 20),
       child: NavigationRail(
-        indicatorColor: colorScheme.secondaryContainer,
-        backgroundColor: colorScheme.background,
+        indicatorColor: scheme.secondaryContainer,
+        backgroundColor: scheme.background,
         minWidth: navigationRailWidth,
         extended: widget.isExtended,
         leading: SizedBox(
@@ -54,11 +55,11 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FloatingActionButton(
-                  backgroundColor: colorScheme.primary,
+                  backgroundColor: scheme.primary,
                   onPressed: () {},
                   child: Icon(
                     Icons.chat_bubble_outline,
-                    color: colorScheme.onPrimary,
+                    color: scheme.onPrimary,
                   ),
                 ),
               ]),
@@ -70,24 +71,23 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
               padding: const EdgeInsets.only(bottom: 20),
               child: PopupMenuButton(
                   tooltip: 'More',
-                  color: colorScheme.secondaryContainer,
-                  icon: Icon(Icons.more_horiz_outlined,
-                      color: colorScheme.primary),
+                  color: scheme.secondaryContainer,
+                  icon: Icon(Icons.more_horiz_outlined, color: scheme.primary),
                   itemBuilder: (context) => [
                         PopupMenuItem(
                           child: ListTile(
                               leading: Icon(Icons.contact_page_outlined),
                               title: Text('Resume'),
-                              iconColor: colorScheme.onSecondaryContainer,
-                              textColor: colorScheme.onSecondaryContainer),
+                              iconColor: scheme.onSecondaryContainer,
+                              textColor: scheme.onSecondaryContainer),
                           value: 1,
                         ),
                         PopupMenuItem(
                           child: ListTile(
                             leading: Icon(Icons.palette_outlined),
                             title: Text('Colors'),
-                            iconColor: colorScheme.onSecondaryContainer,
-                            textColor: colorScheme.onSecondaryContainer,
+                            iconColor: scheme.onSecondaryContainer,
+                            textColor: scheme.onSecondaryContainer,
                           ),
                           value: 1,
                         ),
@@ -97,57 +97,53 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
                                 widget.setColorScheme();
                                 Navigator.pop(context);
                               },
-                              leading: Icon(colorScheme == darkColorScheme
+                              leading: Icon(scheme == darkColorScheme
                                   ? Icons.light_mode_outlined
                                   : Icons.dark_mode_outlined),
-                              title: colorScheme == darkColorScheme
+                              title: scheme == darkColorScheme
                                   ? Text('Light Mode')
                                   : Text('Dark Mode'),
-                              iconColor: colorScheme.onSecondaryContainer,
-                              textColor: colorScheme.onSecondaryContainer),
+                              iconColor: scheme.onSecondaryContainer,
+                              textColor: scheme.onSecondaryContainer),
                           value: 1,
                         ),
                       ])),
         )),
         destinations: [
           NavigationRailDestination(
-            icon: Icon(Icons.home_outlined,
-                color: colorScheme.onSecondaryContainer),
+            icon: Icon(Icons.home_outlined, color: scheme.onSecondaryContainer),
             label: Text(
               'Home',
-              style: TextStyle(color: colorScheme.onSecondaryContainer),
+              style: TextStyle(color: scheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
-            icon: Icon(Icons.face_outlined,
-                color: colorScheme.onSecondaryContainer),
+            icon: Icon(Icons.face_outlined, color: scheme.onSecondaryContainer),
             label: Text(
               'About',
-              style: TextStyle(color: colorScheme.onSecondaryContainer),
+              style: TextStyle(color: scheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
-            icon: Icon(Icons.work_outline,
-                color: colorScheme.onSecondaryContainer),
+            icon: Icon(Icons.work_outline, color: scheme.onSecondaryContainer),
             label: Text(
               'Work',
-              style: TextStyle(color: colorScheme.onSecondaryContainer),
+              style: TextStyle(color: scheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
-            icon: Icon(Icons.code_outlined,
-                color: colorScheme.onSecondaryContainer),
+            icon: Icon(Icons.code_outlined, color: scheme.onSecondaryContainer),
             label: Text(
               'Projects',
-              style: TextStyle(color: colorScheme.onSecondaryContainer),
+              style: TextStyle(color: scheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
-            icon: Icon(Icons.person_outline,
-                color: colorScheme.onSecondaryContainer),
+            icon:
+                Icon(Icons.person_outline, color: scheme.onSecondaryContainer),
             label: Text(
               'Contact',
-              style: TextStyle(color: colorScheme.onSecondaryContainer),
+              style: TextStyle(color: scheme.onSecondaryContainer),
             ),
           )
         ],

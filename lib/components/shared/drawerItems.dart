@@ -21,18 +21,19 @@ class DrawerItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return Drawer(
-      backgroundColor: colorScheme.secondaryContainer,
+      backgroundColor: scheme.secondaryContainer,
       child: Column(children: [
         Container(
           height: 56,
         ),
         ListTile(
-          leading: Icon(Icons.home_outlined,
-              color: colorScheme.onSecondaryContainer),
+          leading:
+              Icon(Icons.home_outlined, color: scheme.onSecondaryContainer),
           title: Text(
             'Home',
-            style: TextStyle(color: colorScheme.onSecondaryContainer),
+            style: TextStyle(color: scheme.onSecondaryContainer),
           ),
           onTap: () {
             scrollToIndex(0);
@@ -40,11 +41,11 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.face_outlined,
-              color: colorScheme.onSecondaryContainer),
+          leading:
+              Icon(Icons.face_outlined, color: scheme.onSecondaryContainer),
           title: Text(
             'About',
-            style: TextStyle(color: colorScheme.onSecondaryContainer),
+            style: TextStyle(color: scheme.onSecondaryContainer),
           ),
           onTap: () {
             scrollToIndex(1);
@@ -52,11 +53,10 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-          leading:
-              Icon(Icons.work_outline, color: colorScheme.onSecondaryContainer),
+          leading: Icon(Icons.work_outline, color: scheme.onSecondaryContainer),
           title: Text(
             'Work',
-            style: TextStyle(color: colorScheme.onSecondaryContainer),
+            style: TextStyle(color: scheme.onSecondaryContainer),
           ),
           onTap: () {
             scrollToIndex(2);
@@ -64,11 +64,11 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.code_outlined,
-              color: colorScheme.onSecondaryContainer),
+          leading:
+              Icon(Icons.code_outlined, color: scheme.onSecondaryContainer),
           title: Text(
             'Projects',
-            style: TextStyle(color: colorScheme.onSecondaryContainer),
+            style: TextStyle(color: scheme.onSecondaryContainer),
           ),
           onTap: () {
             scrollToIndex(3);
@@ -76,11 +76,11 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-            leading: Icon(Icons.person_outline,
-                color: colorScheme.onSecondaryContainer),
+            leading:
+                Icon(Icons.person_outline, color: scheme.onSecondaryContainer),
             title: Text(
               'Contact',
-              style: TextStyle(color: colorScheme.onSecondaryContainer),
+              style: TextStyle(color: scheme.onSecondaryContainer),
             ),
             onTap: () {
               scrollToIndex(4);

@@ -74,10 +74,6 @@ const darkColorScheme = ColorScheme(
   shadow: Color(0xFF000000),
 );
 
-var brightness = SchedulerBinding.instance.window.platformBrightness;
-bool isDarkMode = brightness == Brightness.dark;
-var colorScheme = isDarkMode ? darkColorScheme : lightColorScheme;
-
 const workExperienceItems = [
   ParallaxItem(
       title: 'HelloFresh',
@@ -125,6 +121,7 @@ bool isScreenWide(BuildContext context) {
 }
 
 Widget descriptionList(BuildContext context, List<String> description) {
+  ColorScheme scheme = Theme.of(context).colorScheme;
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: description.map((str) {
@@ -139,7 +136,7 @@ Widget descriptionList(BuildContext context, List<String> description) {
               Text(
                 '\u2022',
                 style: TextStyle(
-                  color: colorScheme.secondary,
+                  color: scheme.secondary,
                   fontSize: 16,
                   height: 1.55,
                 ),
@@ -154,7 +151,7 @@ Widget descriptionList(BuildContext context, List<String> description) {
                     textAlign: TextAlign.left,
                     softWrap: true,
                     style: GoogleFonts.poppins(
-                        color: colorScheme.secondary,
+                        color: scheme.secondary,
                         fontSize: 16,
                         fontWeight: FontWeight.w400),
                   ),

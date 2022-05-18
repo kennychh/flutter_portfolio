@@ -25,21 +25,40 @@ ItemPosition itemPosition =
 
 GlobalKey<NavigationRailSectionState> navigationRailGlobalKey = GlobalKey();
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+
+  static _MyAppState? of(BuildContext context) =>
+      context.findAncestorStateOfType<_MyAppState>();
+}
+
+class _MyAppState extends State<MyApp> {
+  ThemeMode _themeMode = ThemeMode.system;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
+      darkTheme: ThemeData.dark().copyWith(
           textTheme: GoogleFonts.poppinsTextTheme(),
-          backgroundColor: colorScheme.background,
-          useMaterial3: true),
+          useMaterial3: true,
+          colorScheme: darkColorScheme),
+      theme: ThemeData.light().copyWith(
+          textTheme: GoogleFonts.poppinsTextTheme(),
+          useMaterial3: true,
+          colorScheme: lightColorScheme),
+      themeMode: _themeMode,
       home: const MyHomePage(title: 'Kenny Chan'),
     );
+  }
+
+  void changeTheme(ThemeMode themeMode) {
+    setState(() {
+      _themeMode = themeMode;
+    });
   }
 }
 
@@ -72,15 +91,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _setColorScheme() {
-    setState(() {
-      if (colorScheme == darkColorScheme) {
-        colorScheme = lightColorScheme;
-      } else {
-        colorScheme = darkColorScheme;
-      }
-      getItemPosition();
-    });
+  void _setColorScheme(BuildContext context) {
+    var darkMode = Theme.of(context).brightness == Brightness.dark;
+    MyApp.of(context)?.changeTheme(darkMode ? ThemeMode.light : ThemeMode.dark);
   }
 
   void scrollToIndex(int index) {
@@ -111,7 +124,6 @@ class _MyHomePageState extends State<MyHomePage> {
     Projects(),
     Contact()
   ];
-  @override
   double getPadding(BoxConstraints constraints) {
     if (constraints.isMobile) {
       return 24;
@@ -121,14 +133,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: ((context, constraints) {
       if (constraints.isMobile) {
         return Scaffold(
-            backgroundColor: colorScheme.background,
+            backgroundColor: scheme.background,
             extendBodyBehindAppBar: true,
             drawerEnableOpenDragGesture: false,
             appBar: AppBar(
-              iconTheme: IconThemeData(color: colorScheme.onBackground),
+              iconTheme: IconThemeData(color: scheme.onBackground),
               elevation: 0,
               centerTitle: true,
               leading: Padding(
@@ -136,25 +149,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Builder(
                     builder: (context) => IconButton(
                         onPressed: () => Scaffold.of(context).openDrawer(),
-                        color: colorScheme.primary,
+                        color: scheme.primary,
                         icon: Icon(Icons.menu)),
                   )),
               actions: [
                 Padding(
                     padding: EdgeInsets.only(right: 15),
                     child: IconButton(
-                        onPressed: _setColorScheme,
-                        color: colorScheme.primary,
-                        icon: Icon(colorScheme == darkColorScheme
+                        onPressed: () {
+                          _setColorScheme(context);
+                        },
+                        color: scheme.primary,
+                        icon: Icon(scheme == darkColorScheme
                             ? Icons.light_mode_outlined
                             : Icons.dark_mode_outlined)))
               ],
-              backgroundColor: colorScheme.surface.withOpacity(0.7),
-              surfaceTintColor: colorScheme.surface.withOpacity(0.7),
+              backgroundColor: scheme.surface.withOpacity(0.7),
+              surfaceTintColor: scheme.surface.withOpacity(0.7),
               title: Text(
                 widget.title,
                 style: GoogleFonts.poppins(
-                    color: colorScheme.primary, fontWeight: FontWeight.w500),
+                    color: scheme.primary, fontWeight: FontWeight.w500),
               ),
             ),
             body: LayoutBuilder(
@@ -181,17 +196,17 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Padding(
               padding: EdgeInsets.only(right: 7, bottom: 7),
               child: FloatingActionButton(
-                backgroundColor: colorScheme.primary,
+                backgroundColor: scheme.primary,
                 onPressed: () {},
                 child: Icon(
                   Icons.chat_bubble_outline,
-                  color: colorScheme.onPrimary,
+                  color: scheme.onPrimary,
                 ),
               ),
             ));
       }
       return Scaffold(
-        backgroundColor: colorScheme.background,
+        backgroundColor: scheme.background,
         body: LayoutBuilder(
           builder: (context, constraints) {
             return SafeArea(
@@ -200,13 +215,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Row(
                   children: <Widget>[
                     NavigationRailSection(
-                      key: navigationRailGlobalKey,
-                      onSelectItem: handlePageIndexChanged,
-                      selectedIndex: pageIndex,
-                      scrollToIndex: scrollToIndex,
-                      isExtended: isNavigationRailExtended,
-                      setColorScheme: _setColorScheme,
-                    ),
+                        key: navigationRailGlobalKey,
+                        onSelectItem: handlePageIndexChanged,
+                        selectedIndex: pageIndex,
+                        scrollToIndex: scrollToIndex,
+                        isExtended: isNavigationRailExtended,
+                        setColorScheme: () {
+                          _setColorScheme(context);
+                        }),
                     Flexible(
                       child: ScrollablePositionedList.builder(
                         key: UniqueKey(),
@@ -238,7 +254,7 @@ class _MyHomePageState extends State<MyHomePage> {
         extendBodyBehindAppBar: true,
         appBar: showAppBar
             ? AppBar(
-                iconTheme: IconThemeData(color: colorScheme.onBackground),
+                iconTheme: IconThemeData(color: scheme.onBackground),
                 elevation: 0,
                 centerTitle: true,
                 leading: Padding(
@@ -247,25 +263,27 @@ class _MyHomePageState extends State<MyHomePage> {
                       onPressed: () {
                         handleNavigationRailExtended();
                       },
-                      color: colorScheme.primary,
+                      color: scheme.primary,
                       icon: Icon(Icons.menu)),
                 ),
                 actions: [
                   Padding(
                       padding: EdgeInsets.only(right: 22),
                       child: IconButton(
-                          onPressed: _setColorScheme,
-                          color: colorScheme.primary,
-                          icon: Icon(colorScheme == darkColorScheme
+                          onPressed: () {
+                            _setColorScheme(context);
+                          },
+                          color: scheme.primary,
+                          icon: Icon(scheme == darkColorScheme
                               ? Icons.light_mode_outlined
                               : Icons.dark_mode_outlined)))
                 ],
-                backgroundColor: colorScheme.surface.withOpacity(0.7),
-                surfaceTintColor: colorScheme.surface.withOpacity(0.7),
+                backgroundColor: scheme.surface.withOpacity(0.7),
+                surfaceTintColor: scheme.surface.withOpacity(0.7),
                 title: Text(
                   widget.title,
                   style: GoogleFonts.poppins(
-                      color: colorScheme.primary, fontWeight: FontWeight.w500),
+                      color: scheme.primary, fontWeight: FontWeight.w500),
                 ),
               )
             : null,

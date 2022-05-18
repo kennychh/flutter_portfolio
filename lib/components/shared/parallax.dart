@@ -28,16 +28,17 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: ((context, constraints) {
       if (constraints.isMobile) {
         return Container(
           decoration: fillBackground
               ? BoxDecoration(
-                  color: colorScheme.secondaryContainer,
+                  color: scheme.secondaryContainer,
                   borderRadius: BorderRadius.all(Radius.circular(borderRadius)))
               : BoxDecoration(
                   border: Border.all(
-                    color: colorScheme.secondaryContainer,
+                    color: scheme.secondaryContainer,
                     width: 2,
                   ),
                   borderRadius:
@@ -63,12 +64,12 @@ class ListItem extends StatelessWidget {
         child: Container(
             decoration: fillBackground
                 ? BoxDecoration(
-                    color: colorScheme.secondaryContainer,
+                    color: scheme.secondaryContainer,
                     borderRadius:
                         BorderRadius.all(Radius.circular(borderRadius + 32)))
                 : BoxDecoration(
                     border: Border.all(
-                      color: colorScheme.secondaryContainer,
+                      color: scheme.secondaryContainer,
                       width: 2,
                     ),
                     borderRadius:
@@ -113,6 +114,7 @@ class ListItem extends StatelessWidget {
   }
 
   Widget _listItemText(BuildContext context, {double padding = 32}) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return Padding(
       padding: EdgeInsets.all(padding),
       child: Column(
@@ -122,7 +124,7 @@ class ListItem extends StatelessWidget {
             child: Text(
               name,
               style: GoogleFonts.poppins(
-                  color: colorScheme.onSurface,
+                  color: scheme.onSurface,
                   fontSize: 28,
                   fontWeight: FontWeight.w500),
             ),
@@ -132,7 +134,7 @@ class ListItem extends StatelessWidget {
             child: Text(
               subtitle,
               style: GoogleFonts.poppins(
-                  color: colorScheme.secondary,
+                  color: scheme.secondary,
                   fontSize: 18,
                   fontWeight: FontWeight.w500),
             ),
@@ -147,7 +149,7 @@ class ListItem extends StatelessWidget {
               child: Text(
                 time,
                 style: GoogleFonts.poppins(
-                    color: colorScheme.secondary,
+                    color: scheme.secondary,
                     fontSize: 16,
                     fontWeight: FontWeight.w400),
               ),
@@ -161,7 +163,7 @@ class ListItem extends StatelessWidget {
                   child: Text(
                     description[0],
                     style: GoogleFonts.poppins(
-                        color: colorScheme.secondary,
+                        color: scheme.secondary,
                         fontSize: 16,
                         fontWeight: FontWeight.w400),
                   ),

@@ -9,6 +9,7 @@ class Work extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: ((context, constraints) {
       if (constraints.isMobile && isPortrait(context)) {
         return Container(
@@ -23,7 +24,7 @@ class Work extends StatelessWidget {
                 Text(
                   'Work Experience',
                   style: GoogleFonts.poppins(
-                      color: colorScheme.onSurface,
+                      color: scheme.onSurface,
                       fontSize: 28,
                       fontWeight: FontWeight.w500),
                 ),
@@ -53,7 +54,7 @@ class Work extends StatelessWidget {
               Text(
                 'Work Experience',
                 style: GoogleFonts.poppins(
-                    color: colorScheme.onSurface,
+                    color: scheme.onSurface,
                     fontSize: 45,
                     fontWeight: FontWeight.w500),
               ),

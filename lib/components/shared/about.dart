@@ -9,6 +9,7 @@ class About extends StatelessWidget {
   About({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     List<String> languageList = [
       'Javascript',
       'HTML/CSS',
@@ -38,7 +39,7 @@ class About extends StatelessWidget {
                 Text(
                   'About Me',
                   style: GoogleFonts.poppins(
-                      color: colorScheme.onSurface,
+                      color: scheme.onSurface,
                       fontSize: 32,
                       fontWeight: FontWeight.w500),
                 ),
@@ -48,7 +49,7 @@ class About extends StatelessWidget {
                 Text(
                   'Get to know about me',
                   style: GoogleFonts.poppins(
-                      color: colorScheme.secondary,
+                      color: scheme.secondary,
                       fontSize: 22,
                       fontWeight: FontWeight.w500),
                 ),
@@ -58,7 +59,7 @@ class About extends StatelessWidget {
                 Text(
                   'Hey there! my name is Kenny and I enjoy building and designing things, and bring my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.',
                   style: GoogleFonts.poppins(
-                      color: colorScheme.secondary,
+                      color: scheme.secondary,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
@@ -68,7 +69,7 @@ class About extends StatelessWidget {
                 Text(
                   'Currently I am in my final year at University of Toronto, majoring in both Cognitive Science and Psychology with a minor in Computer Science. Through their Co-op program, I\'ve had the amazing oppurtunity of working at HelloFresh for 16 months, where I was able to expand my experiences and interests in designing elegant code and user experience for people to use around the world.',
                   style: GoogleFonts.poppins(
-                      color: colorScheme.secondary,
+                      color: scheme.secondary,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
@@ -77,8 +78,8 @@ class About extends StatelessWidget {
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
-                    primary: colorScheme.onSecondaryContainer,
-                    backgroundColor: colorScheme.secondaryContainer,
+                    primary: scheme.onSecondaryContainer,
+                    backgroundColor: scheme.secondaryContainer,
                     padding: const EdgeInsets.all(20.0),
                     textStyle: GoogleFonts.poppins(
                         fontSize: 16, fontWeight: FontWeight.w500),
@@ -92,7 +93,7 @@ class About extends StatelessWidget {
                 Text(
                   'Technical tools',
                   style: GoogleFonts.poppins(
-                      color: colorScheme.secondary,
+                      color: scheme.secondary,
                       fontSize: 22,
                       fontWeight: FontWeight.w500),
                 ),
@@ -109,7 +110,7 @@ class About extends StatelessWidget {
                         child: Text(
                           'Languages',
                           style: GoogleFonts.poppins(
-                              color: colorScheme.onSurface,
+                              color: scheme.onSurface,
                               fontSize: 18,
                               fontWeight: FontWeight.w500),
                         ),
@@ -136,7 +137,7 @@ class About extends StatelessWidget {
                         child: Text(
                           'Dev Tools',
                           style: GoogleFonts.poppins(
-                              color: colorScheme.onSurface,
+                              color: scheme.onSurface,
                               fontSize: 18,
                               fontWeight: FontWeight.w500),
                         ),
@@ -163,7 +164,7 @@ class About extends StatelessWidget {
                         child: Text(
                           'IDEs',
                           style: GoogleFonts.poppins(
-                              color: colorScheme.onSurface,
+                              color: scheme.onSurface,
                               fontSize: 18,
                               fontWeight: FontWeight.w500),
                         ),
@@ -193,7 +194,7 @@ class About extends StatelessWidget {
             child: Text(
               'About',
               style: GoogleFonts.poppins(
-                  color: colorScheme.onSurface,
+                  color: scheme.onSurface,
                   fontSize: 45,
                   fontWeight: FontWeight.w500),
             ),
@@ -203,7 +204,7 @@ class About extends StatelessWidget {
             child: Text(
               'Get to know about me',
               style: GoogleFonts.poppins(
-                  color: colorScheme.secondary,
+                  color: scheme.secondary,
                   fontSize: 30,
                   fontWeight: FontWeight.w500),
             ),
@@ -227,7 +228,7 @@ class About extends StatelessWidget {
                             Text(
                               'Hey there! my name is Kenny and I enjoy building and designing things, and bring my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.',
                               style: GoogleFonts.poppins(
-                                  color: colorScheme.secondary,
+                                  color: scheme.secondary,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400),
                             ),
@@ -237,7 +238,7 @@ class About extends StatelessWidget {
                             Text(
                               'Currently I am in my final year at University of Toronto, majoring in both Cognitive Science and Psychology with a minor in Computer Science. Through their Co-op program, I\'ve had the amazing oppurtunity of working at HelloFresh for 16 months, where I was able to expand my experiences and interests in designing elegant code and user experience for people to use around the world.',
                               style: GoogleFonts.poppins(
-                                  color: colorScheme.secondary,
+                                  color: scheme.secondary,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400),
                             ),
@@ -246,8 +247,8 @@ class About extends StatelessWidget {
                             ),
                             TextButton(
                               style: TextButton.styleFrom(
-                                primary: colorScheme.onSecondaryContainer,
-                                backgroundColor: colorScheme.secondaryContainer,
+                                primary: scheme.onSecondaryContainer,
+                                backgroundColor: scheme.secondaryContainer,
                                 padding: const EdgeInsets.all(20.0),
                                 textStyle: GoogleFonts.poppins(
                                     fontSize: 16, fontWeight: FontWeight.w500),
@@ -289,7 +290,7 @@ class About extends StatelessWidget {
             child: Text(
               'Technical tools I\'ve been working with',
               style: GoogleFonts.poppins(
-                  color: colorScheme.secondary,
+                  color: scheme.secondary,
                   fontSize: 30,
                   fontWeight: FontWeight.w500),
             ),
@@ -308,7 +309,7 @@ class About extends StatelessWidget {
                 child: Text(
                   'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude digital experiences, using different programming languages, tools, etc. I am most experienced in building mobile apps with React Native, and expanding my knowledge with Flutter. Here are other notable technical skills that I am also proficient with:',
                   style: GoogleFonts.poppins(
-                      color: colorScheme.secondary,
+                      color: scheme.secondary,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
@@ -332,7 +333,7 @@ class About extends StatelessWidget {
                           Text(
                             'Languages',
                             style: GoogleFonts.poppins(
-                                color: colorScheme.onSurface,
+                                color: scheme.onSurface,
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500),
                           ),
@@ -349,7 +350,7 @@ class About extends StatelessWidget {
                           Text(
                             'Dev Tools',
                             style: GoogleFonts.poppins(
-                                color: colorScheme.onSurface,
+                                color: scheme.onSurface,
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500),
                           ),
@@ -366,7 +367,7 @@ class About extends StatelessWidget {
                           Text(
                             'IDEs',
                             style: GoogleFonts.poppins(
-                                color: colorScheme.onSurface,
+                                color: scheme.onSurface,
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500),
                           ),

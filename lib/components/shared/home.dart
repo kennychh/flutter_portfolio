@@ -7,6 +7,7 @@ class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.isMobile && isPortrait(context)) {
         return Container(
@@ -34,7 +35,7 @@ class Home extends StatelessWidget {
                 ),
                 Text('Hi, I\'m Kenny!',
                     style: GoogleFonts.poppins(
-                        color: colorScheme.primary,
+                        color: scheme.primary,
                         fontSize: 32,
                         fontWeight: FontWeight.w500)),
                 Container(
@@ -43,7 +44,7 @@ class Home extends StatelessWidget {
                 Text(
                   'Front End Developer',
                   style: GoogleFonts.poppins(
-                      color: colorScheme.secondary,
+                      color: scheme.secondary,
                       fontSize: 22,
                       fontWeight: FontWeight.w500),
                 ),
@@ -52,7 +53,7 @@ class Home extends StatelessWidget {
                   'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
-                      color: colorScheme.secondary,
+                      color: scheme.secondary,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
@@ -72,7 +73,7 @@ class Home extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                   child: Text('Hi, I\'m Kenny!',
                       style: GoogleFonts.poppins(
-                          color: colorScheme.primary,
+                          color: scheme.primary,
                           fontSize: 88,
                           fontWeight: FontWeight.w500)),
                 ),
@@ -84,7 +85,7 @@ class Home extends StatelessWidget {
                   child: Text(
                     'Front End Developer',
                     style: GoogleFonts.poppins(
-                        color: colorScheme.secondary,
+                        color: scheme.secondary,
                         fontSize: 30,
                         fontWeight: FontWeight.w500),
                   ),
@@ -93,7 +94,7 @@ class Home extends StatelessWidget {
                 Text(
                   'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
                   style: GoogleFonts.poppins(
-                      color: colorScheme.secondary,
+                      color: scheme.secondary,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
