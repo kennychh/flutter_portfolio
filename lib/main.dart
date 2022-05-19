@@ -196,13 +196,13 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Padding(
               padding: EdgeInsets.only(right: 7, bottom: 7),
               child: FloatingActionButton(
-                backgroundColor: scheme.primaryContainer,
+                backgroundColor: scheme.tertiaryContainer,
                 onPressed: () {
                   openDialog(context);
                 },
                 child: Icon(
                   Icons.chat_bubble_outline,
-                  color: scheme.onPrimaryContainer,
+                  color: scheme.onTertiaryContainer,
                 ),
               ),
             ));
