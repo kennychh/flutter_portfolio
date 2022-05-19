@@ -1,6 +1,8 @@
+import 'dart:ui';
+
 import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/cupertino.dart';
-import 'parallax.dart';
+import '../parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../constants.dart';
@@ -39,7 +41,7 @@ class About extends StatelessWidget {
                 Text(
                   'About Me',
                   style: GoogleFonts.poppins(
-                      color: scheme.onSurface,
+                      color: scheme.onBackground,
                       fontSize: 32,
                       fontWeight: FontWeight.w500),
                 ),
@@ -59,7 +61,7 @@ class About extends StatelessWidget {
                 Text(
                   'Hey there! my name is Kenny and I enjoy building and designing things, and bring my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.',
                   style: GoogleFonts.poppins(
-                      color: scheme.secondary,
+                      color: scheme.onBackground,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
@@ -69,7 +71,7 @@ class About extends StatelessWidget {
                 Text(
                   'Currently I am in my final year at University of Toronto, majoring in both Cognitive Science and Psychology with a minor in Computer Science. Through their Co-op program, I\'ve had the amazing oppurtunity of working at HelloFresh for 16 months, where I was able to expand my experiences and interests in designing elegant code and user experience for people to use around the world.',
                   style: GoogleFonts.poppins(
-                      color: scheme.secondary,
+                      color: scheme.onBackground,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
@@ -110,7 +112,7 @@ class About extends StatelessWidget {
                         child: Text(
                           'Languages',
                           style: GoogleFonts.poppins(
-                              color: scheme.onSurface,
+                              color: scheme.secondary,
                               fontSize: 18,
                               fontWeight: FontWeight.w500),
                         ),
@@ -137,7 +139,7 @@ class About extends StatelessWidget {
                         child: Text(
                           'Dev Tools',
                           style: GoogleFonts.poppins(
-                              color: scheme.onSurface,
+                              color: scheme.secondary,
                               fontSize: 18,
                               fontWeight: FontWeight.w500),
                         ),
@@ -164,7 +166,7 @@ class About extends StatelessWidget {
                         child: Text(
                           'IDEs',
                           style: GoogleFonts.poppins(
-                              color: scheme.onSurface,
+                              color: scheme.secondary,
                               fontSize: 18,
                               fontWeight: FontWeight.w500),
                         ),
@@ -194,7 +196,7 @@ class About extends StatelessWidget {
             child: Text(
               'About',
               style: GoogleFonts.poppins(
-                  color: scheme.onSurface,
+                  color: scheme.onBackground,
                   fontSize: 45,
                   fontWeight: FontWeight.w500),
             ),
@@ -228,7 +230,7 @@ class About extends StatelessWidget {
                             Text(
                               'Hey there! my name is Kenny and I enjoy building and designing things, and bring my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.',
                               style: GoogleFonts.poppins(
-                                  color: scheme.secondary,
+                                  color: scheme.onBackground,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400),
                             ),
@@ -238,7 +240,7 @@ class About extends StatelessWidget {
                             Text(
                               'Currently I am in my final year at University of Toronto, majoring in both Cognitive Science and Psychology with a minor in Computer Science. Through their Co-op program, I\'ve had the amazing oppurtunity of working at HelloFresh for 16 months, where I was able to expand my experiences and interests in designing elegant code and user experience for people to use around the world.',
                               style: GoogleFonts.poppins(
-                                  color: scheme.secondary,
+                                  color: scheme.onBackground,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400),
                             ),
@@ -271,9 +273,13 @@ class About extends StatelessWidget {
                             aspectRatio: 1,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(32),
-                              child: Image.asset(
-                                gradientImage.imageUrl,
-                                fit: BoxFit.cover,
+                              child: Container(
+                                decoration:
+                                    BoxDecoration(color: scheme.surface),
+                                child: Image.asset(
+                                  './assets/memoji.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
@@ -309,7 +315,7 @@ class About extends StatelessWidget {
                 child: Text(
                   'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude digital experiences, using different programming languages, tools, etc. I am experienced in building mobile apps with React Native, and I am expanding my knowledge with Flutter to create apps for mobile and the web. Here are other notable technical skills that I am also proficient with:',
                   style: GoogleFonts.poppins(
-                      color: scheme.secondary,
+                      color: scheme.onBackground,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
@@ -333,7 +339,7 @@ class About extends StatelessWidget {
                           Text(
                             'Languages',
                             style: GoogleFonts.poppins(
-                                color: scheme.onSurface,
+                                color: scheme.secondary,
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500),
                           ),
@@ -350,7 +356,7 @@ class About extends StatelessWidget {
                           Text(
                             'Dev Tools',
                             style: GoogleFonts.poppins(
-                                color: scheme.onSurface,
+                                color: scheme.secondary,
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500),
                           ),
@@ -367,7 +373,7 @@ class About extends StatelessWidget {
                           Text(
                             'IDEs',
                             style: GoogleFonts.poppins(
-                                color: scheme.onSurface,
+                                color: scheme.secondary,
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500),
                           ),

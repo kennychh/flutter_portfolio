@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants.dart';
+import '../constants.dart';
 
 enum Menu { itemOne, itemTwo, itemThree, itemFour }
 
@@ -44,7 +44,7 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
     return Padding(
-      padding: EdgeInsets.only(top: showAppBar ? 56 : 3),
+      padding: EdgeInsets.only(top: showAppBar ? 56 : 2),
       child: NavigationRail(
         indicatorColor: scheme.secondaryContainer,
         backgroundColor: scheme.background,

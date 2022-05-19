@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import './parallax.dart';
+import '../parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../constants.dart';
+import '../../constants.dart';
 
-class Projects extends StatelessWidget {
-  const Projects({Key? key}) : super(key: key);
+class Work extends StatelessWidget {
+  const Work({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +22,14 @@ class Projects extends StatelessWidget {
                   height: 25,
                 ),
                 Text(
-                  'Projects',
+                  'Work Experience',
                   style: GoogleFonts.poppins(
-                      color: scheme.onSurface,
+                      color: scheme.onBackground,
                       fontSize: 28,
                       fontWeight: FontWeight.w500),
                 ),
                 Container(height: 25),
-                for (final item in projectsItems)
+                for (final item in workExperienceItems)
                   ListItem(
                     imageUrl: item.imageUrl,
                     name: item.title,
@@ -38,7 +38,6 @@ class Projects extends StatelessWidget {
                     description: item.description,
                     fillBackground: false,
                   ),
-                Container(height: 100),
               ],
             ));
       }
@@ -53,24 +52,22 @@ class Projects extends StatelessWidget {
                 height: 25,
               ),
               Text(
-                'Projects',
+                'Work Experience',
                 style: GoogleFonts.poppins(
-                    color: scheme.onSurface,
+                    color: scheme.onBackground,
                     fontSize: 45,
                     fontWeight: FontWeight.w500),
               ),
               Container(height: 50),
-              for (final item in projectsItems)
+              for (final item in workExperienceItems)
                 ListItem(
                   imageUrl: item.imageUrl,
                   name: item.title,
                   subtitle: item.subtitle,
                   time: item.time,
                   description: item.description,
-                  showGithubIcon: true,
                   fillBackground: false,
                 ),
-              Container(height: 100),
             ],
           ));
     }));

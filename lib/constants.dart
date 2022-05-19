@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'components/shared/parallax.dart';
+import 'components/parallax.dart';
 
 var appBarOffsetContainer = AdaptiveContainer(
   columnSpan: 12,
@@ -92,8 +92,20 @@ const projectsItems = [
       title: 'Weather',
       subtitle: 'Personal Project',
       imageUrl: './assets/weather.png',
+      url: 'https://github.com/kennychh/Weather',
+      time: 'June 2020',
       description: [
         'Designed and implemented a beautiful weather app with Weather API integration.'
+      ]),
+  ParallaxItem(
+      title: 'JavaScript Library',
+      subtitle: 'School Project',
+      imageUrl: './assets/weather_js.png',
+      url: 'https://github.com/kennychh/js-library',
+      time: 'Fall 2020',
+      description: [
+        'Designed and developed a JavaScript library that displays and builds weather information for websites. Constructed using JavaScript and jQuery',
+        'Uses DOM manipulation in the browser'
       ]),
 ];
 
@@ -136,7 +148,7 @@ Widget descriptionList(BuildContext context, List<String> description) {
               Text(
                 '\u2022',
                 style: TextStyle(
-                  color: scheme.secondary,
+                  color: scheme.onBackground,
                   fontSize: 16,
                   height: 1.55,
                 ),
@@ -151,7 +163,7 @@ Widget descriptionList(BuildContext context, List<String> description) {
                     textAlign: TextAlign.left,
                     softWrap: true,
                     style: GoogleFonts.poppins(
-                        color: scheme.secondary,
+                        color: scheme.onBackground,
                         fontSize: 16,
                         fontWeight: FontWeight.w400),
                   ),
@@ -206,13 +218,13 @@ PopupMenuButton<int> openMenu(
                     padding: EdgeInsets.only(right: 12),
                     child: Icon(
                       Icons.contact_page_outlined,
-                      color: scheme.onSurface,
+                      color: scheme.onBackground,
                     ),
                   ),
                   Text(
                     'View Resume',
                     style: GoogleFonts.poppins(
-                      color: scheme.onSurface,
+                      color: scheme.onBackground,
                       fontSize: 14,
                     ),
                   )
@@ -227,12 +239,12 @@ PopupMenuButton<int> openMenu(
                     padding: EdgeInsets.only(right: 12),
                     child: Icon(
                       Icons.palette_outlined,
-                      color: scheme.onSurface,
+                      color: scheme.onBackground,
                     ),
                   ),
                   Text(
                     'Change Colors',
-                    style: TextStyle(color: scheme.onSurface, fontSize: 14),
+                    style: TextStyle(color: scheme.onBackground, fontSize: 14),
                   )
                 ],
               ),

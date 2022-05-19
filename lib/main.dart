@@ -2,14 +2,14 @@
 
 import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/components/shared/contact.dart';
+import 'package:portfolio/components/sections/contact.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'components/shared/about.dart';
-import 'components/shared/drawerItems.dart';
-import 'components/shared/home.dart';
-import 'components/shared/navigationRailSection.dart';
-import 'components/shared/projects.dart';
-import 'components/shared/work.dart';
+import 'components/sections/about.dart';
+import 'components/drawerItems.dart';
+import 'components/sections/home.dart';
+import 'components/navigationRailSection.dart';
+import 'components/sections/projects.dart';
+import 'components/sections/work.dart';
 import 'constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 

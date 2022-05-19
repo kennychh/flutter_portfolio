@@ -53,7 +53,7 @@ class Home extends StatelessWidget {
                   'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
-                      color: scheme.secondary,
+                      color: scheme.onBackground,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
@@ -94,7 +94,7 @@ class Home extends StatelessWidget {
                 Text(
                   'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
                   style: GoogleFonts.poppins(
-                      color: scheme.secondary,
+                      color: scheme.onBackground,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),

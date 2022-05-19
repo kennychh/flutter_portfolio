@@ -28,11 +28,11 @@ class DrawerItems extends StatelessWidget {
           height: 56,
         ),
         ListTile(
-          leading: Icon(Icons.home_outlined, color: scheme.onSurface),
+          leading: Icon(Icons.home_outlined, color: scheme.onBackground),
           title: Text(
             'Home',
-            style:
-                TextStyle(color: scheme.onSurface, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: scheme.onBackground, fontWeight: FontWeight.w600),
           ),
           onTap: () {
             scrollToIndex(0);
@@ -40,11 +40,11 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.face_outlined, color: scheme.onSurface),
+          leading: Icon(Icons.face_outlined, color: scheme.onBackground),
           title: Text(
             'About',
-            style:
-                TextStyle(color: scheme.onSurface, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: scheme.onBackground, fontWeight: FontWeight.w600),
           ),
           onTap: () {
             scrollToIndex(1);
@@ -52,11 +52,11 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.work_outline, color: scheme.onSurface),
+          leading: Icon(Icons.work_outline, color: scheme.onBackground),
           title: Text(
             'Work',
-            style:
-                TextStyle(color: scheme.onSurface, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: scheme.onBackground, fontWeight: FontWeight.w600),
           ),
           onTap: () {
             scrollToIndex(2);
@@ -64,11 +64,11 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.folder_outlined, color: scheme.onSurface),
+          leading: Icon(Icons.folder_outlined, color: scheme.onBackground),
           title: Text(
             'Projects',
-            style:
-                TextStyle(color: scheme.onSurface, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: scheme.onBackground, fontWeight: FontWeight.w600),
           ),
           onTap: () {
             scrollToIndex(3);
@@ -76,11 +76,11 @@ class DrawerItems extends StatelessWidget {
           },
         ),
         ListTile(
-            leading: Icon(Icons.person_outline, color: scheme.onSurface),
+            leading: Icon(Icons.person_outline, color: scheme.onBackground),
             title: Text(
               'Contact',
               style: TextStyle(
-                  color: scheme.onSurface, fontWeight: FontWeight.w600),
+                  color: scheme.onBackground, fontWeight: FontWeight.w600),
             ),
             onTap: () {
               scrollToIndex(4);

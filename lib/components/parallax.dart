@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:html' as html;
 import 'package:google_fonts/google_fonts.dart';
-import '../../../constants.dart';
+import '../../constants.dart';
 
 class ListItem extends StatelessWidget {
   ListItem({
@@ -17,6 +17,7 @@ class ListItem extends StatelessWidget {
     this.fillBackground = true,
     this.showGithubIcon = false,
     this.showViewMoreIcon = false,
+    this.url = '',
   }) : super(key: key);
 
   final String imageUrl;
@@ -28,6 +29,7 @@ class ListItem extends StatelessWidget {
   final bool showGithubIcon;
   final bool fillBackground;
   final bool showViewMoreIcon;
+  final String url;
   final time;
   final GlobalKey _backgroundImageKey = GlobalKey();
 
@@ -37,13 +39,14 @@ class ListItem extends StatelessWidget {
     return LayoutBuilder(builder: ((context, constraints) {
       if (constraints.isMobile) {
         return Container(
+          margin: const EdgeInsets.only(bottom: 50),
           decoration: fillBackground
               ? BoxDecoration(
-                  color: scheme.secondaryContainer,
+                  color: scheme.surface,
                   borderRadius: BorderRadius.all(Radius.circular(borderRadius)))
               : BoxDecoration(
                   border: Border.all(
-                    color: scheme.secondaryContainer,
+                    color: scheme.surface,
                     width: 2,
                   ),
                   borderRadius:
@@ -66,14 +69,15 @@ class ListItem extends StatelessWidget {
         );
       }
       return Container(
+          margin: const EdgeInsets.only(bottom: 50),
           decoration: fillBackground
               ? BoxDecoration(
-                  color: scheme.secondaryContainer,
+                  color: scheme.surface,
                   borderRadius:
                       BorderRadius.all(Radius.circular(borderRadius + 32)))
               : BoxDecoration(
                   border: Border.all(
-                    color: scheme.secondaryContainer,
+                    color: scheme.surface,
                     width: 2,
                   ),
                   borderRadius:
@@ -101,7 +105,9 @@ class ListItem extends StatelessWidget {
                                       color: scheme.secondaryContainer,
                                       borderRadius: BorderRadius.circular(50)),
                                   child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        html.window.open(url, 'new tab');
+                                      },
                                       tooltip: 'Github',
                                       icon: Icon(
                                         Icons.code_outlined,
@@ -158,7 +164,7 @@ class ListItem extends StatelessWidget {
             child: Text(
               name,
               style: GoogleFonts.poppins(
-                  color: scheme.onSurface,
+                  color: scheme.onBackground,
                   fontSize: 28,
                   fontWeight: FontWeight.w500),
             ),
@@ -197,7 +203,7 @@ class ListItem extends StatelessWidget {
                   child: Text(
                     description[0],
                     style: GoogleFonts.poppins(
-                        color: scheme.secondary,
+                        color: scheme.onBackground,
                         fontSize: 16,
                         fontWeight: FontWeight.w400),
                   ),
@@ -407,9 +413,11 @@ class ParallaxItem {
     this.subtitle = '',
     this.description = const [''],
     this.time,
+    this.url = '',
   });
 
   final String title;
+  final String url;
   final String subtitle;
   final String imageUrl;
   final List<String> description;
