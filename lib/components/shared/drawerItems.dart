@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import '../../constants.dart';
 
 class DrawerItems extends StatelessWidget {
   const DrawerItems({
@@ -65,7 +64,7 @@ class DrawerItems extends StatelessWidget {
         ),
         ListTile(
           leading:
-              Icon(Icons.code_outlined, color: scheme.onSecondaryContainer),
+              Icon(Icons.folder_outlined, color: scheme.onSecondaryContainer),
           title: Text(
             'Projects',
             style: TextStyle(color: scheme.onSecondaryContainer),

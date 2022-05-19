@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../constants.dart';
 
 enum Menu { itemOne, itemTwo, itemThree, itemFour }
@@ -43,72 +44,23 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
     return Padding(
-      padding: EdgeInsets.only(top: showAppBar ? 56 : 20),
+      padding: EdgeInsets.only(top: showAppBar ? 56 : 3),
       child: NavigationRail(
         indicatorColor: scheme.secondaryContainer,
         backgroundColor: scheme.background,
         minWidth: navigationRailWidth,
         extended: widget.isExtended,
-        leading: SizedBox(
-          height: 80,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FloatingActionButton(
-                  backgroundColor: scheme.primary,
-                  onPressed: () {},
-                  child: Icon(
-                    Icons.chat_bubble_outline,
-                    color: scheme.onPrimary,
-                  ),
-                ),
-              ]),
+        groupAlignment: -0.75,
+        leading: FloatingActionButton(
+          backgroundColor: scheme.tertiaryContainer,
+          onPressed: () {
+            openDialog(context);
+          },
+          child: Icon(
+            Icons.chat_bubble_outline,
+            color: scheme.onTertiaryContainer,
+          ),
         ),
-        trailing: Expanded(
-            child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: PopupMenuButton(
-                  tooltip: 'More',
-                  color: scheme.secondaryContainer,
-                  icon: Icon(Icons.more_horiz_outlined, color: scheme.primary),
-                  itemBuilder: (context) => [
-                        PopupMenuItem(
-                          child: ListTile(
-                              leading: Icon(Icons.contact_page_outlined),
-                              title: Text('Resume'),
-                              iconColor: scheme.onSecondaryContainer,
-                              textColor: scheme.onSecondaryContainer),
-                          value: 1,
-                        ),
-                        PopupMenuItem(
-                          child: ListTile(
-                            leading: Icon(Icons.palette_outlined),
-                            title: Text('Colors'),
-                            iconColor: scheme.onSecondaryContainer,
-                            textColor: scheme.onSecondaryContainer,
-                          ),
-                          value: 1,
-                        ),
-                        PopupMenuItem(
-                          child: ListTile(
-                              onTap: () {
-                                widget.setColorScheme();
-                                Navigator.pop(context);
-                              },
-                              leading: Icon(scheme == darkColorScheme
-                                  ? Icons.light_mode_outlined
-                                  : Icons.dark_mode_outlined),
-                              title: scheme == darkColorScheme
-                                  ? Text('Light Mode')
-                                  : Text('Dark Mode'),
-                              iconColor: scheme.onSecondaryContainer,
-                              textColor: scheme.onSecondaryContainer),
-                          value: 1,
-                        ),
-                      ])),
-        )),
         destinations: [
           NavigationRailDestination(
             icon: Icon(Icons.home_outlined, color: scheme.onSecondaryContainer),
@@ -132,7 +84,8 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
             ),
           ),
           NavigationRailDestination(
-            icon: Icon(Icons.code_outlined, color: scheme.onSecondaryContainer),
+            icon:
+                Icon(Icons.folder_outlined, color: scheme.onSecondaryContainer),
             label: Text(
               'Projects',
               style: TextStyle(color: scheme.onSecondaryContainer),

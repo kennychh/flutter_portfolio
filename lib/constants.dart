@@ -32,8 +32,8 @@ const lightColorScheme = ColorScheme(
   onErrorContainer: Color(0xFF410001),
   background: Color(0xFFFFFBFF),
   onBackground: Color(0xFF1C1B1E),
-  surface: Color(0xFFFFFBFF),
-  onSurface: Color(0xFF1C1B1E),
+  surface: Color(0xFFF3EDF7),
+  onSurface: Color(0xFF49454f),
   surfaceVariant: Color(0xFFE5E0EB),
   onSurfaceVariant: Color(0xFF48454F),
   outline: Color(0xFF79767F),
@@ -63,8 +63,8 @@ const darkColorScheme = ColorScheme(
   onErrorContainer: Color(0xFFFFDAD4),
   background: Color(0xFF1C1B1E),
   onBackground: Color(0xFFE5E1E5),
-  surface: Color(0xFF1C1B1E),
-  onSurface: Color(0xFFE5E1E5),
+  surface: Color(0xFF2a2831),
+  onSurface: Color(0xFFcac4d0),
   surfaceVariant: Color(0xFF48454F),
   onSurfaceVariant: Color(0xFFC9C4D0),
   outline: Color(0xFF938F99),
@@ -163,4 +163,104 @@ Widget descriptionList(BuildContext context, List<String> description) {
       );
     }).toList(),
   );
+}
+
+void openDialog(BuildContext context) {
+  ColorScheme scheme = Theme.of(context).colorScheme;
+  showDialog<void>(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: scheme.surface,
+      title: Text("Basic Dialog Title",
+          style: TextStyle(color: scheme.onBackground)),
+      content: Text(
+          "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.",
+          style: TextStyle(color: scheme.onBackground)),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('Dismiss'),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        TextButton(
+          child: const Text('Action'),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ],
+    ),
+  );
+}
+
+PopupMenuButton<int> openMenu(
+    {required BuildContext context, required Function setColorScheme}) {
+  ColorScheme scheme = Theme.of(context).colorScheme;
+  return PopupMenuButton(
+      tooltip: 'More',
+      color: scheme.surface,
+      elevation: 2,
+      icon: Icon(Icons.more_horiz_outlined, color: scheme.onSecondaryContainer),
+      itemBuilder: (context) => [
+            PopupMenuItem(
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.contact_page_outlined,
+                      color: scheme.onSurface,
+                    ),
+                  ),
+                  Text(
+                    'View Resume',
+                    style: GoogleFonts.poppins(
+                      color: scheme.onSurface,
+                      fontSize: 14,
+                    ),
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.palette_outlined,
+                      color: scheme.onSurface,
+                    ),
+                  ),
+                  Text(
+                    'Change Colors',
+                    style: TextStyle(color: scheme.onSurface, fontSize: 14),
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                setColorScheme();
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: Icon(
+                      scheme == darkColorScheme
+                          ? Icons.light_mode_outlined
+                          : Icons.dark_mode_outlined,
+                      color: scheme.onSurfaceVariant,
+                    ),
+                  ),
+                  Text(
+                    scheme == darkColorScheme ? 'Light Mode' : 'Dark Mode',
+                    style:
+                        TextStyle(color: scheme.onSurfaceVariant, fontSize: 14),
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+          ]);
 }

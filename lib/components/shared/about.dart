@@ -307,7 +307,7 @@ class About extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 760),
                 child: Text(
-                  'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude digital experiences, using different programming languages, tools, etc. I am most experienced in building mobile apps with React Native, and expanding my knowledge with Flutter. Here are other notable technical skills that I am also proficient with:',
+                  'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude digital experiences, using different programming languages, tools, etc. I am experienced in building mobile apps with React Native, and I am expanding my knowledge with Flutter to create apps for mobile and the web. Here are other notable technical skills that I am also proficient with:',
                   style: GoogleFonts.poppins(
                       color: scheme.secondary,
                       fontSize: 16,

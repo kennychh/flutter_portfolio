@@ -149,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Builder(
                     builder: (context) => IconButton(
                         onPressed: () => Scaffold.of(context).openDrawer(),
-                        color: scheme.primary,
+                        color: scheme.onBackground,
                         icon: Icon(Icons.menu)),
                   )),
               actions: [
@@ -159,17 +159,17 @@ class _MyHomePageState extends State<MyHomePage> {
                         onPressed: () {
                           _setColorScheme(context);
                         },
-                        color: scheme.primary,
+                        color: scheme.onBackground,
                         icon: Icon(scheme == darkColorScheme
                             ? Icons.light_mode_outlined
                             : Icons.dark_mode_outlined)))
               ],
-              backgroundColor: scheme.surface.withOpacity(0.7),
-              surfaceTintColor: scheme.surface.withOpacity(0.7),
+              backgroundColor: scheme.background.withOpacity(0.7),
+              surfaceTintColor: scheme.background.withOpacity(0.7),
               title: Text(
                 widget.title,
                 style: GoogleFonts.poppins(
-                    color: scheme.primary, fontWeight: FontWeight.w500),
+                    color: scheme.onBackground, fontWeight: FontWeight.w500),
               ),
             ),
             body: LayoutBuilder(
@@ -196,11 +196,13 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Padding(
               padding: EdgeInsets.only(right: 7, bottom: 7),
               child: FloatingActionButton(
-                backgroundColor: scheme.primary,
-                onPressed: () {},
+                backgroundColor: scheme.primaryContainer,
+                onPressed: () {
+                  openDialog(context);
+                },
                 child: Icon(
                   Icons.chat_bubble_outline,
-                  color: scheme.onPrimary,
+                  color: scheme.onPrimaryContainer,
                 ),
               ),
             ));
@@ -214,15 +216,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 top: false,
                 child: Row(
                   children: <Widget>[
-                    NavigationRailSection(
-                        key: navigationRailGlobalKey,
-                        onSelectItem: handlePageIndexChanged,
-                        selectedIndex: pageIndex,
-                        scrollToIndex: scrollToIndex,
-                        isExtended: isNavigationRailExtended,
-                        setColorScheme: () {
-                          _setColorScheme(context);
-                        }),
+                    Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        NavigationRailSection(
+                            key: navigationRailGlobalKey,
+                            onSelectItem: handlePageIndexChanged,
+                            selectedIndex: pageIndex,
+                            scrollToIndex: scrollToIndex,
+                            isExtended: isNavigationRailExtended,
+                            setColorScheme: () {
+                              _setColorScheme(context);
+                            }),
+                        openMenu(
+                            context: context,
+                            setColorScheme: () {
+                              _setColorScheme(context);
+                            })
+                      ],
+                    ),
                     Flexible(
                       child: ScrollablePositionedList.builder(
                         key: UniqueKey(),
