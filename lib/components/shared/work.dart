@@ -36,7 +36,6 @@ class Work extends StatelessWidget {
                     subtitle: item.subtitle,
                     time: item.time,
                     description: item.description,
-                    fillBackground: false,
                   ),
               ],
             ));
@@ -66,7 +65,6 @@ class Work extends StatelessWidget {
                   subtitle: item.subtitle,
                   time: item.time,
                   description: item.description,
-                  fillBackground: false,
                 ),
             ],
           ));

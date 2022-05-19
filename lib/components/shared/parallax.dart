@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../constants.dart';
 
@@ -14,6 +15,8 @@ class ListItem extends StatelessWidget {
     this.aspectRatio = 16 / 9,
     this.borderRadius = 32,
     this.fillBackground = true,
+    this.showGithubIcon = false,
+    this.showViewMoreIcon = false,
   }) : super(key: key);
 
   final String imageUrl;
@@ -22,7 +25,9 @@ class ListItem extends StatelessWidget {
   final List<String> description;
   final double aspectRatio;
   final double borderRadius;
+  final bool showGithubIcon;
   final bool fillBackground;
+  final bool showViewMoreIcon;
   final time;
   final GlobalKey _backgroundImageKey = GlobalKey();
 
@@ -60,56 +65,85 @@ class ListItem extends StatelessWidget {
           ),
         );
       }
-      return Expanded(
-        child: Container(
-            decoration: fillBackground
-                ? BoxDecoration(
+      return Container(
+          decoration: fillBackground
+              ? BoxDecoration(
+                  color: scheme.secondaryContainer,
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(borderRadius + 32)))
+              : BoxDecoration(
+                  border: Border.all(
                     color: scheme.secondaryContainer,
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(borderRadius + 32)))
-                : BoxDecoration(
-                    border: Border.all(
-                      color: scheme.secondaryContainer,
-                      width: 2,
-                    ),
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(borderRadius + 32))),
-            child: Padding(
-              padding: EdgeInsets.all(32),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                      flex: 3,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(maxWidth: 550),
-                          child: _listItemText(context, padding: 0),
-                        ),
-                      )),
-                  Expanded(
-                    child: Container(),
+                    width: 2,
                   ),
-                  Expanded(
-                      flex: 3,
-                      child: Align(
-                          alignment: Alignment.topRight,
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(maxHeight: 500),
-                            child: AspectRatio(
-                              aspectRatio: 1,
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.circular(borderRadius),
-                                child: _buildParallaxBackground(context),
-                              ),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(borderRadius + 32))),
+          child: Padding(
+            padding: EdgeInsets.all(32),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                    flex: 3,
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: ConstrainedBox(
+                          constraints:
+                              BoxConstraints(maxWidth: 550, minHeight: 400),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _listItemText(context, padding: 0),
+                              if (showGithubIcon)
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: scheme.secondaryContainer,
+                                      borderRadius: BorderRadius.circular(50)),
+                                  child: IconButton(
+                                      onPressed: () {},
+                                      tooltip: 'Github',
+                                      icon: Icon(
+                                        Icons.code_outlined,
+                                        color: scheme.onSecondaryContainer,
+                                      )),
+                                ),
+                              if (showViewMoreIcon)
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: scheme.secondaryContainer,
+                                      borderRadius: BorderRadius.circular(50)),
+                                  child: IconButton(
+                                      onPressed: () {},
+                                      tooltip: 'Read More',
+                                      icon: Icon(
+                                        Icons.read_more_outlined,
+                                        color: scheme.onSecondaryContainer,
+                                      )),
+                                )
+                            ],
+                          )),
+                    )),
+                Expanded(
+                  child: Container(),
+                ),
+                Expanded(
+                    flex: 3,
+                    child: Align(
+                        alignment: Alignment.topRight,
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(maxHeight: 400),
+                          child: AspectRatio(
+                            aspectRatio: 1,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(borderRadius),
+                              child: _buildParallaxBackground(context),
                             ),
-                          ))),
-                ],
-              ),
-            )),
-      );
+                          ),
+                        ))),
+              ],
+            ),
+          ));
     }));
   }
 
@@ -120,7 +154,7 @@ class ListItem extends StatelessWidget {
       child: Column(
         children: [
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.topLeft,
             child: Text(
               name,
               style: GoogleFonts.poppins(
@@ -130,7 +164,7 @@ class ListItem extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.topLeft,
             child: Text(
               subtitle,
               style: GoogleFonts.poppins(
@@ -145,7 +179,7 @@ class ListItem extends StatelessWidget {
             ),
           if (time != null)
             Align(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.topLeft,
               child: Text(
                 time,
                 style: GoogleFonts.poppins(
@@ -159,7 +193,7 @@ class ListItem extends StatelessWidget {
           ),
           description.length == 1
               ? Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.topLeft,
                   child: Text(
                     description[0],
                     style: GoogleFonts.poppins(
@@ -168,7 +202,7 @@ class ListItem extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                 )
-              : descriptionList(context, description)
+              : descriptionList(context, description),
         ],
       ),
     );
