@@ -36,6 +36,8 @@ class Projects extends StatelessWidget {
                     subtitle: item.subtitle,
                     time: item.time,
                     description: item.description,
+                    showGithubIcon: true,
+                    url: item.url,
                   ),
                 Container(height: 100),
               ],

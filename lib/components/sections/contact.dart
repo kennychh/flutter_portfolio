@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import '../parallax.dart';
+import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../constants.dart';
@@ -68,35 +69,77 @@ class Contact extends StatelessWidget {
                               constraints: BoxConstraints(maxWidth: 760),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  IconButton(
-                                      onPressed: () {},
-                                      tooltip: 'LinkedIn',
-                                      icon: SvgPicture.asset(
-                                        'linkedin.svg',
-                                        width: 20,
-                                        height: 20,
-                                        color: scheme.onSecondaryContainer,
-                                      )),
-                                  IconButton(
-                                      onPressed: () {},
-                                      tooltip: 'GitHub',
-                                      icon: SvgPicture.asset(
-                                        'github.svg',
-                                        width: 20,
-                                        height: 20,
-                                        color: scheme.onSecondaryContainer,
-                                      )),
-                                  IconButton(
-                                      onPressed: () {},
-                                      tooltip: 'Instagram',
-                                      icon: SvgPicture.asset(
-                                        'instagram.svg',
-                                        width: 20,
-                                        height: 20,
-                                        color: scheme.onSecondaryContainer,
-                                      )),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: ConstrainedBox(
+                                        constraints:
+                                            BoxConstraints(maxWidth: 110),
+                                        child: TextButton(
+                                          style: TextButton.styleFrom(
+                                            primary: scheme.secondary,
+                                            textStyle: GoogleFonts.poppins(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          onPressed: () {
+                                            html.window.open(
+                                                'https://www.linkedin.com/in/kenny-chan-2ab991195',
+                                                'new tab');
+                                          },
+                                          child: const Text('LinkedIn'),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: ConstrainedBox(
+                                        constraints:
+                                            BoxConstraints(maxWidth: 110),
+                                        child: TextButton(
+                                          style: TextButton.styleFrom(
+                                            primary: scheme.secondary,
+                                            textStyle: GoogleFonts.poppins(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          onPressed: () {
+                                            html.window.open(
+                                                'https://github.com/kennychh',
+                                                'new tab');
+                                          },
+                                          child: const Text('GitHub'),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: ConstrainedBox(
+                                        constraints:
+                                            BoxConstraints(maxWidth: 110),
+                                        child: TextButton(
+                                          style: TextButton.styleFrom(
+                                            primary: scheme.secondary,
+                                            textStyle: GoogleFonts.poppins(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          onPressed: () {
+                                            html.window.open(
+                                                'https://www.instagram.com/_kennychan_/',
+                                                'new tab');
+                                          },
+                                          child: const Text('Instagram'),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

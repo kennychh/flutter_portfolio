@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:html' as html;
 import 'package:google_fonts/google_fonts.dart';
 import '../../constants.dart';
@@ -64,7 +63,25 @@ class ListItem extends StatelessWidget {
                   ),
                 ),
               ),
-              _listItemText(context)
+              _listItemText(context),
+              if (showGithubIcon)
+                Padding(
+                  padding: EdgeInsets.only(bottom: 32, left: 32, right: 32),
+                  child: TextButton(
+                    onPressed: () {
+                      html.window.open(url, 'new tab');
+                    },
+                    style: TextButton.styleFrom(
+                      minimumSize: Size.fromHeight(40),
+                      primary: scheme.onSecondaryContainer,
+                      backgroundColor: scheme.secondaryContainer,
+                      padding: const EdgeInsets.all(20.0),
+                      textStyle: GoogleFonts.poppins(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                    child: const Text('View on GitHub'),
+                  ),
+                )
             ],
           ),
         );
@@ -105,17 +122,21 @@ class ListItem extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       color: scheme.secondaryContainer,
                                       borderRadius: BorderRadius.circular(50)),
-                                  child: IconButton(
-                                      onPressed: () {
-                                        html.window.open(url, 'new tab');
-                                      },
-                                      tooltip: 'Github',
-                                      icon: SvgPicture.asset(
-                                        'github.svg',
-                                        width: 20,
-                                        height: 20,
-                                        color: scheme.onSecondaryContainer,
-                                      )),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      html.window.open(url, 'new tab');
+                                    },
+                                    style: TextButton.styleFrom(
+                                      primary: scheme.onSecondaryContainer,
+                                      backgroundColor:
+                                          scheme.secondaryContainer,
+                                      padding: const EdgeInsets.all(20.0),
+                                      textStyle: GoogleFonts.poppins(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    child: const Text('View on GitHub'),
+                                  ),
                                 ),
                               if (showViewMoreIcon)
                                 Container(
