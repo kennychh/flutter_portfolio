@@ -95,7 +95,8 @@ const projectsItems = [
       url: 'https://github.com/kennychh/Weather',
       time: 'June 2020',
       description: [
-        'Designed and implemented a beautiful weather app with Weather API integration.'
+        'Designed and implemented a beautiful weather app using Flutter.',
+        'Integrated OpenWeatherMap API for real-time weather information.'
       ]),
   ParallaxItem(
       title: 'JavaScript Library',
@@ -104,8 +105,8 @@ const projectsItems = [
       url: 'https://github.com/kennychh/js-library',
       time: 'Fall 2020',
       description: [
-        'Designed and developed a JavaScript library that displays and builds weather information for websites. Constructed using JavaScript and jQuery',
-        'Uses DOM manipulation in the browser'
+        'Designed and developed a JavaScript library that displays and builds weather information for websites. Constructed using JavaScript and jQuery.',
+        'Uses DOM manipulation in the browser.'
       ]),
 ];
 
@@ -262,13 +263,12 @@ PopupMenuButton<int> openMenu(
                       scheme == darkColorScheme
                           ? Icons.light_mode_outlined
                           : Icons.dark_mode_outlined,
-                      color: scheme.onSurfaceVariant,
+                      color: scheme.onBackground,
                     ),
                   ),
                   Text(
                     scheme == darkColorScheme ? 'Light Mode' : 'Dark Mode',
-                    style:
-                        TextStyle(color: scheme.onSurfaceVariant, fontSize: 14),
+                    style: TextStyle(color: scheme.onBackground, fontSize: 14),
                   )
                 ],
               ),
