@@ -79,7 +79,11 @@ flutter:
     - assets/hellofresh.jpg
     - assets/weather.png
     - assets/weather_js.png
-    - assets/gradient.jpg
+    - assets/purple_gradient.png
+    - assets/pink_gradient.png
+    - assets/green_gradient.png
+    - assets/blue_gradient.png
+    - assets/orange_gradient.png
     - assets/memoji.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

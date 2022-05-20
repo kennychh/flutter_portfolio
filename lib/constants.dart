@@ -69,8 +69,8 @@ const projectsItems = [
       ]),
 ];
 
-const gradientImage = ParallaxItem(
-  imageUrl: './assets/gradient.jpg',
+var gradientImage = const ParallaxItem(
+  imageUrl: './assets/purple_gradient.png',
 );
 
 extension BreakpointUtils on BoxConstraints {
@@ -273,13 +273,15 @@ PopupMenuButton<int> openMenu(
     {required BuildContext context,
     required Function setColorChoice,
     required Function setColorScheme,
-    required Function setColor}) {
+    required Function setColor,
+    bool isHoriz = true}) {
   ColorScheme scheme = Theme.of(context).colorScheme;
   return PopupMenuButton(
       tooltip: 'More',
       color: scheme.surface,
       elevation: 2,
-      icon: Icon(Icons.more_horiz_outlined, color: scheme.onSecondaryContainer),
+      icon: Icon(isHoriz ? Icons.more_horiz_outlined : Icons.more_vert_outlined,
+          color: scheme.onBackground),
       itemBuilder: (context) => [
             PopupMenuItem(
               child: Row(

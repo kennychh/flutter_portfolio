@@ -4,6 +4,7 @@ import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/sections/contact.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'components/parallax.dart';
 import 'components/sections/about.dart';
 import 'components/drawerItems.dart';
 import 'components/sections/home.dart';
@@ -66,6 +67,9 @@ class _MyAppState extends State<MyApp> {
   void changeColor(String _color) {
     setState(() {
       color = _color;
+      gradientImage = ParallaxItem(
+        imageUrl: "./assets/${_color}_gradient.png",
+      );
     });
   }
 
@@ -178,14 +182,14 @@ class _MyHomePageState extends State<MyHomePage> {
               actions: [
                 Padding(
                     padding: EdgeInsets.only(right: 15),
-                    child: IconButton(
-                        onPressed: () {
+                    child: openMenu(
+                        context: context,
+                        isHoriz: false,
+                        setColor: _setColor,
+                        setColorChoice: _setColorChoice,
+                        setColorScheme: () {
                           _setColorScheme(context);
-                        },
-                        color: scheme.onBackground,
-                        icon: Icon(scheme == darkColorSchemes[color]
-                            ? Icons.light_mode_outlined
-                            : Icons.dark_mode_outlined)))
+                        }))
               ],
               backgroundColor: scheme.background.withOpacity(0.7),
               surfaceTintColor: scheme.background.withOpacity(0.7),
