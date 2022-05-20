@@ -45,11 +45,13 @@ class _MyAppState extends State<MyApp> {
       darkTheme: ThemeData.dark().copyWith(
           textTheme: GoogleFonts.poppinsTextTheme(),
           useMaterial3: true,
-          colorScheme: darkColorScheme),
+          colorScheme: darkColorSchemes[color],
+          unselectedWidgetColor: darkColorSchemes[color]?.onSurfaceVariant),
       theme: ThemeData.light().copyWith(
           textTheme: GoogleFonts.poppinsTextTheme(),
           useMaterial3: true,
-          colorScheme: lightColorScheme),
+          colorScheme: lightColorSchemes[color],
+          unselectedWidgetColor: darkColorSchemes[color]?.onSurfaceVariant),
       themeMode: _themeMode,
       home: const MyHomePage(title: 'Kenny Chan'),
     );
@@ -58,6 +60,19 @@ class _MyAppState extends State<MyApp> {
   void changeTheme(ThemeMode themeMode) {
     setState(() {
       _themeMode = themeMode;
+    });
+  }
+
+  void changeColor(String _color) {
+    setState(() {
+      color = _color;
+    });
+  }
+
+  void changeColorChoice(int _selected, String color) {
+    setState(() {
+      selectedColor = color;
+      selected = _selected;
     });
   }
 }
@@ -94,6 +109,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void _setColorScheme(BuildContext context) {
     var darkMode = Theme.of(context).brightness == Brightness.dark;
     MyApp.of(context)?.changeTheme(darkMode ? ThemeMode.light : ThemeMode.dark);
+  }
+
+  void _setColor(String color) {
+    MyApp.of(context)?.changeColor(color);
+  }
+
+  void _setColorChoice(int selected, String color) {
+    MyApp.of(context)?.changeColorChoice(selected, color);
   }
 
   void scrollToIndex(int index) {
@@ -160,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           _setColorScheme(context);
                         },
                         color: scheme.onBackground,
-                        icon: Icon(scheme == darkColorScheme
+                        icon: Icon(scheme == darkColorSchemes[color]
                             ? Icons.light_mode_outlined
                             : Icons.dark_mode_outlined)))
               ],
@@ -220,16 +243,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       alignment: Alignment.bottomCenter,
                       children: [
                         NavigationRailSection(
-                            key: navigationRailGlobalKey,
-                            onSelectItem: handlePageIndexChanged,
-                            selectedIndex: pageIndex,
-                            scrollToIndex: scrollToIndex,
-                            isExtended: isNavigationRailExtended,
-                            setColorScheme: () {
-                              _setColorScheme(context);
-                            }),
+                          key: navigationRailGlobalKey,
+                          onSelectItem: handlePageIndexChanged,
+                          selectedIndex: pageIndex,
+                          scrollToIndex: scrollToIndex,
+                          isExtended: isNavigationRailExtended,
+                          setColorScheme: () {
+                            _setColorScheme(context);
+                          },
+                        ),
                         openMenu(
                             context: context,
+                            setColor: _setColor,
+                            setColorChoice: _setColorChoice,
                             setColorScheme: () {
                               _setColorScheme(context);
                             })
@@ -286,7 +312,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             _setColorScheme(context);
                           },
                           color: scheme.primary,
-                          icon: Icon(scheme == darkColorScheme
+                          icon: Icon(scheme == darkColorSchemes[color]
                               ? Icons.light_mode_outlined
                               : Icons.dark_mode_outlined)))
                 ],

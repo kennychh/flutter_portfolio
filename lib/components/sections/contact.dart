@@ -34,7 +34,7 @@ class Contact extends StatelessWidget {
               ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: 760),
                 child: Text(
-                    'Feel free to reach out anytime and stay connected. Whether you have a question, a job oppurtunity, or just want to chat, my inbox is always open!',
+                    'Feel free to reach out anytime! Whether you have a question, a job oppurtunity, or just want to chat, my inbox is always open!',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                         color: scheme.onBackground, fontSize: 16)),

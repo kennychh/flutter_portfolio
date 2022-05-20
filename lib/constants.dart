@@ -1,7 +1,7 @@
 import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/color_schemes.dart';
 
 import 'components/parallax.dart';
 
@@ -12,67 +12,26 @@ var appBarOffsetContainer = AdaptiveContainer(
 
 const seed = Color(0xFF5F51A4);
 
-const lightColorScheme = ColorScheme(
-  brightness: Brightness.light,
-  primary: Color(0xFF6052A6),
-  onPrimary: Color(0xFFFFFFFF),
-  primaryContainer: Color(0xFFE7DEFF),
-  onPrimaryContainer: Color(0xFF1C0161),
-  secondary: Color(0xFF605C71),
-  onSecondary: Color(0xFFFFFFFF),
-  secondaryContainer: Color(0xFFE6DFF9),
-  onSecondaryContainer: Color(0xFF1C192B),
-  tertiary: Color(0xFF7C5264),
-  onTertiary: Color(0xFFFFFFFF),
-  tertiaryContainer: Color(0xFFFFD9E8),
-  onTertiaryContainer: Color(0xFF301120),
-  error: Color(0xFFBA1B1B),
-  errorContainer: Color(0xFFFFDAD4),
-  onError: Color(0xFFFFFFFF),
-  onErrorContainer: Color(0xFF410001),
-  background: Color(0xFFFFFBFF),
-  onBackground: Color(0xFF1C1B1E),
-  surface: Color(0xFFF3EDF7),
-  onSurface: Color(0xFF49454f),
-  surfaceVariant: Color(0xFFE5E0EB),
-  onSurfaceVariant: Color(0xFF48454F),
-  outline: Color(0xFF79767F),
-  onInverseSurface: Color(0xFFF4EFF4),
-  inverseSurface: Color(0xFF313033),
-  inversePrimary: Color(0xFFCBBEFF),
-  shadow: Color(0xFF000000),
-);
+var color = 'purple';
+var colors = ['purple', 'blue', 'green', 'orange', 'pink'];
+var selectedColor = color;
+var selected = colors.indexOf(color);
 
-const darkColorScheme = ColorScheme(
-  brightness: Brightness.dark,
-  primary: Color(0xFFCBBEFF),
-  onPrimary: Color(0xFF312075),
-  primaryContainer: Color(0xFF48398D),
-  onPrimaryContainer: Color(0xFFE7DEFF),
-  secondary: Color(0xFFC9C3DC),
-  onSecondary: Color(0xFF312E41),
-  secondaryContainer: Color(0xFF484459),
-  onSecondaryContainer: Color(0xFFE6DFF9),
-  tertiary: Color(0xFFEDB8CC),
-  onTertiary: Color(0xFF482535),
-  tertiaryContainer: Color(0xFF623B4C),
-  onTertiaryContainer: Color(0xFFFFD9E8),
-  error: Color(0xFFFFB4A9),
-  errorContainer: Color(0xFF930006),
-  onError: Color(0xFF680003),
-  onErrorContainer: Color(0xFFFFDAD4),
-  background: Color(0xFF1C1B1E),
-  onBackground: Color(0xFFE5E1E5),
-  surface: Color(0xFF2a2831),
-  onSurface: Color(0xFFcac4d0),
-  surfaceVariant: Color(0xFF48454F),
-  onSurfaceVariant: Color(0xFFC9C4D0),
-  outline: Color(0xFF938F99),
-  onInverseSurface: Color(0xFF1C1B1E),
-  inverseSurface: Color(0xFFE5E1E5),
-  inversePrimary: Color(0xFF6052A6),
-  shadow: Color(0xFF000000),
-);
+Map<String, ColorScheme?> darkColorSchemes = {
+  'purple': purpleColorScheme['dark'],
+  'blue': blueColorScheme['dark'],
+  'green': greenDarkColorScheme,
+  'orange': orangeDarkColorScheme,
+  'pink': pinkDarkColorScheme
+};
+
+Map<String, ColorScheme?> lightColorSchemes = {
+  'purple': purpleColorScheme['light'],
+  'blue': blueColorScheme['light'],
+  'green': greenLightColorScheme,
+  'orange': orangeLightColorScheme,
+  'pink': pinkLightColorScheme
+};
 
 const workExperienceItems = [
   ParallaxItem(
@@ -203,8 +162,118 @@ void openDialog(BuildContext context) {
   );
 }
 
+void openColorPickerDialog(
+    BuildContext context, Function setColor, Function setColorChoice) {
+  ColorScheme scheme = Theme.of(context).colorScheme;
+  var isDark = Theme.of(context).brightness == Brightness.dark;
+  showDialog<void>(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: scheme.surface,
+      contentPadding: EdgeInsets.fromLTRB(0, 24, 0, 24),
+      title: Text("Change Color",
+          style: TextStyle(
+            color: scheme.onBackground,
+          )),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+              child: ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: 0, minWidth: 400),
+          )),
+          RadioListTile(
+              activeColor: scheme.onSurfaceVariant,
+              value: 0,
+              selected: selected == 0,
+              groupValue: selected,
+              onChanged: (value) {
+                setColorChoice(0, 'purple');
+              },
+              title: Text(
+                'Purple',
+                style: TextStyle(color: scheme.onSurfaceVariant),
+              )),
+          RadioListTile(
+              activeColor: scheme.onSurfaceVariant,
+              value: 1,
+              selected: selected == 1,
+              groupValue: selected,
+              onChanged: (value) {
+                setColorChoice(1, 'blue');
+              },
+              title: Text(
+                'Blue',
+                style: TextStyle(color: scheme.onSurfaceVariant),
+              )),
+          RadioListTile(
+              activeColor: scheme.onSurfaceVariant,
+              value: 2,
+              selected: selected == 2,
+              groupValue: selected,
+              onChanged: (value) {
+                setColorChoice(2, 'green');
+              },
+              title: Text(
+                'Green',
+                style: TextStyle(color: scheme.onSurfaceVariant),
+              )),
+          RadioListTile(
+              activeColor: scheme.onSurfaceVariant,
+              value: 3,
+              selected: selected == 3,
+              groupValue: selected,
+              onChanged: (value) {
+                setColorChoice(3, 'orange');
+              },
+              title: Text(
+                'Orange',
+                style: TextStyle(color: scheme.onSurfaceVariant),
+              )),
+          RadioListTile(
+              activeColor: scheme.onSurfaceVariant,
+              value: 4,
+              selected: selected == 4,
+              groupValue: selected,
+              onChanged: (value) {
+                setColorChoice(4, 'pink');
+              },
+              title: Text(
+                'Pink',
+                style: TextStyle(color: scheme.onSurfaceVariant),
+              )),
+        ],
+      ),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('Cancel'),
+          style: TextButton.styleFrom(
+            textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w500),
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        TextButton(
+          child: const Text('Ok'),
+          style: TextButton.styleFrom(
+            textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w500),
+          ),
+          onPressed: selectedColor == color
+              ? null
+              : () {
+                  setColor(selectedColor);
+                  Navigator.of(context).pop();
+                },
+        ),
+      ],
+    ),
+  );
+}
+
 PopupMenuButton<int> openMenu(
-    {required BuildContext context, required Function setColorScheme}) {
+    {required BuildContext context,
+    required Function setColorChoice,
+    required Function setColorScheme,
+    required Function setColor}) {
   ColorScheme scheme = Theme.of(context).colorScheme;
   return PopupMenuButton(
       tooltip: 'More',
@@ -234,6 +303,13 @@ PopupMenuButton<int> openMenu(
               value: 1,
             ),
             PopupMenuItem(
+              onTap: () {
+                Future.delayed(
+                  const Duration(seconds: 0),
+                  () =>
+                      openColorPickerDialog(context, setColor, setColorChoice),
+                );
+              },
               child: Row(
                 children: [
                   Padding(
@@ -244,7 +320,7 @@ PopupMenuButton<int> openMenu(
                     ),
                   ),
                   Text(
-                    'Change Colors',
+                    'Change Color',
                     style: TextStyle(color: scheme.onBackground, fontSize: 14),
                   )
                 ],
@@ -260,14 +336,16 @@ PopupMenuButton<int> openMenu(
                   Padding(
                     padding: EdgeInsets.only(right: 12),
                     child: Icon(
-                      scheme == darkColorScheme
+                      scheme == darkColorSchemes[color]
                           ? Icons.light_mode_outlined
                           : Icons.dark_mode_outlined,
                       color: scheme.onBackground,
                     ),
                   ),
                   Text(
-                    scheme == darkColorScheme ? 'Light Mode' : 'Dark Mode',
+                    scheme == darkColorSchemes[color]
+                        ? 'Light Mode'
+                        : 'Dark Mode',
                     style: TextStyle(color: scheme.onBackground, fontSize: 14),
                   )
                 ],
