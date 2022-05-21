@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "663487273829",
+    "project_id": "quiet-antler-350908",
+    "storage_bucket": "quiet-antler-350908.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663487273829:android:46a9463dc5c477e3fbdf8c",
+        "android_client_info": {
+          "package_name": "com.example.portfolio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663487273829-1j9g5cgu04g3q8m9oh64shuilkqsrnok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATl8yPkK-bKTAqEowClyIqJ9YRNa6g9bM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663487273829-1j9g5cgu04g3q8m9oh64shuilkqsrnok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
