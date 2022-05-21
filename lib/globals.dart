@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/color_schemes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'components/parallax.dart';
 
@@ -18,16 +21,16 @@ var selectedColor = color;
 var selected = colors.indexOf(color);
 
 Map<String, ColorScheme?> darkColorSchemes = {
-  'purple': purpleColorScheme['dark'],
-  'blue': blueColorScheme['dark'],
+  'purple': purpleDarkColorScheme,
+  'blue': blueDarkColorScheme,
   'green': greenDarkColorScheme,
   'orange': orangeDarkColorScheme,
   'pink': pinkDarkColorScheme
 };
 
 Map<String, ColorScheme?> lightColorSchemes = {
-  'purple': purpleColorScheme['light'],
-  'blue': blueColorScheme['light'],
+  'purple': purpleLightColorScheme,
+  'blue': blueLightColorScheme,
   'green': greenLightColorScheme,
   'orange': orangeLightColorScheme,
   'pink': pinkLightColorScheme
@@ -162,6 +165,20 @@ void openDialog(BuildContext context) {
   );
 }
 
+void launchUrlHelper(Uri url) async {
+  if (!await launchUrl(url)) throw 'Could not launch $url';
+}
+
+void mailToHelper() async {
+  final Uri emailLaunchUri = Uri(
+    scheme: 'mailto',
+    path: 'hoiyat0210@gmail.com',
+  );
+  if (!await launchUrl(emailLaunchUri)) {
+    throw 'Could not launch $emailLaunchUri';
+  }
+}
+
 void openColorPickerDialog(
     BuildContext context, Function setColor, Function setColorChoice) {
   ColorScheme scheme = Theme.of(context).colorScheme;
@@ -171,7 +188,7 @@ void openColorPickerDialog(
     builder: (context) => AlertDialog(
       backgroundColor: scheme.surface,
       contentPadding: EdgeInsets.fromLTRB(0, 24, 0, 24),
-      title: Text("Change Color",
+      title: Text("Change Color Palette",
           style: TextStyle(
             color: scheme.onBackground,
           )),

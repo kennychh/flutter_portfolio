@@ -11,7 +11,7 @@ import 'components/sections/home.dart';
 import 'components/navigationRailSection.dart';
 import 'components/sections/projects.dart';
 import 'components/sections/work.dart';
-import 'constants.dart';
+import 'globals.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -225,7 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: FloatingActionButton(
                 backgroundColor: scheme.tertiaryContainer,
                 onPressed: () {
-                  openDialog(context);
+                  mailToHelper();
                 },
                 child: Icon(
                   Icons.chat_bubble_outline,

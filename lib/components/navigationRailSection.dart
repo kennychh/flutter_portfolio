@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../constants.dart';
+import '../globals.dart';
 
 enum Menu { itemOne, itemTwo, itemThree, itemFour }
 
@@ -52,9 +52,10 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
         extended: widget.isExtended,
         groupAlignment: -0.75,
         leading: FloatingActionButton(
+          tooltip: 'Contact Me',
           backgroundColor: scheme.tertiaryContainer,
           onPressed: () {
-            openDialog(context);
+            mailToHelper();
           },
           child: Icon(
             Icons.chat_bubble_outline,

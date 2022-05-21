@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:html' as html;
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants.dart';
+import '../globals.dart';
 
 class ListItem extends StatelessWidget {
   ListItem({

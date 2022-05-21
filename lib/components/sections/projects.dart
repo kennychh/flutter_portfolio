@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import '../parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../constants.dart';
+import '../../globals.dart';
 
 class Projects extends StatelessWidget {
   const Projects({Key? key}) : super(key: key);

@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import '../parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants.dart';
+import '../../globals.dart';
 
 class About extends StatelessWidget {
   About({Key? key}) : super(key: key);

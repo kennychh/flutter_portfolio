@@ -4,7 +4,7 @@ import '../parallax.dart';
 import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants.dart';
+import '../../globals.dart';
 
 class Contact extends StatelessWidget {
   Contact({Key? key}) : super(key: key);
@@ -51,7 +51,7 @@ class Contact extends StatelessWidget {
                       fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 onPressed: () {
-                  openDialog(context);
+                  mailToHelper();
                 },
                 child: const Text('Get In Touch'),
               ),
