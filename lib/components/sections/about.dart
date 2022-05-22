@@ -59,7 +59,7 @@ class About extends StatelessWidget {
                   height: 25,
                 ),
                 Text(
-                  'Hey there! my name is Kenny. I enjoy building and designing things, and bringing my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.',
+                  'Hey there! My name is Kenny. I enjoy building and designing things, and bringing my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.',
                   style: GoogleFonts.poppins(
                       color: scheme.onBackground,
                       fontSize: 16,
@@ -98,6 +98,22 @@ class About extends StatelessWidget {
                       color: scheme.secondary,
                       fontSize: 22,
                       fontWeight: FontWeight.w500),
+                ),
+                Container(
+                  height: 25,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 760),
+                    child: Text(
+                      'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude of digital experiences, using different programming languages, tools, etc. I am experienced in building mobile apps with React Native, and I am expanding my knowledge with Flutter to create apps for mobile and the web. Here are other notable technical skills that I am also proficient with:',
+                      style: GoogleFonts.poppins(
+                          color: scheme.onBackground,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ),
                 ),
                 Container(
                   height: 25,
@@ -218,7 +234,7 @@ class About extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hey there! my name is Kenny. I enjoy building and designing things, and bringing my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.',
+                            'Hey there! My name is Kenny. I enjoy building and designing things, and bringing my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.',
                             style: GoogleFonts.poppins(
                                 color: scheme.onBackground,
                                 fontSize: 16,
@@ -293,7 +309,7 @@ class About extends StatelessWidget {
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 760),
               child: Text(
-                'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude digital experiences, using different programming languages, tools, etc. I am experienced in building mobile apps with React Native, and I am expanding my knowledge with Flutter to create apps for mobile and the web. Here are other notable technical skills that I am also proficient with:',
+                'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude of digital experiences, using different programming languages, tools, etc. I am experienced in building mobile apps with React Native, and I am expanding my knowledge with Flutter to create apps for mobile and the web. Here are other notable technical skills that I am also proficient with:',
                 style: GoogleFonts.poppins(
                     color: scheme.onBackground,
                     fontSize: 16,
