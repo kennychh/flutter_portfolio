@@ -1,5 +1,7 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import '../globals.dart';
 
 class DrawerItems extends StatelessWidget {
   const DrawerItems({
@@ -24,9 +26,7 @@ class DrawerItems extends StatelessWidget {
     return Drawer(
       backgroundColor: scheme.surface,
       child: Column(children: [
-        Container(
-          height: 56,
-        ),
+        appBarOffsetContainer,
         ListTile(
           leading: Icon(Icons.home_outlined, color: scheme.onBackground),
           title: Text(

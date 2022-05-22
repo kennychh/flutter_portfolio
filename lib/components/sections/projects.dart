@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import '../parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,9 +17,7 @@ class Projects extends StatelessWidget {
             child: Column(
               children: [
                 appBarOffsetContainer,
-                Container(
-                  height: 25,
-                ),
+                spaceH25,
                 Text(
                   'Projects',
                   style: GoogleFonts.poppins(
@@ -28,7 +25,7 @@ class Projects extends StatelessWidget {
                       fontSize: 28,
                       fontWeight: FontWeight.w500),
                 ),
-                Container(height: 25),
+                spaceH25,
                 for (final item in projectsItems)
                   ListItem(
                     imageUrl: item.imageUrl,
@@ -39,7 +36,6 @@ class Projects extends StatelessWidget {
                     showGithubIcon: true,
                     url: item.url,
                   ),
-                Container(height: 100),
               ],
             ));
       }
@@ -50,9 +46,7 @@ class Projects extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               appBarOffsetContainer,
-              Container(
-                height: 25,
-              ),
+              spaceH25,
               Text(
                 'Projects',
                 style: GoogleFonts.poppins(
@@ -60,7 +54,7 @@ class Projects extends StatelessWidget {
                     fontSize: 45,
                     fontWeight: FontWeight.w500),
               ),
-              Container(height: 50),
+              spaceH50,
               for (final item in projectsItems)
                 ListItem(
                   imageUrl: item.imageUrl,
@@ -71,7 +65,6 @@ class Projects extends StatelessWidget {
                   showGithubIcon: true,
                   url: item.url,
                 ),
-              Container(height: 100),
             ],
           ));
     }));

@@ -1,20 +1,15 @@
-import 'dart:io';
-
-import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/color_schemes.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:universal_html/html.dart' as html;
 
 import 'components/parallax.dart';
 
-var appBarOffsetContainer = AdaptiveContainer(
-  columnSpan: 12,
-  height: AppBar().preferredSize.height,
-);
-
 const seed = Color(0xFF5F51A4);
 
+// Color Schemes
 var color = 'purple';
 var colors = ['purple', 'blue', 'green', 'orange', 'pink'];
 var selectedColor = color;
@@ -35,6 +30,45 @@ Map<String, ColorScheme?> lightColorSchemes = {
   'orange': orangeLightColorScheme,
   'pink': pinkLightColorScheme
 };
+
+// Whitespace
+
+const spaceH10 = SizedBox(
+  height: 10,
+);
+const spaceH25 = SizedBox(
+  height: 25,
+);
+const spaceH50 = SizedBox(
+  height: 50,
+);
+const spaceH56 = SizedBox(
+  height: 56,
+);
+const spaceH100 = SizedBox(
+  height: 100,
+);
+
+const spaceH200 = SizedBox(
+  height: 200,
+);
+
+var appBarOffsetContainer = Container(
+  height: AppBar().preferredSize.height,
+);
+// Long Texts
+
+const aboutDescription1 =
+    'Hey there! My name is Kenny. I enjoy building and designing things, and bringing my ideas to life on digital devices. My interest in software development started back in highschool when I took my first Computer Science class. With an enjoyement in both technology and art, coding became the best of both worlds for expressing my creativity.';
+const aboutDescription2 =
+    'Currently I am in my final year at University of Toronto, majoring in both Cognitive Science and Psychology with a minor in Computer Science. Through their Co-op program, I\'ve had the amazing oppurtunity of working at HelloFresh for 16 months, where I was able to expand my experiences and interests in designing elegant code and user experience for people to use around the world.';
+const aboutTechToolsDescription =
+    'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude of digital experiences, using different programming languages, tools, etc. I am experienced in building mobile apps with React Native, and I am expanding my knowledge with Flutter to create apps for mobile and the web. Here are other notable technical skills that I am also proficient with:';
+const homeDescription =
+    'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.';
+
+const contactDescription =
+    'Feel free to reach out anytime! Whether you have a question, a job oppurtunity, or just want to chat, my inbox is always open!';
 
 const workExperienceItems = [
   ParallaxItem(
@@ -87,6 +121,8 @@ double navigationRailExtendedWidth = 75 + 181;
 
 bool showAppBar = false;
 
+// Helper Functions
+
 bool isPortrait(BuildContext context) {
   return MediaQuery.of(context).orientation == Orientation.portrait;
 }
@@ -116,20 +152,18 @@ Widget descriptionList(BuildContext context, List<String> description) {
                   height: 1.55,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  child: Text(
-                    str,
-                    textAlign: TextAlign.left,
-                    softWrap: true,
-                    style: GoogleFonts.poppins(
-                        color: scheme.onBackground,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400),
-                  ),
+                child: Text(
+                  str,
+                  textAlign: TextAlign.left,
+                  softWrap: true,
+                  style: GoogleFonts.poppins(
+                      color: scheme.onBackground,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400),
                 ),
               ),
             ],
@@ -169,6 +203,15 @@ void launchUrlHelper(Uri url) async {
   if (!await launchUrl(url)) throw 'Could not launch $url';
 }
 
+Future<void> openFile(String path) async {
+  var bytes = await rootBundle.load(path);
+
+  final blob = html.Blob([bytes], 'application/pdf');
+  final url = html.Url.createObjectUrlFromBlob(blob);
+  html.window.open(url, "_blank");
+  html.Url.revokeObjectUrl(url);
+}
+
 void mailToHelper() async {
   final Uri emailLaunchUri = Uri(
     scheme: 'mailto',
@@ -182,12 +225,11 @@ void mailToHelper() async {
 void openColorPickerDialog(
     BuildContext context, Function setColor, Function setColorChoice) {
   ColorScheme scheme = Theme.of(context).colorScheme;
-  var isDark = Theme.of(context).brightness == Brightness.dark;
   showDialog<void>(
     context: context,
     builder: (context) => AlertDialog(
       backgroundColor: scheme.surface,
-      contentPadding: EdgeInsets.fromLTRB(0, 24, 0, 24),
+      contentPadding: const EdgeInsets.fromLTRB(0, 24, 0, 24),
       title: Text("Change Color Palette",
           style: TextStyle(
             color: scheme.onBackground,
@@ -197,7 +239,7 @@ void openColorPickerDialog(
         children: [
           Flexible(
               child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 0, minWidth: 400),
+            constraints: const BoxConstraints(maxHeight: 0, minWidth: 400),
           )),
           RadioListTile(
               activeColor: scheme.onSurfaceVariant,
@@ -286,6 +328,22 @@ void openColorPickerDialog(
   );
 }
 
+TextButton resumeButton(BuildContext context) {
+  ColorScheme scheme = Theme.of(context).colorScheme;
+  return TextButton(
+    style: TextButton.styleFrom(
+      primary: scheme.onSecondaryContainer,
+      backgroundColor: scheme.secondaryContainer,
+      padding: const EdgeInsets.all(20.0),
+      textStyle: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+    ),
+    onPressed: () {
+      openFile("resume.pdf");
+    },
+    child: const Text('Resume'),
+  );
+}
+
 PopupMenuButton<int> openMenu(
     {required BuildContext context,
     required Function setColorChoice,
@@ -301,10 +359,13 @@ PopupMenuButton<int> openMenu(
           color: scheme.onBackground),
       itemBuilder: (context) => [
             PopupMenuItem(
+              onTap: () {
+                openFile("resume.pdf");
+              },
               child: Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 12),
+                    padding: const EdgeInsets.only(right: 12),
                     child: Icon(
                       Icons.contact_page_outlined,
                       color: scheme.onBackground,
@@ -332,7 +393,7 @@ PopupMenuButton<int> openMenu(
               child: Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 12),
+                    padding: const EdgeInsets.only(right: 12),
                     child: Icon(
                       Icons.palette_outlined,
                       color: scheme.onBackground,
@@ -353,7 +414,7 @@ PopupMenuButton<int> openMenu(
               child: Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(right: 12),
+                    padding: const EdgeInsets.only(right: 12),
                     child: Icon(
                       scheme == darkColorSchemes[color]
                           ? Icons.light_mode_outlined

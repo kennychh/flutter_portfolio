@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 import 'package:google_fonts/google_fonts.dart';
 import '../globals.dart';
@@ -30,6 +31,7 @@ class ListItem extends StatelessWidget {
   final bool fillBackground;
   final bool showViewMoreIcon;
   final String url;
+  // ignore: prefer_typing_uninitialized_variables
   final time;
   final GlobalKey _backgroundImageKey = GlobalKey();
 
@@ -54,7 +56,7 @@ class ListItem extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                constraints: BoxConstraints(maxHeight: 500),
+                constraints: const BoxConstraints(maxHeight: 500),
                 child: AspectRatio(
                   aspectRatio: aspectRatio,
                   child: ClipRRect(
@@ -66,13 +68,14 @@ class ListItem extends StatelessWidget {
               _listItemText(context),
               if (showGithubIcon)
                 Padding(
-                  padding: EdgeInsets.only(bottom: 32, left: 32, right: 32),
+                  padding:
+                      const EdgeInsets.only(bottom: 32, left: 32, right: 32),
                   child: TextButton(
                     onPressed: () {
                       html.window.open(url, 'new tab');
                     },
                     style: TextButton.styleFrom(
-                      minimumSize: Size.fromHeight(40),
+                      minimumSize: const Size.fromHeight(40),
                       primary: scheme.onSecondaryContainer,
                       backgroundColor: scheme.secondaryContainer,
                       padding: const EdgeInsets.all(20.0),
@@ -101,7 +104,7 @@ class ListItem extends StatelessWidget {
                   borderRadius:
                       BorderRadius.all(Radius.circular(borderRadius + 32))),
           child: Padding(
-            padding: EdgeInsets.all(32),
+            padding: const EdgeInsets.all(32),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -110,8 +113,8 @@ class ListItem extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: ConstrainedBox(
-                          constraints:
-                              BoxConstraints(maxWidth: 550, minHeight: 400),
+                          constraints: const BoxConstraints(
+                              maxWidth: 550, minHeight: 400),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,7 +165,7 @@ class ListItem extends StatelessWidget {
                     child: Align(
                         alignment: Alignment.topRight,
                         child: ConstrainedBox(
-                          constraints: BoxConstraints(maxHeight: 400),
+                          constraints: const BoxConstraints(maxHeight: 400),
                           child: AspectRatio(
                             aspectRatio: 1,
                             child: ClipRRect(
@@ -203,10 +206,7 @@ class ListItem extends StatelessWidget {
                   fontWeight: FontWeight.w500),
             ),
           ),
-          if (time != null)
-            Container(
-              height: 10,
-            ),
+          if (time != null) spaceH10,
           if (time != null)
             Align(
               alignment: Alignment.topLeft,
@@ -218,9 +218,7 @@ class ListItem extends StatelessWidget {
                     fontWeight: FontWeight.w400),
               ),
             ),
-          Container(
-            height: 10,
-          ),
+          spaceH10,
           description.length == 1
               ? Align(
                   alignment: Alignment.topLeft,
@@ -445,5 +443,6 @@ class ParallaxItem {
   final String subtitle;
   final String imageUrl;
   final List<String> description;
+  // ignore: prefer_typing_uninitialized_variables
   final time;
 }

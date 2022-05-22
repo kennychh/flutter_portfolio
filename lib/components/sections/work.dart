@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import '../parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,9 +17,7 @@ class Work extends StatelessWidget {
             child: Column(
               children: [
                 appBarOffsetContainer,
-                Container(
-                  height: 25,
-                ),
+                spaceH25,
                 Text(
                   'Work Experience',
                   style: GoogleFonts.poppins(
@@ -28,7 +25,7 @@ class Work extends StatelessWidget {
                       fontSize: 28,
                       fontWeight: FontWeight.w500),
                 ),
-                Container(height: 25),
+                spaceH25,
                 for (final item in workExperienceItems)
                   ListItem(
                     imageUrl: item.imageUrl,
@@ -48,9 +45,7 @@ class Work extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               appBarOffsetContainer,
-              Container(
-                height: 25,
-              ),
+              spaceH25,
               Text(
                 'Work Experience',
                 style: GoogleFonts.poppins(
@@ -58,7 +53,7 @@ class Work extends StatelessWidget {
                     fontSize: 45,
                     fontWeight: FontWeight.w500),
               ),
-              Container(height: 50),
+              spaceH50,
               for (final item in workExperienceItems)
                 ListItem(
                   imageUrl: item.imageUrl,

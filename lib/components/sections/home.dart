@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../globals.dart';
@@ -17,9 +16,7 @@ class Home extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 appBarOffsetContainer,
-                Container(
-                  height: 25,
-                ),
+                spaceH25,
                 AspectRatio(
                   aspectRatio: 1,
                   child: ClipRRect(
@@ -30,17 +27,13 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: 40,
-                ),
+                spaceH50,
                 Text('Hi, I\'m Kenny!',
                     style: GoogleFonts.poppins(
                         color: scheme.primary,
                         fontSize: 32,
                         fontWeight: FontWeight.w500)),
-                Container(
-                  height: 10,
-                ),
+                spaceH10,
                 Text(
                   'Front End Developer',
                   style: GoogleFonts.poppins(
@@ -48,16 +41,16 @@ class Home extends StatelessWidget {
                       fontSize: 22,
                       fontWeight: FontWeight.w500),
                 ),
-                Container(height: 25),
+                spaceH25,
                 Text(
-                  'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
+                  homeDescription,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                       color: scheme.onBackground,
                       fontSize: 16,
                       fontWeight: FontWeight.w400),
                 ),
-                Container(height: 200),
+                spaceH200,
               ],
             ));
       }
@@ -80,9 +73,7 @@ class Home extends StatelessWidget {
                             fontSize: 88,
                             fontWeight: FontWeight.w500)),
                   ),
-                  Container(
-                    height: 20,
-                  ),
+                  spaceH25,
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
@@ -93,9 +84,9 @@ class Home extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  Container(height: 20),
+                  spaceH25,
                   Text(
-                    'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user friendly mobile digital experiences.',
+                    homeDescription,
                     style: GoogleFonts.poppins(
                         color: scheme.onBackground,
                         fontSize: 16,

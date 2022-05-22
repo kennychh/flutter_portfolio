@@ -114,7 +114,6 @@ class _MyHomePageState extends State<MyHomePage> {
         navigationRailGlobalKey.currentState
             ?.onDestinationSelected(itemPosition.index, shouldScroll: false);
       }
-      ;
     });
   }
 

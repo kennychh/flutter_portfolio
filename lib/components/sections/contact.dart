@@ -1,13 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/svg.dart';
-import '../parallax.dart';
 import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../globals.dart';
 
 class Contact extends StatelessWidget {
-  Contact({Key? key}) : super(key: key);
+  const Contact({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
@@ -19,7 +16,7 @@ class Contact extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Spacer(),
+              const Spacer(),
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text('Thanks for stopping by!',
@@ -28,20 +25,15 @@ class Contact extends StatelessWidget {
                         fontSize: 60,
                         fontWeight: FontWeight.w500)),
               ),
-              Container(
-                height: 25,
-              ),
+              spaceH25,
               ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 760),
-                child: Text(
-                    'Feel free to reach out anytime! Whether you have a question, a job oppurtunity, or just want to chat, my inbox is always open!',
+                constraints: const BoxConstraints(maxWidth: 760),
+                child: Text(contactDescription,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                         color: scheme.onBackground, fontSize: 16)),
               ),
-              Container(
-                height: 25,
-              ),
+              spaceH25,
               TextButton(
                 style: TextButton.styleFrom(
                   primary: scheme.onSecondaryContainer,
@@ -59,14 +51,14 @@ class Contact extends StatelessWidget {
                 child: Align(
                   alignment: FractionalOffset.bottomCenter,
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 10.0),
+                    padding: const EdgeInsets.only(bottom: 10.0),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Align(
                             alignment: Alignment.center,
                             child: ConstrainedBox(
-                              constraints: BoxConstraints(maxWidth: 760),
+                              constraints: const BoxConstraints(maxWidth: 760),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -76,7 +68,7 @@ class Contact extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: ConstrainedBox(
                                         constraints:
-                                            BoxConstraints(maxWidth: 110),
+                                            const BoxConstraints(maxWidth: 110),
                                         child: TextButton(
                                           style: TextButton.styleFrom(
                                             primary: scheme.secondary,
@@ -99,7 +91,7 @@ class Contact extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: ConstrainedBox(
                                         constraints:
-                                            BoxConstraints(maxWidth: 110),
+                                            const BoxConstraints(maxWidth: 110),
                                         child: TextButton(
                                           style: TextButton.styleFrom(
                                             primary: scheme.secondary,
@@ -122,7 +114,7 @@ class Contact extends StatelessWidget {
                                       alignment: Alignment.center,
                                       child: ConstrainedBox(
                                         constraints:
-                                            BoxConstraints(maxWidth: 110),
+                                            const BoxConstraints(maxWidth: 110),
                                         child: TextButton(
                                           style: TextButton.styleFrom(
                                             primary: scheme.secondary,
@@ -144,18 +136,13 @@ class Contact extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            height: 25,
-                          ),
+                          spaceH25,
                           Text('Designed and built by Kenny Chan',
                               style: GoogleFonts.poppins(
                                 color: scheme.secondary,
                                 fontSize: 12,
                               )),
-                          if (constraints.isMobile)
-                            Container(
-                              height: 100,
-                            ),
+                          if (constraints.isMobile) spaceH100,
                         ]),
                   ),
                 ),
