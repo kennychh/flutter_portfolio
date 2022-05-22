@@ -88,6 +88,7 @@ flutter:
     - assets/blue_gradient.png
     - assets/orange_gradient.png
     - assets/memoji.png
+    - assets/resume.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

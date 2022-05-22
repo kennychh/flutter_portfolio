@@ -338,7 +338,7 @@ TextButton resumeButton(BuildContext context) {
       textStyle: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
     ),
     onPressed: () {
-      openFile("resume.pdf");
+      openFile("./assets/resume.pdf");
     },
     child: const Text('Resume'),
   );
