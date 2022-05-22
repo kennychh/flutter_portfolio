@@ -360,7 +360,7 @@ PopupMenuButton<int> openMenu(
       itemBuilder: (context) => [
             PopupMenuItem(
               onTap: () {
-                openFile("resume.pdf");
+                openFile("./assets/resume.pdf");
               },
               child: Row(
                 children: [
