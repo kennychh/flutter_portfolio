@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:adaptive_components/adaptive_components.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/sections/contact.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -49,6 +50,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.trackpad,
+          PointerDeviceKind.unknown
+        },
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Kenny Chan',
       darkTheme: ThemeData.dark().copyWith(
