@@ -334,7 +334,7 @@ TextButton resumeButton(BuildContext context) {
       textStyle: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
     ),
     onPressed: () {
-      openFile("./assets/resume.pdf");
+      openFile("resume.pdf");
     },
     child: const Text('Resume'),
   );
@@ -356,7 +356,7 @@ PopupMenuButton<int> openMenu(
       itemBuilder: (context) => [
             PopupMenuItem(
               onTap: () {
-                openFile("./assets/resume.pdf");
+                openFile("resume.pdf");
               },
               child: Row(
                 children: [
