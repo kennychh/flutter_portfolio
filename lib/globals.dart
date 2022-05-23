@@ -204,12 +204,8 @@ void launchUrlHelper(Uri url) async {
 }
 
 Future<void> openFile(String path) async {
-  var bytes = await rootBundle.load(path);
-
-  final blob = html.Blob([bytes], 'application/pdf');
-  final url = html.Url.createObjectUrlFromBlob(blob);
-  html.window.open(url, "_blank");
-  html.Url.revokeObjectUrl(url);
+  html.window.open(path, "_blank");
+  html.Url.revokeObjectUrl(path);
 }
 
 void mailToHelper() async {
