@@ -5,7 +5,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/sections/contact.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:universal_html/html.dart';
 import 'components/parallax.dart';
 import 'components/sections/about.dart';
 import 'components/drawerItems.dart';
@@ -25,12 +24,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setPathUrlStrategy();
-  goFullScreen();
   runApp(MyApp());
-}
-
-void goFullScreen() {
-  document.documentElement?.requestFullscreen();
 }
 
 final ItemScrollController itemScrollController = ItemScrollController();
