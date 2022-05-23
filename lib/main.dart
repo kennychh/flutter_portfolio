@@ -4,6 +4,7 @@ import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/sections/contact.dart';
+import 'package:portfolio/notFoundPage.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'components/parallax.dart';
 import 'components/sections/about.dart';
@@ -16,24 +17,16 @@ import 'globals.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:url_strategy/url_strategy.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  setPathUrlStrategy();
+  setUrlStrategy(PathUrlStrategy());
   runApp(MyApp());
 }
-
-final ItemScrollController itemScrollController = ItemScrollController();
-final ItemPositionsListener itemPositionsListener =
-    ItemPositionsListener.create();
-ItemPosition itemPosition =
-    ItemPosition(index: 0, itemLeadingEdge: 0, itemTrailingEdge: 1);
-
-GlobalKey<NavigationRailSectionState> navigationRailGlobalKey = GlobalKey();
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -49,7 +42,14 @@ class _MyAppState extends State<MyApp> {
   ThemeMode _themeMode = ThemeMode.system;
   @override
   Widget build(BuildContext context) {
+    const homePage = MyHomePage(title: 'Kenny Chan');
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => homePage,
+      },
+      onGenerateRoute: (settings) =>
+          MaterialPageRoute(builder: (context) => NotFoundPage()),
       scrollBehavior: MaterialScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.mouse,
@@ -72,7 +72,6 @@ class _MyAppState extends State<MyApp> {
           colorScheme: lightColorSchemes[color],
           unselectedWidgetColor: darkColorSchemes[color]?.onSurfaceVariant),
       themeMode: _themeMode,
-      home: const MyHomePage(title: 'Kenny Chan'),
     );
   }
 
@@ -111,6 +110,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int? pageIndex;
   bool isNavigationRailExtended = false;
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+  ItemPosition itemPosition =
+      ItemPosition(index: 0, itemLeadingEdge: 0, itemTrailingEdge: 1);
+  GlobalKey<NavigationRailSectionState> navigationRailGlobalKey = GlobalKey();
   @override
   void initState() {
     super.initState();
@@ -168,12 +173,6 @@ class _MyHomePageState extends State<MyHomePage> {
     Projects(),
     Contact()
   ];
-  double getPadding(BoxConstraints constraints) {
-    if (constraints.isMobile) {
-      return 24;
-    }
-    return 100;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             })
                       ],
                     ),
-                    Flexible(
+                    Expanded(
                       child: ScrollablePositionedList.builder(
                         key: UniqueKey(),
                         initialScrollIndex: itemPosition.index,
