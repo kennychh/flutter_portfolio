@@ -4,7 +4,7 @@ import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/sections/contact.dart';
-import 'package:portfolio/notFoundPage.dart';
+import 'package:portfolio/pages/notFoundPage.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'components/parallax.dart';
 import 'components/sections/about.dart';
@@ -49,6 +49,8 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => homePage,
       },
       onGenerateRoute: (settings) =>
+          MaterialPageRoute(builder: (context) => NotFoundPage()),
+      onUnknownRoute: (settings) =>
           MaterialPageRoute(builder: (context) => NotFoundPage()),
       scrollBehavior: MaterialScrollBehavior().copyWith(
         dragDevices: {
