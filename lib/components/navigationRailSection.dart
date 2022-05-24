@@ -53,16 +53,19 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
         backgroundColor: scheme.background,
         minWidth: navigationRailWidth,
         extended: widget.isExtended,
-        groupAlignment: -0.75,
-        leading: FloatingActionButton(
-          tooltip: 'Contact Me',
-          backgroundColor: scheme.tertiaryContainer,
-          onPressed: () {
-            mailToHelper();
-          },
-          child: Icon(
-            Icons.chat_bubble_outline,
-            color: scheme.onTertiaryContainer,
+        leading: Padding(
+          padding: EdgeInsets.only(bottom: 25),
+          child: FloatingActionButton(
+            elevation: 0,
+            tooltip: 'Contact Me',
+            backgroundColor: scheme.tertiaryContainer,
+            onPressed: () {
+              mailToHelper();
+            },
+            child: Icon(
+              Icons.chat_bubble_outline,
+              color: scheme.onTertiaryContainer,
+            ),
           ),
         ),
         destinations: [
