@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
                         fontWeight: FontWeight.w500)),
                 spaceH10,
                 Text(
-                  'Front End Developer',
+                  'Software Developer',
                   style: GoogleFonts.poppins(
                       color: scheme.secondary,
                       fontSize: 22,
@@ -77,7 +77,7 @@ class Home extends StatelessWidget {
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      'Front End Developer',
+                      'Software Developer',
                       style: GoogleFonts.poppins(
                           color: scheme.secondary,
                           fontSize: 30,
