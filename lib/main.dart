@@ -4,6 +4,7 @@ import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/sections/contact.dart';
+import 'package:portfolio/dark_theme_provider.dart';
 import 'package:portfolio/pages/notFoundPage.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'components/parallax.dart';
@@ -18,6 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,53 +41,84 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = ThemeMode.system;
+  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.darkTheme =
+        await themeChangeProvider.darkThemePreference.getTheme();
+    themeChangeProvider.color =
+        await themeChangeProvider.darkThemePreference.getColor();
+    themeChangeProvider.selected =
+        await themeChangeProvider.darkThemePreference.getSelected();
+    themeChangeProvider.gradientImageUrl =
+        await themeChangeProvider.darkThemePreference.getGradientImageUrl();
+    gradientImage = ParallaxItem(
+      imageUrl: themeChangeProvider.gradientImageUrl,
+    );
+    selectedColor = themeChangeProvider.color;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentAppTheme();
+  }
+
   @override
   Widget build(BuildContext context) {
     const homePage = MyHomePage(title: 'Kenny Chan');
-    return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => homePage,
+    return ChangeNotifierProvider(create: (_) {
+      return themeChangeProvider;
+    }, child: Consumer<DarkThemeProvider>(
+      builder: (context, value, child) {
+        String color = themeChangeProvider.color;
+        return MaterialApp(
+          initialRoute: '/',
+          routes: {
+            '/': (context) => homePage,
+          },
+          onGenerateRoute: (settings) =>
+              MaterialPageRoute(builder: (context) => NotFoundPage()),
+          onUnknownRoute: (settings) =>
+              MaterialPageRoute(builder: (context) => NotFoundPage()),
+          scrollBehavior: MaterialScrollBehavior().copyWith(
+            dragDevices: {
+              PointerDeviceKind.mouse,
+              PointerDeviceKind.touch,
+              PointerDeviceKind.stylus,
+              PointerDeviceKind.trackpad,
+              PointerDeviceKind.unknown
+            },
+          ),
+          debugShowCheckedModeBanner: false,
+          title: 'Kenny Chan',
+          darkTheme: ThemeData.dark().copyWith(
+              textTheme: GoogleFonts.poppinsTextTheme(),
+              useMaterial3: true,
+              colorScheme: darkColorSchemes[color],
+              unselectedWidgetColor: darkColorSchemes[color]?.onSurfaceVariant),
+          theme: ThemeData.light().copyWith(
+              textTheme: GoogleFonts.poppinsTextTheme(),
+              useMaterial3: true,
+              colorScheme: lightColorSchemes[color],
+              unselectedWidgetColor: darkColorSchemes[color]?.onSurfaceVariant),
+          themeMode:
+              themeChangeProvider.darkTheme ? ThemeMode.dark : ThemeMode.light,
+        );
       },
-      onGenerateRoute: (settings) =>
-          MaterialPageRoute(builder: (context) => NotFoundPage()),
-      onUnknownRoute: (settings) =>
-          MaterialPageRoute(builder: (context) => NotFoundPage()),
-      scrollBehavior: MaterialScrollBehavior().copyWith(
-        dragDevices: {
-          PointerDeviceKind.mouse,
-          PointerDeviceKind.touch,
-          PointerDeviceKind.stylus,
-          PointerDeviceKind.trackpad,
-          PointerDeviceKind.unknown
-        },
-      ),
-      debugShowCheckedModeBanner: false,
-      title: 'Kenny Chan',
-      darkTheme: ThemeData.dark().copyWith(
-          textTheme: GoogleFonts.poppinsTextTheme(),
-          useMaterial3: true,
-          colorScheme: darkColorSchemes[color],
-          unselectedWidgetColor: darkColorSchemes[color]?.onSurfaceVariant),
-      theme: ThemeData.light().copyWith(
-          textTheme: GoogleFonts.poppinsTextTheme(),
-          useMaterial3: true,
-          colorScheme: lightColorSchemes[color],
-          unselectedWidgetColor: darkColorSchemes[color]?.onSurfaceVariant),
-      themeMode: _themeMode,
-    );
+    ));
   }
 
   void changeTheme(ThemeMode themeMode) {
     setState(() {
-      _themeMode = themeMode;
+      themeChangeProvider.darkTheme = themeMode == ThemeMode.dark;
     });
   }
 
   void changeColor(String _color) {
     setState(() {
-      color = _color;
+      themeChangeProvider.gradientImageUrl = "./assets/${_color}_gradient.png";
+      themeChangeProvider.color = _color;
       gradientImage = ParallaxItem(
         imageUrl: "./assets/${_color}_gradient.png",
       );
@@ -94,8 +127,9 @@ class _MyAppState extends State<MyApp> {
 
   void changeColorChoice(int _selected, String color) {
     setState(() {
-      selectedColor = color;
+      themeChangeProvider.selected = _selected;
       selected = _selected;
+      selectedColor = color;
     });
   }
 }
@@ -179,6 +213,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
+    DarkThemeProvider themeChangeProvider =
+        MyApp.of(context)!.themeChangeProvider;
     return LayoutBuilder(builder: ((context, constraints) {
       if (constraints.isMobile) {
         return Scaffold(
@@ -201,7 +237,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                     padding: EdgeInsets.only(right: 15),
                     child: openMenu(
-                        context: context,
+                        themeChangeProvider: themeChangeProvider,
+                        scheme: scheme,
                         isHoriz: false,
                         setColor: _setColor,
                         setColorChoice: _setColorChoice,
@@ -270,12 +307,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           selectedIndex: pageIndex,
                           scrollToIndex: scrollToIndex,
                           isExtended: isNavigationRailExtended,
-                          setColorScheme: () {
-                            _setColorScheme(context);
-                          },
                         ),
                         openMenu(
-                            context: context,
+                            themeChangeProvider: themeChangeProvider,
+                            scheme: scheme,
                             setColor: _setColor,
                             setColorChoice: _setColorChoice,
                             setColorScheme: () {
@@ -334,7 +369,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             _setColorScheme(context);
                           },
                           color: scheme.primary,
-                          icon: Icon(scheme == darkColorSchemes[color]
+                          icon: Icon(themeChangeProvider.darkTheme
                               ? Icons.light_mode_outlined
                               : Icons.dark_mode_outlined)))
                 ],

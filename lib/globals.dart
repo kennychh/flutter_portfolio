@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/color_schemes.dart';
+import 'package:portfolio/dark_theme_preference.dart';
+import 'package:portfolio/dark_theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -9,10 +12,9 @@ import 'components/parallax.dart';
 const seed = Color(0xFF5F51A4);
 
 // Color Schemes
-var color = 'purple';
 var colors = ['purple', 'blue', 'green', 'orange', 'pink'];
-var selectedColor = color;
-var selected = colors.indexOf(color);
+var selectedColor = 'purple';
+var selected = colors.indexOf(selectedColor);
 
 Map<String, ColorScheme?> darkColorSchemes = {
   'purple': purpleDarkColorScheme,
@@ -224,8 +226,8 @@ void mailToHelper() async {
   }
 }
 
-void openColorPickerDialog(
-    BuildContext context, Function setColor, Function setColorChoice) {
+void openColorPickerDialog(BuildContext context, Function setColor,
+    Function setColorChoice, DarkThemeProvider themeProvider) {
   ColorScheme scheme = Theme.of(context).colorScheme;
   showDialog<void>(
     context: context,
@@ -318,7 +320,7 @@ void openColorPickerDialog(
           style: TextButton.styleFrom(
             textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w500),
           ),
-          onPressed: selectedColor == color
+          onPressed: themeProvider.color == colors[themeProvider.selected]
               ? null
               : () {
                   setColor(selectedColor);
@@ -347,12 +349,12 @@ TextButton resumeButton(BuildContext context) {
 }
 
 PopupMenuButton<int> openMenu(
-    {required BuildContext context,
-    required Function setColorChoice,
+    {required Function setColorChoice,
     required Function setColorScheme,
     required Function setColor,
+    required ColorScheme scheme,
+    required DarkThemeProvider themeChangeProvider,
     bool isHoriz = true}) {
-  ColorScheme scheme = Theme.of(context).colorScheme;
   return PopupMenuButton(
       tooltip: 'More',
       color: scheme.surface,
@@ -388,8 +390,8 @@ PopupMenuButton<int> openMenu(
               onTap: () {
                 Future.delayed(
                   const Duration(seconds: 0),
-                  () =>
-                      openColorPickerDialog(context, setColor, setColorChoice),
+                  () => openColorPickerDialog(
+                      context, setColor, setColorChoice, themeChangeProvider),
                 );
               },
               child: Row(
@@ -418,16 +420,14 @@ PopupMenuButton<int> openMenu(
                   Padding(
                     padding: const EdgeInsets.only(right: 12),
                     child: Icon(
-                      scheme == darkColorSchemes[color]
+                      themeChangeProvider.darkTheme
                           ? Icons.light_mode_outlined
                           : Icons.dark_mode_outlined,
                       color: scheme.onBackground,
                     ),
                   ),
                   Text(
-                    scheme == darkColorSchemes[color]
-                        ? 'Light Mode'
-                        : 'Dark Mode',
+                    themeChangeProvider.darkTheme ? 'Light Mode' : 'Dark Mode',
                     style: TextStyle(color: scheme.onBackground, fontSize: 14),
                   )
                 ],

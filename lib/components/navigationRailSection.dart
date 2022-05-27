@@ -12,7 +12,6 @@ class NavigationRailSection extends StatefulWidget {
   final int? selectedIndex;
   final Function(int) scrollToIndex;
   final bool isExtended;
-  final Function() setColorScheme;
 
   const NavigationRailSection({
     Key? key,
@@ -20,7 +19,6 @@ class NavigationRailSection extends StatefulWidget {
     required this.selectedIndex,
     required this.scrollToIndex,
     required this.isExtended,
-    required this.setColorScheme,
   }) : super(key: key);
 
   @override
