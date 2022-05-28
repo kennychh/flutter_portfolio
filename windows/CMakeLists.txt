@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(portfolio LANGUAGES CXX)
 
-set(BINARY_NAME "portfolio")
+set(BINARY_NAME "Kenny Chan")
 
 cmake_policy(SET CMP0063 NEW)
 
