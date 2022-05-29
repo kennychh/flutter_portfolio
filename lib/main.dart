@@ -145,6 +145,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int? pageIndex;
+  bool isMouse = false;
   bool isNavigationRailExtended = false;
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
@@ -331,19 +332,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                     Expanded(
-                        child: Listener(
-                      onPointerSignal: (event) {
-                        if (event is PointerScrollEvent) {
-                          bool down = event.scrollDelta.dy == 100.0;
-                          scrollToMouseScroll(itemPosition.index,
-                              itemPosition.itemLeadingEdge, down);
-                        }
-                      },
                       child: ScrollablePositionedList.builder(
                         key: UniqueKey(),
                         initialScrollIndex: itemPosition.index,
                         initialAlignment: itemPosition.itemLeadingEdge,
-                        physics: NeverScrollableScrollPhysics(),
                         itemScrollController: itemScrollController,
                         itemPositionsListener: itemPositionsListener,
                         itemCount: componentList.length,
@@ -362,7 +354,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                         },
                       ),
-                    ))
+                    )
                   ],
                 ));
           },
