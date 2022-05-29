@@ -242,7 +242,7 @@ class About extends StatelessWidget {
                       ))),
             ],
           ),
-          spaceH100,
+          spaceH50,
           Text(
             'Technical tools I\'ve been working with',
             style: GoogleFonts.poppins(
@@ -277,7 +277,7 @@ class About extends StatelessWidget {
                           'Languages',
                           style: GoogleFonts.poppins(
                               color: scheme.secondary,
-                              fontSize: 28,
+                              fontSize: 18,
                               fontWeight: FontWeight.w500),
                         ),
                         spaceH10,
@@ -292,7 +292,7 @@ class About extends StatelessWidget {
                           'Dev Tools',
                           style: GoogleFonts.poppins(
                               color: scheme.secondary,
-                              fontSize: 28,
+                              fontSize: 18,
                               fontWeight: FontWeight.w500),
                         ),
                         spaceH10,
@@ -307,7 +307,7 @@ class About extends StatelessWidget {
                           'IDEs',
                           style: GoogleFonts.poppins(
                               color: scheme.secondary,
-                              fontSize: 28,
+                              fontSize: 18,
                               fontWeight: FontWeight.w500),
                         ),
                         spaceH10,
@@ -315,6 +315,7 @@ class About extends StatelessWidget {
                       ]),
                 ),
               ]),
+          spaceH200,
         ],
       );
     }));
