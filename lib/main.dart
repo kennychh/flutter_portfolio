@@ -160,7 +160,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void getItemPosition() {
     itemPositionsListener.itemPositions.addListener(() {
-      itemPosition = itemPositionsListener.itemPositions.value.first;
+      var firstItem = itemPositionsListener.itemPositions.value.first;
+      itemPosition = firstItem;
       if (itemPosition.index != pageIndex) {
         navigationRailGlobalKey.currentState
             ?.onDestinationSelected(itemPosition.index, shouldScroll: false);
@@ -186,6 +187,17 @@ class _MyHomePageState extends State<MyHomePage> {
       itemScrollController.scrollTo(
           index: index,
           duration: const Duration(seconds: 1),
+          curve: Curves.ease);
+    }
+  }
+
+  void scrollToMouseScroll(int index, double alignment, bool down) {
+    double offset = down ? -0.15 : 0.15;
+    if (itemScrollController.isAttached) {
+      itemScrollController.scrollTo(
+          index: index,
+          alignment: alignment + offset,
+          duration: const Duration(milliseconds: 400),
           curve: Curves.ease);
     }
   }
@@ -319,10 +331,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                     Expanded(
+                        child: Listener(
+                      onPointerSignal: (event) {
+                        if (event is PointerScrollEvent) {
+                          bool down = event.scrollDelta.dy == 100.0;
+                          scrollToMouseScroll(itemPosition.index,
+                              itemPosition.itemLeadingEdge, down);
+                        }
+                      },
                       child: ScrollablePositionedList.builder(
                         key: UniqueKey(),
                         initialScrollIndex: itemPosition.index,
                         initialAlignment: itemPosition.itemLeadingEdge,
+                        physics: NeverScrollableScrollPhysics(),
                         itemScrollController: itemScrollController,
                         itemPositionsListener: itemPositionsListener,
                         itemCount: componentList.length,
@@ -341,7 +362,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                         },
                       ),
-                    )
+                    ))
                   ],
                 ));
           },
