@@ -23,7 +23,7 @@ class CustomAppBar extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Container(
         constraints: BoxConstraints(maxWidth: 1350),
-        height: 80,
+        height: 70,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget {
               style: TextStyle(
                   color: scheme.onBackground,
                   fontWeight: FontWeight.w600,
-                  fontSize: 22),
+                  fontSize: showMenu ? 18 : 22),
             ),
             showMenu
                 ? menu
@@ -46,7 +46,7 @@ class CustomAppBar extends StatelessWidget {
                             style: TextStyle(
                                 color: scheme.onBackground,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15),
+                                fontSize: 14),
                           ),
                           onPressed: () {
                             scrollToIndex(0);
@@ -61,7 +61,7 @@ class CustomAppBar extends StatelessWidget {
                             style: TextStyle(
                                 color: scheme.onBackground,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15),
+                                fontSize: 14),
                           ),
                           onPressed: () {
                             scrollToIndex(1);
@@ -76,7 +76,7 @@ class CustomAppBar extends StatelessWidget {
                             style: TextStyle(
                                 color: scheme.onBackground,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15),
+                                fontSize: 14),
                           ),
                           onPressed: () {
                             scrollToIndex(2);
@@ -91,7 +91,7 @@ class CustomAppBar extends StatelessWidget {
                             style: TextStyle(
                                 color: scheme.onBackground,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15),
+                                fontSize: 14),
                           ),
                           onPressed: () {
                             scrollToIndex(3);
@@ -106,7 +106,7 @@ class CustomAppBar extends StatelessWidget {
                             style: TextStyle(
                                 color: scheme.onBackground,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15),
+                                fontSize: 14),
                           ),
                           onPressed: () {
                             scrollToIndex(4);
@@ -121,7 +121,7 @@ class CustomAppBar extends StatelessWidget {
                             style: TextStyle(
                                 color: scheme.onBackground,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15),
+                                fontSize: 14),
                           ),
                           onPressed: () {
                             openFile("resume.pdf");

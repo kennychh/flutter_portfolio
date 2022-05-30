@@ -227,6 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
+    bool showMenu = MediaQuery.of(context).size.width < 1150;
     DarkThemeProvider themeChangeProvider =
         MyApp.of(context)!.themeChangeProvider;
     return LayoutBuilder(builder: ((context, constraints) {
@@ -246,8 +247,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Builder(builder: (context) {
                           return CustomAppBar(
                               scrollToIndex: scrollToIndex,
-                              showMenu:
-                                  MediaQuery.of(context).size.width < 1000,
+                              showMenu: showMenu,
                               menu: fullPopUpMenu(
                                   themeChangeProvider: themeChangeProvider,
                                   scheme: scheme,
@@ -261,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         })),
                   ),
                 ),
-                preferredSize: Size.fromHeight(80)),
+                preferredSize: Size.fromHeight(70)),
             body: LayoutBuilder(
               builder: (context, constraints) {
                 return ScrollablePositionedList.builder(
@@ -366,7 +366,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ));
           },
         ),
-        floatingActionButton: MediaQuery.of(context).size.width < 1000
+        floatingActionButton: showMenu
             ? Padding(
                 padding: EdgeInsets.only(right: 7, bottom: 7),
                 child: FloatingActionButton(
@@ -401,7 +401,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Builder(builder: (context) {
                         return CustomAppBar(
                             scrollToIndex: scrollToIndex,
-                            showMenu: MediaQuery.of(context).size.width < 1100,
+                            showMenu: showMenu,
                             moreMenu: popUpMenu(
                                 themeChangeProvider: themeChangeProvider,
                                 scheme: scheme,
@@ -424,7 +424,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 }));
                       })),
                 ),
-                preferredSize: Size.fromHeight(80))
+                preferredSize: Size.fromHeight(70))
             : null,
       );
     }));
