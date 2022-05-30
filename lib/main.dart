@@ -227,7 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
-    bool showMenu = MediaQuery.of(context).size.width < 1150;
+    bool showMenu = MediaQuery.of(context).size.width < 1200;
     DarkThemeProvider themeChangeProvider =
         MyApp.of(context)!.themeChangeProvider;
     return LayoutBuilder(builder: ((context, constraints) {

@@ -373,11 +373,7 @@ Theme popUpMenu(
           padding: EdgeInsets.zero,
           tooltip: 'More',
           color: scheme.surface,
-          icon: Align(
-            alignment: Alignment.centerRight,
-            child:
-                Icon(Icons.auto_awesome_outlined, color: scheme.onBackground),
-          ),
+          icon: Icon(Icons.auto_awesome_outlined, color: scheme.onBackground),
           itemBuilder: (context) => [
                 PopupMenuItem(
                   onTap: () {

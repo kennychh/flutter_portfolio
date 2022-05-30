@@ -33,97 +33,124 @@ class CustomAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Kenny Chan',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w500,
-                color: scheme.onBackground,
-                fontSize: showMenu ? 20 : 23,
-              ),
+            Row(
+              children: [
+                Text(
+                  'Kenny Chan',
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
+                    color: scheme.onBackground,
+                    fontSize: showMenu ? 20 : 23,
+                  ),
+                ),
+                showMenu
+                    ? Container()
+                    : Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 48),
+                            child: TextButton(
+                              child: Text(
+                                'Home',
+                                style: fontTheme,
+                              ),
+                              onPressed: () {
+                                scrollToIndex(0);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: TextButton(
+                              child: Text(
+                                'About',
+                                style: fontTheme,
+                              ),
+                              onPressed: () {
+                                scrollToIndex(1);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: TextButton(
+                              child: Text(
+                                'Work',
+                                style: fontTheme,
+                              ),
+                              onPressed: () {
+                                scrollToIndex(2);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: TextButton(
+                              child: Text(
+                                'Projects',
+                                style: fontTheme,
+                              ),
+                              onPressed: () {
+                                scrollToIndex(3);
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: TextButton(
+                              child: Text(
+                                'Contact',
+                                style: fontTheme,
+                              ),
+                              onPressed: () {
+                                scrollToIndex(4);
+                              },
+                            ),
+                          ),
+                        ],
+                      )
+              ],
             ),
             showMenu
                 ? menu
                 : Row(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 24),
-                        child: TextButton(
-                          child: Text(
-                            'Home',
-                            style: fontTheme,
-                          ),
-                          onPressed: () {
-                            scrollToIndex(0);
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 24),
-                        child: TextButton(
-                          child: Text(
-                            'About',
-                            style: fontTheme,
-                          ),
-                          onPressed: () {
-                            scrollToIndex(1);
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 24),
-                        child: TextButton(
-                          child: Text(
-                            'Work',
-                            style: fontTheme,
-                          ),
-                          onPressed: () {
-                            scrollToIndex(2);
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 24),
-                        child: TextButton(
-                          child: Text(
-                            'Projects',
-                            style: fontTheme,
-                          ),
-                          onPressed: () {
-                            scrollToIndex(3);
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 24),
-                        child: TextButton(
-                          child: Text(
-                            'Contact',
-                            style: fontTheme,
-                          ),
-                          onPressed: () {
-                            scrollToIndex(4);
-                          },
-                        ),
-                      ),
+                      Container(child: moreMenu),
                       Padding(
                         padding: EdgeInsets.only(left: 24),
                         child: TextButton(
                           child: Text(
                             'Resume',
-                            style: fontTheme,
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w500,
+                              color: scheme.onSecondaryContainer,
+                              fontSize: 16,
+                            ),
                           ),
                           onPressed: () {
                             openFile("resume.pdf");
                           },
+                          style: TextButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 20),
+                              backgroundColor: scheme.surface,
+                              shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      color: scheme.secondaryContainer,
+                                      width: 2),
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(16.0),
+                                      topRight: Radius.circular(16.0),
+                                      bottomLeft: Radius.circular(16.0),
+                                      bottomRight: Radius.circular(16.0)))),
                         ),
                       ),
-                      Container(child: moreMenu),
                       Padding(
                         padding: const EdgeInsets.only(left: 24),
                         child: TextButton(
                           style: TextButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 20),
+                                  horizontal: 24, vertical: 20),
                               backgroundColor: scheme.tertiaryContainer,
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
