@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../globals.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -19,6 +20,11 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
+    TextStyle fontTheme = GoogleFonts.poppins(
+      fontWeight: FontWeight.w500,
+      color: scheme.onBackground,
+      fontSize: 16,
+    );
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
@@ -29,10 +35,11 @@ class CustomAppBar extends StatelessWidget {
           children: [
             Text(
               'Kenny Chan',
-              style: TextStyle(
-                  color: scheme.onBackground,
-                  fontWeight: FontWeight.w600,
-                  fontSize: showMenu ? 18 : 22),
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w500,
+                color: scheme.onBackground,
+                fontSize: showMenu ? 20 : 23,
+              ),
             ),
             showMenu
                 ? menu
@@ -43,10 +50,7 @@ class CustomAppBar extends StatelessWidget {
                         child: TextButton(
                           child: Text(
                             'Home',
-                            style: TextStyle(
-                                color: scheme.onBackground,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                            style: fontTheme,
                           ),
                           onPressed: () {
                             scrollToIndex(0);
@@ -58,10 +62,7 @@ class CustomAppBar extends StatelessWidget {
                         child: TextButton(
                           child: Text(
                             'About',
-                            style: TextStyle(
-                                color: scheme.onBackground,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                            style: fontTheme,
                           ),
                           onPressed: () {
                             scrollToIndex(1);
@@ -73,10 +74,7 @@ class CustomAppBar extends StatelessWidget {
                         child: TextButton(
                           child: Text(
                             'Work',
-                            style: TextStyle(
-                                color: scheme.onBackground,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                            style: fontTheme,
                           ),
                           onPressed: () {
                             scrollToIndex(2);
@@ -88,10 +86,7 @@ class CustomAppBar extends StatelessWidget {
                         child: TextButton(
                           child: Text(
                             'Projects',
-                            style: TextStyle(
-                                color: scheme.onBackground,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                            style: fontTheme,
                           ),
                           onPressed: () {
                             scrollToIndex(3);
@@ -103,10 +98,7 @@ class CustomAppBar extends StatelessWidget {
                         child: TextButton(
                           child: Text(
                             'Contact',
-                            style: TextStyle(
-                                color: scheme.onBackground,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                            style: fontTheme,
                           ),
                           onPressed: () {
                             scrollToIndex(4);
@@ -118,10 +110,7 @@ class CustomAppBar extends StatelessWidget {
                         child: TextButton(
                           child: Text(
                             'Resume',
-                            style: TextStyle(
-                                color: scheme.onBackground,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                            style: fontTheme,
                           ),
                           onPressed: () {
                             openFile("resume.pdf");
@@ -146,10 +135,11 @@ class CustomAppBar extends StatelessWidget {
                             mailToHelper();
                           },
                           child: Text(
-                            'Let\'s Chat!',
-                            style: TextStyle(
-                              color: scheme.onBackground,
-                              fontWeight: FontWeight.w600,
+                            'Contact Me',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w500,
+                              color: scheme.onTertiaryContainer,
+                              fontSize: 16,
                             ),
                           ),
                         ),

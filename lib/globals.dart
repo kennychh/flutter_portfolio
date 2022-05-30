@@ -356,6 +356,10 @@ Theme popUpMenu(
     required ColorScheme scheme,
     required BuildContext context,
     required DarkThemeProvider themeChangeProvider}) {
+  TextStyle fontTheme = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    color: scheme.onBackground,
+  );
   return Theme(
       data: Theme.of(context).copyWith(
         highlightColor: Colors.transparent,
@@ -391,11 +395,7 @@ Theme popUpMenu(
                           color: scheme.onBackground,
                         ),
                       ),
-                      Text(
-                        'Change Color',
-                        style:
-                            TextStyle(color: scheme.onBackground, fontSize: 14),
-                      )
+                      Text('Change Color', style: fontTheme)
                     ],
                   ),
                   value: 1,
@@ -416,12 +416,10 @@ Theme popUpMenu(
                         ),
                       ),
                       Text(
-                        themeChangeProvider.darkTheme
-                            ? 'Light Mode'
-                            : 'Dark Mode',
-                        style:
-                            TextStyle(color: scheme.onBackground, fontSize: 14),
-                      ),
+                          themeChangeProvider.darkTheme
+                              ? 'Light Mode'
+                              : 'Dark Mode',
+                          style: fontTheme),
                     ],
                   ),
                   value: 1,
@@ -437,6 +435,10 @@ Theme fullPopUpMenu(
     required ColorScheme scheme,
     required BuildContext context,
     required DarkThemeProvider themeChangeProvider}) {
+  TextStyle fontTheme = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    color: scheme.onBackground,
+  );
   return Theme(
       data: Theme.of(context).copyWith(
         highlightColor: Colors.transparent,
@@ -469,13 +471,7 @@ Theme fullPopUpMenu(
                             color: scheme.onBackground,
                           ),
                         ),
-                        Text(
-                          'Home',
-                          style: GoogleFonts.poppins(
-                            color: scheme.onBackground,
-                            fontSize: 14,
-                          ),
-                        )
+                        Text('Home', style: fontTheme)
                       ],
                     ),
                   ),
@@ -496,10 +492,7 @@ Theme fullPopUpMenu(
                       ),
                       Text(
                         'About',
-                        style: GoogleFonts.poppins(
-                          color: scheme.onBackground,
-                          fontSize: 14,
-                        ),
+                        style: fontTheme,
                       )
                     ],
                   ),
@@ -520,10 +513,7 @@ Theme fullPopUpMenu(
                       ),
                       Text(
                         'Work',
-                        style: GoogleFonts.poppins(
-                          color: scheme.onBackground,
-                          fontSize: 14,
-                        ),
+                        style: fontTheme,
                       )
                     ],
                   ),
@@ -544,10 +534,7 @@ Theme fullPopUpMenu(
                       ),
                       Text(
                         'Projects',
-                        style: GoogleFonts.poppins(
-                          color: scheme.onBackground,
-                          fontSize: 14,
-                        ),
+                        style: fontTheme,
                       )
                     ],
                   ),
@@ -568,10 +555,7 @@ Theme fullPopUpMenu(
                       ),
                       Text(
                         'Contact',
-                        style: GoogleFonts.poppins(
-                          color: scheme.onBackground,
-                          fontSize: 14,
-                        ),
+                        style: fontTheme,
                       )
                     ],
                   ),
@@ -593,10 +577,7 @@ Theme fullPopUpMenu(
                       ),
                       Text(
                         'View Resume',
-                        style: GoogleFonts.poppins(
-                          color: scheme.onBackground,
-                          fontSize: 14,
-                        ),
+                        style: fontTheme,
                       )
                     ],
                   ),
@@ -621,8 +602,7 @@ Theme fullPopUpMenu(
                       ),
                       Text(
                         'Change Color',
-                        style:
-                            TextStyle(color: scheme.onBackground, fontSize: 14),
+                        style: fontTheme,
                       )
                     ],
                   ),
@@ -647,8 +627,7 @@ Theme fullPopUpMenu(
                         themeChangeProvider.darkTheme
                             ? 'Light Mode'
                             : 'Dark Mode',
-                        style:
-                            TextStyle(color: scheme.onBackground, fontSize: 14),
+                        style: fontTheme,
                       ),
                     ],
                   ),
