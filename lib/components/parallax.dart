@@ -157,8 +157,8 @@ class ListItem extends StatelessWidget {
                             ],
                           )),
                     )),
-                Expanded(
-                  child: Container(),
+                Container(
+                  width: 50,
                 ),
                 Expanded(
                     flex: 3,
