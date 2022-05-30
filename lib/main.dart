@@ -3,7 +3,7 @@
 import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/components/extendedAppBar.dart';
+import 'package:portfolio/components/customAppBar.dart';
 import 'package:portfolio/components/sections/contact.dart';
 import 'package:portfolio/dark_theme_provider.dart';
 import 'package:portfolio/pages/notFoundPage.dart';
@@ -244,11 +244,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Container(
                         constraints: BoxConstraints(maxWidth: 1350),
                         child: Builder(builder: (context) {
-                          return ExtendedAppBar(
+                          return CustomAppBar(
                               scrollToIndex: scrollToIndex,
                               showMenu:
                                   MediaQuery.of(context).size.width < 1000,
-                              menu: popUpMenu(
+                              menu: fullPopUpMenu(
                                   themeChangeProvider: themeChangeProvider,
                                   scheme: scheme,
                                   setColor: _setColor,
@@ -325,7 +325,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 scrollToIndex: scrollToIndex,
                                 isExtended: isNavigationRailExtended,
                               ),
-                              popUpMenu(
+                              fullPopUpMenu(
                                   themeChangeProvider: themeChangeProvider,
                                   scheme: scheme,
                                   setColor: _setColor,
@@ -399,10 +399,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Container(
                       constraints: BoxConstraints(maxWidth: 1350),
                       child: Builder(builder: (context) {
-                        return ExtendedAppBar(
+                        return CustomAppBar(
                             scrollToIndex: scrollToIndex,
-                            showMenu: MediaQuery.of(context).size.width < 1000,
-                            menu: popUpMenu(
+                            showMenu: MediaQuery.of(context).size.width < 1100,
+                            moreMenu: popUpMenu(
+                                themeChangeProvider: themeChangeProvider,
+                                scheme: scheme,
+                                setColor: _setColor,
+                                setColorChoice: _setColorChoice,
+                                context: context,
+                                scrollToIndex: scrollToIndex,
+                                setColorScheme: () {
+                                  _setColorScheme(context);
+                                }),
+                            menu: fullPopUpMenu(
                                 themeChangeProvider: themeChangeProvider,
                                 scheme: scheme,
                                 setColor: _setColor,

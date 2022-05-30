@@ -55,7 +55,7 @@ const spaceH200 = SizedBox(
 );
 
 var appBarOffsetContainer = Container(
-  height: AppBar().preferredSize.height,
+  height: 100,
 );
 // Long Texts
 
@@ -349,6 +349,87 @@ TextButton resumeButton(BuildContext context) {
 }
 
 Theme popUpMenu(
+    {required Function setColorChoice,
+    required Function setColorScheme,
+    required Function setColor,
+    required Function scrollToIndex,
+    required ColorScheme scheme,
+    required BuildContext context,
+    required DarkThemeProvider themeChangeProvider}) {
+  return Theme(
+      data: Theme.of(context).copyWith(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+      ),
+      child: PopupMenuButton<int>(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          padding: EdgeInsets.zero,
+          tooltip: 'More',
+          color: scheme.surface,
+          icon: Align(
+            alignment: Alignment.centerRight,
+            child:
+                Icon(Icons.auto_awesome_outlined, color: scheme.onBackground),
+          ),
+          itemBuilder: (context) => [
+                PopupMenuItem(
+                  onTap: () {
+                    Future.delayed(
+                      const Duration(seconds: 0),
+                      () => openColorPickerDialog(context, setColor,
+                          setColorChoice, themeChangeProvider),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.palette_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        'Change Color',
+                        style:
+                            TextStyle(color: scheme.onBackground, fontSize: 14),
+                      )
+                    ],
+                  ),
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    setColorScheme();
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          themeChangeProvider.darkTheme
+                              ? Icons.light_mode_outlined
+                              : Icons.dark_mode_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        themeChangeProvider.darkTheme
+                            ? 'Light Mode'
+                            : 'Dark Mode',
+                        style:
+                            TextStyle(color: scheme.onBackground, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                  value: 1,
+                ),
+              ]));
+}
+
+Theme fullPopUpMenu(
     {required Function setColorChoice,
     required Function setColorScheme,
     required Function setColor,

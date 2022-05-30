@@ -2,16 +2,18 @@
 import 'package:flutter/material.dart';
 import '../globals.dart';
 
-class ExtendedAppBar extends StatelessWidget {
-  const ExtendedAppBar({
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
     Key? key,
     required this.scrollToIndex,
     required this.showMenu,
     required this.menu,
+    this.moreMenu,
   }) : super(key: key);
 
   final Function scrollToIndex;
   final Theme menu;
+  final Widget? moreMenu;
   final bool showMenu;
 
   @override
@@ -111,6 +113,22 @@ class ExtendedAppBar extends StatelessWidget {
                           },
                         ),
                       ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 24),
+                        child: TextButton(
+                          child: Text(
+                            'Resume',
+                            style: TextStyle(
+                                color: scheme.onBackground,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
+                          ),
+                          onPressed: () {
+                            openFile("resume.pdf");
+                          },
+                        ),
+                      ),
+                      Container(child: moreMenu),
                       Padding(
                         padding: const EdgeInsets.only(left: 24),
                         child: TextButton(
