@@ -3,6 +3,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../globals.dart';
 
 enum Menu { itemOne, itemTwo, itemThree, itemFour }
@@ -71,21 +72,21 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
             icon: Icon(Icons.home_outlined, color: scheme.onSecondaryContainer),
             label: Text(
               'Home',
-              style: TextStyle(color: scheme.onSecondaryContainer),
+              style: GoogleFonts.poppins(color: scheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
             icon: Icon(Icons.face_outlined, color: scheme.onSecondaryContainer),
             label: Text(
               'About',
-              style: TextStyle(color: scheme.onSecondaryContainer),
+              style: GoogleFonts.poppins(color: scheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
             icon: Icon(Icons.work_outline, color: scheme.onSecondaryContainer),
             label: Text(
               'Work',
-              style: TextStyle(color: scheme.onSecondaryContainer),
+              style: GoogleFonts.poppins(color: scheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
@@ -93,7 +94,7 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
                 Icon(Icons.folder_outlined, color: scheme.onSecondaryContainer),
             label: Text(
               'Projects',
-              style: TextStyle(color: scheme.onSecondaryContainer),
+              style: GoogleFonts.poppins(color: scheme.onSecondaryContainer),
             ),
           ),
           NavigationRailDestination(
@@ -101,7 +102,7 @@ class NavigationRailSectionState extends State<NavigationRailSection> {
                 Icon(Icons.person_outline, color: scheme.onSecondaryContainer),
             label: Text(
               'Contact',
-              style: TextStyle(color: scheme.onSecondaryContainer),
+              style: GoogleFonts.poppins(color: scheme.onSecondaryContainer),
             ),
           )
         ],

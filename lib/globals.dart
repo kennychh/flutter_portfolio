@@ -154,7 +154,7 @@ Widget descriptionList(BuildContext context, List<String> description) {
             children: [
               Text(
                 '\u2022',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: scheme.onBackground,
                   fontSize: 16,
                   height: 1.55,
@@ -189,10 +189,10 @@ void openDialog(BuildContext context) {
     builder: (context) => AlertDialog(
       backgroundColor: scheme.surface,
       title: Text("Basic Dialog Title",
-          style: TextStyle(color: scheme.onBackground)),
+          style: GoogleFonts.poppins(color: scheme.onBackground)),
       content: Text(
           "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.",
-          style: TextStyle(color: scheme.onBackground)),
+          style: GoogleFonts.poppins(color: scheme.onBackground)),
       actions: <Widget>[
         TextButton(
           child: const Text('Dismiss'),
@@ -235,7 +235,8 @@ void openColorPickerDialog(BuildContext context, Function setColor,
       backgroundColor: scheme.surface,
       contentPadding: const EdgeInsets.fromLTRB(0, 24, 0, 24),
       title: Text("Change Color Palette",
-          style: TextStyle(
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.w500,
             color: scheme.onBackground,
           )),
       content: Column(
@@ -255,7 +256,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Purple',
-                style: TextStyle(color: scheme.onSurfaceVariant),
+                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
               )),
           RadioListTile(
               activeColor: scheme.onSurfaceVariant,
@@ -267,7 +268,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Blue',
-                style: TextStyle(color: scheme.onSurfaceVariant),
+                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
               )),
           RadioListTile(
               activeColor: scheme.onSurfaceVariant,
@@ -279,7 +280,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Green',
-                style: TextStyle(color: scheme.onSurfaceVariant),
+                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
               )),
           RadioListTile(
               activeColor: scheme.onSurfaceVariant,
@@ -291,7 +292,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Orange',
-                style: TextStyle(color: scheme.onSurfaceVariant),
+                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
               )),
           RadioListTile(
               activeColor: scheme.onSurfaceVariant,
@@ -303,7 +304,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Pink',
-                style: TextStyle(color: scheme.onSurfaceVariant),
+                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
               )),
         ],
       ),

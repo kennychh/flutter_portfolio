@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/dark_theme_preference.dart';
 import 'package:portfolio/dark_theme_provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -41,7 +42,7 @@ class DrawerItems extends StatelessWidget {
           leading: Icon(Icons.home_outlined, color: scheme.onBackground),
           title: Text(
             'Home',
-            style: TextStyle(
+            style: GoogleFonts.poppins(
                 color: scheme.onBackground, fontWeight: FontWeight.w600),
           ),
           onTap: () {
@@ -53,7 +54,7 @@ class DrawerItems extends StatelessWidget {
           leading: Icon(Icons.face_outlined, color: scheme.onBackground),
           title: Text(
             'About',
-            style: TextStyle(
+            style: GoogleFonts.poppins(
                 color: scheme.onBackground, fontWeight: FontWeight.w600),
           ),
           onTap: () {
@@ -65,7 +66,7 @@ class DrawerItems extends StatelessWidget {
           leading: Icon(Icons.work_outline, color: scheme.onBackground),
           title: Text(
             'Work',
-            style: TextStyle(
+            style: GoogleFonts.poppins(
                 color: scheme.onBackground, fontWeight: FontWeight.w600),
           ),
           onTap: () {
@@ -77,7 +78,7 @@ class DrawerItems extends StatelessWidget {
           leading: Icon(Icons.folder_outlined, color: scheme.onBackground),
           title: Text(
             'Projects',
-            style: TextStyle(
+            style: GoogleFonts.poppins(
                 color: scheme.onBackground, fontWeight: FontWeight.w600),
           ),
           onTap: () {
@@ -89,7 +90,7 @@ class DrawerItems extends StatelessWidget {
             leading: Icon(Icons.person_outline, color: scheme.onBackground),
             title: Text(
               'Contact',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                   color: scheme.onBackground, fontWeight: FontWeight.w600),
             ),
             onTap: () {
@@ -104,7 +105,7 @@ class DrawerItems extends StatelessWidget {
                 Icon(Icons.contact_page_outlined, color: scheme.onBackground),
             title: Text(
               'View Resume',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                   color: scheme.onBackground, fontWeight: FontWeight.w600),
             ),
             onTap: () {
@@ -115,7 +116,7 @@ class DrawerItems extends StatelessWidget {
             leading: Icon(Icons.palette_outlined, color: scheme.onBackground),
             title: Text(
               'Change Color',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                   color: scheme.onBackground, fontWeight: FontWeight.w600),
             ),
             onTap: () {
@@ -134,7 +135,7 @@ class DrawerItems extends StatelessWidget {
                 color: scheme.onBackground),
             title: Text(
               themeChangeProvider.darkTheme ? 'Light Mode' : 'Dark Mode',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                   color: scheme.onBackground, fontWeight: FontWeight.w600),
             ),
             onTap: () {

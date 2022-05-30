@@ -123,7 +123,7 @@ class CustomAppBar extends StatelessWidget {
                         child: TextButton(
                           style: TextButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 20),
+                                  horizontal: 25, vertical: 20),
                               backgroundColor: scheme.tertiaryContainer,
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
