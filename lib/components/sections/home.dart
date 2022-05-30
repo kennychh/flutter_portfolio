@@ -55,66 +55,72 @@ class Home extends StatelessWidget {
             ));
       }
       return Container(
-        constraints:
-            BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              flex: 3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          constraints:
+              BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              appBarOffsetContainer,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text('Hi, I\'m Kenny!',
-                        style: GoogleFonts.poppins(
-                            color: scheme.primary,
-                            fontSize: 88,
-                            fontWeight: FontWeight.w500)),
-                  ),
-                  spaceH25,
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      'Software Developer',
-                      style: GoogleFonts.poppins(
-                          color: scheme.secondary,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500),
+                  Flexible(
+                    flex: 3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text('Hi, I\'m Kenny!',
+                              style: GoogleFonts.poppins(
+                                  color: scheme.primary,
+                                  fontSize: 88,
+                                  fontWeight: FontWeight.w500)),
+                        ),
+                        spaceH25,
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            'Software Developer',
+                            style: GoogleFonts.poppins(
+                                color: scheme.secondary,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        spaceH25,
+                        Text(
+                          homeDescription,
+                          style: GoogleFonts.poppins(
+                              color: scheme.onBackground,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
                     ),
                   ),
-                  spaceH25,
-                  Text(
-                    homeDescription,
-                    style: GoogleFonts.poppins(
-                        color: scheme.onBackground,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400),
+                  Flexible(
+                    flex: 1,
+                    child: Container(),
+                  ),
+                  Flexible(
+                    flex: 3,
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(80),
+                        child: Image.asset(
+                          gradientImage.imageUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Container(),
-            ),
-            Flexible(
-              flex: 3,
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(80),
-                  child: Image.asset(
-                    gradientImage.imageUrl,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
+              appBarOffsetContainer,
+            ],
+          ));
     });
   }
 }

@@ -125,10 +125,13 @@ bool showAppBar = true;
 // Helper Functions
 
 double getPadding(BoxConstraints constraints) {
-  if (constraints.isMobile) {
-    return 24;
+  if (constraints.isDesktop) {
+    return 100;
   }
-  return 100;
+  if (constraints.isTablet) {
+    return 50;
+  }
+  return 24;
 }
 
 bool isPortrait(BuildContext context) {
@@ -349,7 +352,7 @@ TextButton resumeButton(BuildContext context) {
   );
 }
 
-Theme popUpMenu(
+Theme themePopUpMenu(
     {required Function setColorChoice,
     required Function setColorScheme,
     required Function setColor,
@@ -375,6 +378,105 @@ Theme popUpMenu(
           color: scheme.surface,
           icon: Icon(Icons.auto_awesome_outlined, color: scheme.onBackground),
           itemBuilder: (context) => [
+                PopupMenuItem(
+                  onTap: () {
+                    Future.delayed(
+                      const Duration(seconds: 0),
+                      () => openColorPickerDialog(context, setColor,
+                          setColorChoice, themeChangeProvider),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.palette_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text('Change Color', style: fontTheme)
+                    ],
+                  ),
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    setColorScheme();
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          themeChangeProvider.darkTheme
+                              ? Icons.light_mode_outlined
+                              : Icons.dark_mode_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                          themeChangeProvider.darkTheme
+                              ? 'Light Mode'
+                              : 'Dark Mode',
+                          style: fontTheme),
+                    ],
+                  ),
+                  value: 1,
+                ),
+              ]));
+}
+
+Theme morePopUpMenu(
+    {required Function setColorChoice,
+    required Function setColorScheme,
+    required Function setColor,
+    required Function scrollToIndex,
+    required ColorScheme scheme,
+    required BuildContext context,
+    required DarkThemeProvider themeChangeProvider}) {
+  TextStyle fontTheme = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    color: scheme.onBackground,
+  );
+  return Theme(
+      data: Theme.of(context).copyWith(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+      ),
+      child: PopupMenuButton<int>(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          padding: EdgeInsets.zero,
+          tooltip: 'More',
+          color: scheme.surface,
+          icon: Align(
+            alignment: Alignment.centerRight,
+            child: Icon(Icons.menu_outlined, color: scheme.onBackground),
+          ),
+          itemBuilder: (context) => [
+                PopupMenuItem(
+                  onTap: () {
+                    openFile("resume.pdf");
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.contact_page_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        'View Resume',
+                        style: fontTheme,
+                      )
+                    ],
+                  ),
+                  value: 1,
+                ),
                 PopupMenuItem(
                   onTap: () {
                     Future.delayed(

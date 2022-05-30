@@ -39,7 +39,7 @@ class ListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: ((context, constraints) {
-      if (constraints.isMobile) {
+      if (constraints.isMobile && isPortrait(context)) {
         return Container(
           margin: const EdgeInsets.only(bottom: 50),
           decoration: fillBackground

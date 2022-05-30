@@ -227,10 +227,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
-    bool showMenu = MediaQuery.of(context).size.width < 1200;
+    bool showMenu = MediaQuery.of(context).size.width < 1050;
     DarkThemeProvider themeChangeProvider =
         MyApp.of(context)!.themeChangeProvider;
     return LayoutBuilder(builder: ((context, constraints) {
+      bool showSections = MediaQuery.of(context).size.width < 750;
+      ;
       if (constraints.isMobile) {
         return Scaffold(
             backgroundColor: scheme.background,
@@ -248,6 +250,27 @@ class _MyHomePageState extends State<MyHomePage> {
                           return CustomAppBar(
                               scrollToIndex: scrollToIndex,
                               showMenu: showMenu,
+                              showSections: showSections,
+                              moreMenu: morePopUpMenu(
+                                  themeChangeProvider: themeChangeProvider,
+                                  scheme: scheme,
+                                  setColor: _setColor,
+                                  setColorChoice: _setColorChoice,
+                                  context: context,
+                                  scrollToIndex: scrollToIndex,
+                                  setColorScheme: () {
+                                    _setColorScheme(context);
+                                  }),
+                              themePopUpMenu: themePopUpMenu(
+                                  themeChangeProvider: themeChangeProvider,
+                                  scheme: scheme,
+                                  setColor: _setColor,
+                                  setColorChoice: _setColorChoice,
+                                  context: context,
+                                  scrollToIndex: scrollToIndex,
+                                  setColorScheme: () {
+                                    _setColorScheme(context);
+                                  }),
                               menu: fullPopUpMenu(
                                   themeChangeProvider: themeChangeProvider,
                                   scheme: scheme,
@@ -402,7 +425,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         return CustomAppBar(
                             scrollToIndex: scrollToIndex,
                             showMenu: showMenu,
-                            moreMenu: popUpMenu(
+                            showSections: showSections,
+                            moreMenu: morePopUpMenu(
+                                themeChangeProvider: themeChangeProvider,
+                                scheme: scheme,
+                                setColor: _setColor,
+                                setColorChoice: _setColorChoice,
+                                context: context,
+                                scrollToIndex: scrollToIndex,
+                                setColorScheme: () {
+                                  _setColorScheme(context);
+                                }),
+                            themePopUpMenu: themePopUpMenu(
                                 themeChangeProvider: themeChangeProvider,
                                 scheme: scheme,
                                 setColor: _setColor,

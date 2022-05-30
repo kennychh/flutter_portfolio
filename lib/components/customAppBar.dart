@@ -8,13 +8,17 @@ class CustomAppBar extends StatelessWidget {
     Key? key,
     required this.scrollToIndex,
     required this.showMenu,
+    required this.showSections,
     required this.menu,
-    this.moreMenu,
+    required this.themePopUpMenu,
+    required this.moreMenu,
   }) : super(key: key);
 
   final Function scrollToIndex;
   final Theme menu;
-  final Widget? moreMenu;
+  final bool showSections;
+  final Widget themePopUpMenu;
+  final Widget moreMenu;
   final bool showMenu;
 
   @override
@@ -29,7 +33,7 @@ class CustomAppBar extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Container(
         constraints: BoxConstraints(maxWidth: 1350),
-        height: showMenu ? 70 : 80,
+        height: showSections ? 70 : 80,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -40,15 +44,15 @@ class CustomAppBar extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w500,
                     color: scheme.onBackground,
-                    fontSize: showMenu ? 20 : 23,
+                    fontSize: showSections ? 20 : 23,
                   ),
                 ),
-                showMenu
+                showSections
                     ? Container()
                     : Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 48),
+                            padding: EdgeInsets.only(left: 28),
                             child: TextButton(
                               child: Text(
                                 'Home',
@@ -112,10 +116,12 @@ class CustomAppBar extends StatelessWidget {
               ],
             ),
             showMenu
-                ? menu
+                ? showSections
+                    ? menu
+                    : moreMenu
                 : Row(
                     children: [
-                      Container(child: moreMenu),
+                      Container(child: themePopUpMenu),
                       Padding(
                         padding: EdgeInsets.only(left: 24),
                         child: TextButton(
