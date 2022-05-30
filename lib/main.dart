@@ -261,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         })),
                   ),
                 ),
-                preferredSize: Size.fromHeight(70)),
+                preferredSize: Size.fromHeight(showMenu ? 70 : 80)),
             body: LayoutBuilder(
               builder: (context, constraints) {
                 return ScrollablePositionedList.builder(
@@ -424,7 +424,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 }));
                       })),
                 ),
-                preferredSize: Size.fromHeight(70))
+                preferredSize: Size.fromHeight(showMenu ? 70 : 80))
             : null,
       );
     }));

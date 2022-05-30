@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget {
       alignment: Alignment.topCenter,
       child: Container(
         constraints: BoxConstraints(maxWidth: 1350),
-        height: 70,
+        height: showMenu ? 70 : 80,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
