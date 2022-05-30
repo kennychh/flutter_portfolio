@@ -120,7 +120,7 @@ extension BreakpointUtils on BoxConstraints {
 double navigationRailWidth = 75;
 double navigationRailExtendedWidth = 75 + 181;
 
-bool showAppBar = false;
+bool showAppBar = true;
 
 // Helper Functions
 
@@ -348,91 +348,230 @@ TextButton resumeButton(BuildContext context) {
   );
 }
 
-PopupMenuButton<int> openMenu(
+Theme popUpMenu(
     {required Function setColorChoice,
     required Function setColorScheme,
     required Function setColor,
+    required Function scrollToIndex,
     required ColorScheme scheme,
-    required DarkThemeProvider themeChangeProvider,
-    bool isHoriz = true}) {
-  return PopupMenuButton(
-      tooltip: 'More',
-      color: scheme.surface,
-      elevation: 2,
-      icon: Icon(isHoriz ? Icons.more_horiz_outlined : Icons.more_vert_outlined,
-          color: scheme.onBackground),
-      itemBuilder: (context) => [
-            PopupMenuItem(
-              onTap: () {
-                openFile("resume.pdf");
-              },
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: Icon(
-                      Icons.contact_page_outlined,
-                      color: scheme.onBackground,
+    required BuildContext context,
+    required DarkThemeProvider themeChangeProvider}) {
+  return Theme(
+      data: Theme.of(context).copyWith(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+      ),
+      child: PopupMenuButton<int>(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          padding: EdgeInsets.zero,
+          tooltip: 'Menu',
+          color: scheme.surface,
+          icon: Align(
+            alignment: Alignment.centerRight,
+            child: Icon(Icons.menu, color: scheme.onBackground),
+          ),
+          itemBuilder: (context) => [
+                PopupMenuItem(
+                  onTap: () {
+                    scrollToIndex(0);
+                  },
+                  child: Container(
+                    constraints: BoxConstraints(minWidth: 150),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: Icon(
+                            Icons.home_outlined,
+                            color: scheme.onBackground,
+                          ),
+                        ),
+                        Text(
+                          'Home',
+                          style: GoogleFonts.poppins(
+                            color: scheme.onBackground,
+                            fontSize: 14,
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  Text(
-                    'View Resume',
-                    style: GoogleFonts.poppins(
-                      color: scheme.onBackground,
-                      fontSize: 14,
-                    ),
-                  )
-                ],
-              ),
-              value: 1,
-            ),
-            PopupMenuItem(
-              onTap: () {
-                Future.delayed(
-                  const Duration(seconds: 0),
-                  () => openColorPickerDialog(
-                      context, setColor, setColorChoice, themeChangeProvider),
-                );
-              },
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: Icon(
-                      Icons.palette_outlined,
-                      color: scheme.onBackground,
-                    ),
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    scrollToIndex(1);
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.face_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        'About',
+                        style: GoogleFonts.poppins(
+                          color: scheme.onBackground,
+                          fontSize: 14,
+                        ),
+                      )
+                    ],
                   ),
-                  Text(
-                    'Change Color',
-                    style: TextStyle(color: scheme.onBackground, fontSize: 14),
-                  )
-                ],
-              ),
-              value: 1,
-            ),
-            PopupMenuItem(
-              onTap: () {
-                setColorScheme();
-              },
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: Icon(
-                      themeChangeProvider.darkTheme
-                          ? Icons.light_mode_outlined
-                          : Icons.dark_mode_outlined,
-                      color: scheme.onBackground,
-                    ),
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    scrollToIndex(2);
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.work_outline,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        'Work',
+                        style: GoogleFonts.poppins(
+                          color: scheme.onBackground,
+                          fontSize: 14,
+                        ),
+                      )
+                    ],
                   ),
-                  Text(
-                    themeChangeProvider.darkTheme ? 'Light Mode' : 'Dark Mode',
-                    style: TextStyle(color: scheme.onBackground, fontSize: 14),
-                  )
-                ],
-              ),
-              value: 1,
-            ),
-          ]);
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    scrollToIndex(3);
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.folder_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        'Projects',
+                        style: GoogleFonts.poppins(
+                          color: scheme.onBackground,
+                          fontSize: 14,
+                        ),
+                      )
+                    ],
+                  ),
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    scrollToIndex(4);
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.person_outline,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        'Contact',
+                        style: GoogleFonts.poppins(
+                          color: scheme.onBackground,
+                          fontSize: 14,
+                        ),
+                      )
+                    ],
+                  ),
+                  value: 1,
+                ),
+                const PopupMenuDivider(),
+                PopupMenuItem(
+                  onTap: () {
+                    openFile("resume.pdf");
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.contact_page_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        'View Resume',
+                        style: GoogleFonts.poppins(
+                          color: scheme.onBackground,
+                          fontSize: 14,
+                        ),
+                      )
+                    ],
+                  ),
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    Future.delayed(
+                      const Duration(seconds: 0),
+                      () => openColorPickerDialog(context, setColor,
+                          setColorChoice, themeChangeProvider),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          Icons.palette_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        'Change Color',
+                        style:
+                            TextStyle(color: scheme.onBackground, fontSize: 14),
+                      )
+                    ],
+                  ),
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  onTap: () {
+                    setColorScheme();
+                  },
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Icon(
+                          themeChangeProvider.darkTheme
+                              ? Icons.light_mode_outlined
+                              : Icons.dark_mode_outlined,
+                          color: scheme.onBackground,
+                        ),
+                      ),
+                      Text(
+                        themeChangeProvider.darkTheme
+                            ? 'Light Mode'
+                            : 'Dark Mode',
+                        style:
+                            TextStyle(color: scheme.onBackground, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                  value: 1,
+                ),
+              ]));
 }

@@ -3,6 +3,7 @@
 import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/components/extendedAppBar.dart';
 import 'package:portfolio/components/sections/contact.dart';
 import 'package:portfolio/dark_theme_provider.dart';
 import 'package:portfolio/pages/notFoundPage.dart';
@@ -234,39 +235,33 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: scheme.background,
             extendBodyBehindAppBar: true,
             drawerEnableOpenDragGesture: false,
-            appBar: AppBar(
-              iconTheme: IconThemeData(color: scheme.onBackground),
-              elevation: 0,
-              centerTitle: true,
-              leading: Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Builder(
-                    builder: (context) => IconButton(
-                        onPressed: () => Scaffold.of(context).openDrawer(),
-                        color: scheme.onBackground,
-                        icon: Icon(Icons.menu)),
-                  )),
-              actions: [
-                Padding(
-                    padding: EdgeInsets.only(right: 15),
-                    child: openMenu(
-                        themeChangeProvider: themeChangeProvider,
-                        scheme: scheme,
-                        isHoriz: false,
-                        setColor: _setColor,
-                        setColorChoice: _setColorChoice,
-                        setColorScheme: () {
-                          _setColorScheme(context);
-                        }))
-              ],
-              backgroundColor: scheme.background.withOpacity(0.7),
-              surfaceTintColor: scheme.background.withOpacity(0.7),
-              title: Text(
-                widget.title,
-                style: GoogleFonts.poppins(
-                    color: scheme.onBackground, fontWeight: FontWeight.w500),
-              ),
-            ),
+            appBar: PreferredSize(
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: getPadding(constraints)),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                        constraints: BoxConstraints(maxWidth: 1350),
+                        child: Builder(builder: (context) {
+                          return ExtendedAppBar(
+                              scrollToIndex: scrollToIndex,
+                              showMenu:
+                                  MediaQuery.of(context).size.width < 1000,
+                              menu: popUpMenu(
+                                  themeChangeProvider: themeChangeProvider,
+                                  scheme: scheme,
+                                  setColor: _setColor,
+                                  setColorChoice: _setColorChoice,
+                                  context: context,
+                                  scrollToIndex: scrollToIndex,
+                                  setColorScheme: () {
+                                    _setColorScheme(context);
+                                  }));
+                        })),
+                  ),
+                ),
+                preferredSize: Size.fromHeight(80)),
             body: LayoutBuilder(
               builder: (context, constraints) {
                 return ScrollablePositionedList.builder(
@@ -287,7 +282,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-            drawer: DrawerItems(itemScrollController: itemScrollController),
+            endDrawer: DrawerItems(
+              itemScrollController: itemScrollController,
+              setColor: _setColor,
+              setColorChoice: _setColorChoice,
+              setColorScheme: () {
+                _setColorScheme(context);
+              },
+              themeChangeProvider: themeChangeProvider,
+            ),
             floatingActionButton: Padding(
               padding: EdgeInsets.only(right: 7, bottom: 7),
               child: FloatingActionButton(
@@ -311,26 +314,30 @@ class _MyHomePageState extends State<MyHomePage> {
                 top: false,
                 child: Row(
                   children: <Widget>[
-                    Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        NavigationRailSection(
-                          key: navigationRailGlobalKey,
-                          onSelectItem: handlePageIndexChanged,
-                          selectedIndex: pageIndex,
-                          scrollToIndex: scrollToIndex,
-                          isExtended: isNavigationRailExtended,
-                        ),
-                        openMenu(
-                            themeChangeProvider: themeChangeProvider,
-                            scheme: scheme,
-                            setColor: _setColor,
-                            setColorChoice: _setColorChoice,
-                            setColorScheme: () {
-                              _setColorScheme(context);
-                            })
-                      ],
-                    ),
+                    !showAppBar
+                        ? Stack(
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              NavigationRailSection(
+                                key: navigationRailGlobalKey,
+                                onSelectItem: handlePageIndexChanged,
+                                selectedIndex: pageIndex,
+                                scrollToIndex: scrollToIndex,
+                                isExtended: isNavigationRailExtended,
+                              ),
+                              popUpMenu(
+                                  themeChangeProvider: themeChangeProvider,
+                                  scheme: scheme,
+                                  setColor: _setColor,
+                                  setColorChoice: _setColorChoice,
+                                  context: context,
+                                  scrollToIndex: scrollToIndex,
+                                  setColorScheme: () {
+                                    _setColorScheme(context);
+                                  })
+                            ],
+                          )
+                        : Container(),
                     Expanded(
                       child: ScrollablePositionedList.builder(
                         key: UniqueKey(),
@@ -359,41 +366,55 @@ class _MyHomePageState extends State<MyHomePage> {
                 ));
           },
         ),
-        extendBodyBehindAppBar: true,
-        appBar: showAppBar
-            ? AppBar(
-                iconTheme: IconThemeData(color: scheme.onBackground),
-                elevation: 0,
-                centerTitle: true,
-                leading: Padding(
-                  padding: EdgeInsets.only(left: 17),
-                  child: IconButton(
-                      onPressed: () {
-                        handleNavigationRailExtended();
-                      },
-                      color: scheme.primary,
-                      icon: Icon(Icons.menu)),
-                ),
-                actions: [
-                  Padding(
-                      padding: EdgeInsets.only(right: 22),
-                      child: IconButton(
-                          onPressed: () {
-                            _setColorScheme(context);
-                          },
-                          color: scheme.primary,
-                          icon: Icon(themeChangeProvider.darkTheme
-                              ? Icons.light_mode_outlined
-                              : Icons.dark_mode_outlined)))
-                ],
-                backgroundColor: scheme.surface.withOpacity(0.7),
-                surfaceTintColor: scheme.surface.withOpacity(0.7),
-                title: Text(
-                  widget.title,
-                  style: GoogleFonts.poppins(
-                      color: scheme.primary, fontWeight: FontWeight.w500),
+        floatingActionButton: MediaQuery.of(context).size.width < 1000
+            ? Padding(
+                padding: EdgeInsets.only(right: 7, bottom: 7),
+                child: FloatingActionButton(
+                  backgroundColor: scheme.tertiaryContainer,
+                  onPressed: () {
+                    mailToHelper();
+                  },
+                  child: Icon(
+                    Icons.chat_bubble_outline,
+                    color: scheme.onTertiaryContainer,
+                  ),
                 ),
               )
+            : null,
+        extendBodyBehindAppBar: true,
+        endDrawer: DrawerItems(
+          itemScrollController: itemScrollController,
+          setColor: _setColor,
+          setColorChoice: _setColorChoice,
+          setColorScheme: () {
+            _setColorScheme(context);
+          },
+          themeChangeProvider: themeChangeProvider,
+        ),
+        appBar: showAppBar
+            ? PreferredSize(
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: getPadding(constraints)),
+                  child: Container(
+                      constraints: BoxConstraints(maxWidth: 1350),
+                      child: Builder(builder: (context) {
+                        return ExtendedAppBar(
+                            scrollToIndex: scrollToIndex,
+                            showMenu: MediaQuery.of(context).size.width < 1000,
+                            menu: popUpMenu(
+                                themeChangeProvider: themeChangeProvider,
+                                scheme: scheme,
+                                setColor: _setColor,
+                                setColorChoice: _setColorChoice,
+                                context: context,
+                                scrollToIndex: scrollToIndex,
+                                setColorScheme: () {
+                                  _setColorScheme(context);
+                                }));
+                      })),
+                ),
+                preferredSize: Size.fromHeight(80))
             : null,
       );
     }));

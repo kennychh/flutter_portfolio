@@ -7,9 +7,11 @@ class ExtendedAppBar extends StatelessWidget {
     Key? key,
     required this.scrollToIndex,
     required this.showMenu,
+    required this.menu,
   }) : super(key: key);
 
   final Function scrollToIndex;
+  final Theme menu;
   final bool showMenu;
 
   @override
@@ -31,41 +33,7 @@ class ExtendedAppBar extends StatelessWidget {
                   fontSize: 22),
             ),
             showMenu
-                ? Row(
-                    children: [
-                      Builder(
-                        builder: (context) => IconButton(
-                            onPressed: () => Scaffold.of(context).openDrawer(),
-                            color: scheme.onBackground,
-                            icon: Icon(Icons.menu)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 24),
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 20),
-                              backgroundColor: scheme.tertiaryContainer,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(16.0),
-                                      topRight: Radius.circular(16.0),
-                                      bottomLeft: Radius.circular(16.0),
-                                      bottomRight: Radius.circular(16.0)))),
-                          onPressed: () {
-                            mailToHelper();
-                          },
-                          child: Text(
-                            'Let\'s Chat!',
-                            style: TextStyle(
-                              color: scheme.onBackground,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
+                ? menu
                 : Row(
                     children: [
                       Padding(
