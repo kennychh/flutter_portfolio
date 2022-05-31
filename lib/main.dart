@@ -228,11 +228,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
     bool showMenu = MediaQuery.of(context).size.width < 1050;
+    bool showSections = MediaQuery.of(context).size.width < 750;
     DarkThemeProvider themeChangeProvider =
         MyApp.of(context)!.themeChangeProvider;
     return LayoutBuilder(builder: ((context, constraints) {
-      bool showSections = MediaQuery.of(context).size.width < 750;
-      ;
+      Widget fab = Padding(
+        padding: EdgeInsets.only(
+            right: getPadding(constraints) - 16,
+            bottom: getPadding(constraints) - 16),
+        child: FloatingActionButton(
+          elevation: 0,
+          backgroundColor: scheme.tertiaryContainer,
+          onPressed: () {
+            mailToHelper();
+          },
+          child: Icon(
+            Icons.chat_bubble_outline,
+            color: scheme.onTertiaryContainer,
+          ),
+        ),
+      );
       if (constraints.isMobile) {
         return Scaffold(
             backgroundColor: scheme.background,
@@ -314,19 +329,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               themeChangeProvider: themeChangeProvider,
             ),
-            floatingActionButton: Padding(
-              padding: EdgeInsets.only(right: 7, bottom: 7),
-              child: FloatingActionButton(
-                backgroundColor: scheme.tertiaryContainer,
-                onPressed: () {
-                  mailToHelper();
-                },
-                child: Icon(
-                  Icons.chat_bubble_outline,
-                  color: scheme.onTertiaryContainer,
-                ),
-              ),
-            ));
+            floatingActionButton: fab);
       }
       return Scaffold(
         backgroundColor: scheme.background,
@@ -376,9 +379,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             alignment: Alignment.topCenter,
                             child: Container(
                               constraints: BoxConstraints(
-                                  maxWidth: 1350,
-                                  minHeight:
-                                      MediaQuery.of(context).size.height),
+                                maxWidth: 1350,
+                              ),
                               child: componentList[index],
                             ),
                           );
@@ -389,21 +391,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ));
           },
         ),
-        floatingActionButton: showMenu
-            ? Padding(
-                padding: EdgeInsets.only(right: 7, bottom: 7),
-                child: FloatingActionButton(
-                  backgroundColor: scheme.tertiaryContainer,
-                  onPressed: () {
-                    mailToHelper();
-                  },
-                  child: Icon(
-                    Icons.chat_bubble_outline,
-                    color: scheme.onTertiaryContainer,
-                  ),
-                ),
-              )
-            : null,
+        floatingActionButton: showMenu ? fab : null,
         extendBodyBehindAppBar: true,
         endDrawer: DrawerItems(
           itemScrollController: itemScrollController,

@@ -2,6 +2,7 @@ import '../parallax.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../globals.dart';
+import 'dart:math';
 
 class Projects extends StatelessWidget {
   const Projects({Key? key}) : super(key: key);
@@ -9,11 +10,15 @@ class Projects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
+    final minHeightList = [
+      MediaQuery.of(context).size.height.toDouble(),
+      1080.0
+    ];
+    var minHeight = minHeightList.reduce(min);
     return LayoutBuilder(builder: ((context, constraints) {
       if (constraints.isMobile && isPortrait(context)) {
         return Container(
-            constraints:
-                BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+            constraints: BoxConstraints(minHeight: 600),
             child: Column(
               children: [
                 appBarOffsetContainer,
@@ -40,8 +45,7 @@ class Projects extends StatelessWidget {
             ));
       }
       return Container(
-          constraints:
-              BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+          constraints: BoxConstraints(minHeight: minHeight),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

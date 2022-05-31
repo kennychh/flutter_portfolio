@@ -1,37 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../globals.dart';
+import 'dart:math';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
+    final minHeightList = [
+      MediaQuery.of(context).size.height.toDouble(),
+      1080.0
+    ];
+    var minHeight = minHeightList.reduce(min);
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.isMobile && isPortrait(context)) {
         return Container(
-            constraints:
-                BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+            constraints: const BoxConstraints(minHeight: 500),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 appBarOffsetContainer,
-                spaceH25,
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(80),
-                    child: Image.asset(
-                      gradientImage.imageUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                spaceH50,
                 Text('Hi, I\'m Kenny!',
                     style: GoogleFonts.poppins(
                         color: scheme.primary,
-                        fontSize: 32,
+                        fontSize: 40,
                         fontWeight: FontWeight.w500)),
                 spaceH10,
                 Text(
@@ -42,21 +36,22 @@ class Home extends StatelessWidget {
                       fontWeight: FontWeight.w500),
                 ),
                 spaceH25,
-                Text(
-                  homeDescription,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                      color: scheme.onBackground,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400),
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: 550),
+                  child: Text(
+                    homeDescription,
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.poppins(
+                        color: scheme.onBackground,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400),
+                  ),
                 ),
-                spaceH200,
               ],
             ));
       }
       return Container(
-          constraints:
-              BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+          constraints: BoxConstraints(minHeight: minHeight),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

@@ -5,6 +5,7 @@ import 'package:portfolio/color_schemes.dart';
 import 'package:portfolio/dark_theme_preference.dart';
 import 'package:portfolio/dark_theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:math' as math;
 import 'package:universal_html/html.dart' as html;
 
 import 'components/parallax.dart';
@@ -376,7 +377,11 @@ Theme themePopUpMenu(
           padding: EdgeInsets.zero,
           tooltip: 'More',
           color: scheme.surface,
-          icon: Icon(Icons.auto_awesome_outlined, color: scheme.onBackground),
+          icon: Align(
+            alignment: Alignment.centerRight,
+            child:
+                Icon(Icons.auto_awesome_outlined, color: scheme.onBackground),
+          ),
           itemBuilder: (context) => [
                 PopupMenuItem(
                   onTap: () {
@@ -733,4 +738,10 @@ Theme fullPopUpMenu(
                   value: 1,
                 ),
               ]));
+}
+
+extension FancyIterable on Iterable<int> {
+  int get max => reduce(math.max);
+
+  int get min => reduce(math.min);
 }
