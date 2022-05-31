@@ -353,7 +353,7 @@ TextButton resumeButton(BuildContext context) {
   );
 }
 
-Theme themePopUpMenu(
+PopupMenuButton themePopUpMenu(
     {required Function setColorChoice,
     required Function setColorScheme,
     required Function setColor,
@@ -365,379 +365,356 @@ Theme themePopUpMenu(
     fontWeight: FontWeight.w500,
     color: scheme.onBackground,
   );
-  return Theme(
-      data: Theme.of(context).copyWith(
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        hoverColor: Colors.transparent,
+  return PopupMenuButton<int>(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      padding: EdgeInsets.zero,
+      tooltip: 'More',
+      color: scheme.surface,
+      icon: Align(
+        alignment: Alignment.centerRight,
+        child: Icon(Icons.auto_awesome_outlined, color: scheme.onBackground),
       ),
-      child: PopupMenuButton<int>(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          padding: EdgeInsets.zero,
-          tooltip: 'More',
-          color: scheme.surface,
-          icon: Align(
-            alignment: Alignment.centerRight,
-            child:
-                Icon(Icons.auto_awesome_outlined, color: scheme.onBackground),
-          ),
-          itemBuilder: (context) => [
-                PopupMenuItem(
-                  onTap: () {
-                    Future.delayed(
-                      const Duration(seconds: 0),
-                      () => openColorPickerDialog(context, setColor,
-                          setColorChoice, themeChangeProvider),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.palette_outlined,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text('Change Color', style: fontTheme)
-                    ],
-                  ),
-                  value: 1,
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    setColorScheme();
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          themeChangeProvider.darkTheme
-                              ? Icons.light_mode_outlined
-                              : Icons.dark_mode_outlined,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text(
-                          themeChangeProvider.darkTheme
-                              ? 'Light Mode'
-                              : 'Dark Mode',
-                          style: fontTheme),
-                    ],
-                  ),
-                  value: 1,
-                ),
-              ]));
-}
-
-Theme morePopUpMenu(
-    {required Function setColorChoice,
-    required Function setColorScheme,
-    required Function setColor,
-    required Function scrollToIndex,
-    required ColorScheme scheme,
-    required BuildContext context,
-    required DarkThemeProvider themeChangeProvider}) {
-  TextStyle fontTheme = GoogleFonts.poppins(
-    fontWeight: FontWeight.w500,
-    color: scheme.onBackground,
-  );
-  return Theme(
-      data: Theme.of(context).copyWith(
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        hoverColor: Colors.transparent,
-      ),
-      child: PopupMenuButton<int>(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          padding: EdgeInsets.zero,
-          tooltip: 'More',
-          color: scheme.surface,
-          icon: Align(
-            alignment: Alignment.centerRight,
-            child: Icon(Icons.menu_outlined, color: scheme.onBackground),
-          ),
-          itemBuilder: (context) => [
-                PopupMenuItem(
-                  onTap: () {
-                    openFile("resume.pdf");
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.contact_page_outlined,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text(
-                        'View Resume',
-                        style: fontTheme,
-                      )
-                    ],
-                  ),
-                  value: 1,
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    Future.delayed(
-                      const Duration(seconds: 0),
-                      () => openColorPickerDialog(context, setColor,
-                          setColorChoice, themeChangeProvider),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.palette_outlined,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text('Change Color', style: fontTheme)
-                    ],
-                  ),
-                  value: 1,
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    setColorScheme();
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          themeChangeProvider.darkTheme
-                              ? Icons.light_mode_outlined
-                              : Icons.dark_mode_outlined,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text(
-                          themeChangeProvider.darkTheme
-                              ? 'Light Mode'
-                              : 'Dark Mode',
-                          style: fontTheme),
-                    ],
-                  ),
-                  value: 1,
-                ),
-              ]));
-}
-
-Theme fullPopUpMenu(
-    {required Function setColorChoice,
-    required Function setColorScheme,
-    required Function setColor,
-    required Function scrollToIndex,
-    required ColorScheme scheme,
-    required BuildContext context,
-    required DarkThemeProvider themeChangeProvider}) {
-  TextStyle fontTheme = GoogleFonts.poppins(
-    fontWeight: FontWeight.w500,
-    color: scheme.onBackground,
-  );
-  return Theme(
-      data: Theme.of(context).copyWith(
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        hoverColor: Colors.transparent,
-      ),
-      child: PopupMenuButton<int>(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          padding: EdgeInsets.zero,
-          tooltip: 'Menu',
-          color: scheme.surface,
-          icon: Align(
-            alignment: Alignment.centerRight,
-            child: Icon(Icons.menu, color: scheme.onBackground),
-          ),
-          itemBuilder: (context) => [
-                PopupMenuItem(
-                  onTap: () {
-                    scrollToIndex(0);
-                  },
-                  child: Container(
-                    constraints: BoxConstraints(minWidth: 150),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: Icon(
-                            Icons.home_outlined,
-                            color: scheme.onBackground,
-                          ),
-                        ),
-                        Text('Home', style: fontTheme)
-                      ],
+      itemBuilder: (context) => [
+            PopupMenuItem(
+              onTap: () {
+                Future.delayed(
+                  const Duration(seconds: 0),
+                  () => openColorPickerDialog(
+                      context, setColor, setColorChoice, themeChangeProvider),
+                );
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.palette_outlined,
+                      color: scheme.onBackground,
                     ),
                   ),
-                  value: 1,
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    scrollToIndex(1);
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.face_outlined,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text(
-                        'About',
-                        style: fontTheme,
-                      )
-                    ],
+                  Text('Change Color', style: fontTheme)
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                setColorScheme();
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      themeChangeProvider.darkTheme
+                          ? Icons.light_mode_outlined
+                          : Icons.dark_mode_outlined,
+                      color: scheme.onBackground,
+                    ),
                   ),
-                  value: 1,
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    scrollToIndex(2);
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.work_outline,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text(
-                        'Work',
-                        style: fontTheme,
-                      )
-                    ],
+                  Text(
+                      themeChangeProvider.darkTheme
+                          ? 'Light Mode'
+                          : 'Dark Mode',
+                      style: fontTheme),
+                ],
+              ),
+              value: 1,
+            ),
+          ]);
+}
+
+PopupMenuButton morePopUpMenu(
+    {required Function setColorChoice,
+    required Function setColorScheme,
+    required Function setColor,
+    required Function scrollToIndex,
+    required ColorScheme scheme,
+    required BuildContext context,
+    required DarkThemeProvider themeChangeProvider}) {
+  TextStyle fontTheme = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    color: scheme.onBackground,
+  );
+  return PopupMenuButton<int>(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      padding: EdgeInsets.zero,
+      tooltip: 'More',
+      elevation: 20,
+      color: scheme.surface,
+      icon: Align(
+        alignment: Alignment.centerRight,
+        child: Icon(Icons.menu_outlined, color: scheme.onBackground),
+      ),
+      itemBuilder: (context) => [
+            PopupMenuItem(
+              onTap: () {
+                openFile("resume.pdf");
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.contact_page_outlined,
+                      color: scheme.onBackground,
+                    ),
                   ),
-                  value: 1,
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    scrollToIndex(3);
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.folder_outlined,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text(
-                        'Projects',
-                        style: fontTheme,
-                      )
-                    ],
+                  Text(
+                    'View Resume',
+                    style: fontTheme,
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                Future.delayed(
+                  const Duration(seconds: 0),
+                  () => openColorPickerDialog(
+                      context, setColor, setColorChoice, themeChangeProvider),
+                );
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.palette_outlined,
+                      color: scheme.onBackground,
+                    ),
                   ),
-                  value: 1,
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    scrollToIndex(4);
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.person_outline,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text(
-                        'Contact',
-                        style: fontTheme,
-                      )
-                    ],
+                  Text('Change Color', style: fontTheme)
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                setColorScheme();
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      themeChangeProvider.darkTheme
+                          ? Icons.light_mode_outlined
+                          : Icons.dark_mode_outlined,
+                      color: scheme.onBackground,
+                    ),
                   ),
-                  value: 1,
-                ),
-                const PopupMenuDivider(),
-                PopupMenuItem(
-                  onTap: () {
-                    openFile("resume.pdf");
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.contact_page_outlined,
-                          color: scheme.onBackground,
-                        ),
+                  Text(
+                      themeChangeProvider.darkTheme
+                          ? 'Light Mode'
+                          : 'Dark Mode',
+                      style: fontTheme),
+                ],
+              ),
+              value: 1,
+            ),
+          ]);
+}
+
+PopupMenuButton fullPopUpMenu(
+    {required Function setColorChoice,
+    required Function setColorScheme,
+    required Function setColor,
+    required Function scrollToIndex,
+    required ColorScheme scheme,
+    required BuildContext context,
+    required DarkThemeProvider themeChangeProvider}) {
+  TextStyle fontTheme = GoogleFonts.poppins(
+    fontWeight: FontWeight.w500,
+    color: scheme.onBackground,
+  );
+  return PopupMenuButton<int>(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      padding: EdgeInsets.zero,
+      tooltip: 'Menu',
+      color: scheme.surface,
+      icon: Align(
+        alignment: Alignment.centerRight,
+        child: Icon(Icons.menu, color: scheme.onBackground),
+      ),
+      itemBuilder: (context) => [
+            PopupMenuItem(
+              onTap: () {
+                scrollToIndex(0);
+              },
+              child: Container(
+                constraints: BoxConstraints(minWidth: 150),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 12),
+                      child: Icon(
+                        Icons.home_outlined,
+                        color: scheme.onBackground,
                       ),
-                      Text(
-                        'View Resume',
-                        style: fontTheme,
-                      )
-                    ],
+                    ),
+                    Text('Home', style: fontTheme)
+                  ],
+                ),
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                scrollToIndex(1);
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.face_outlined,
+                      color: scheme.onBackground,
+                    ),
                   ),
-                  value: 1,
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    Future.delayed(
-                      const Duration(seconds: 0),
-                      () => openColorPickerDialog(context, setColor,
-                          setColorChoice, themeChangeProvider),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          Icons.palette_outlined,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text(
-                        'Change Color',
-                        style: fontTheme,
-                      )
-                    ],
+                  Text(
+                    'About',
+                    style: fontTheme,
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                scrollToIndex(2);
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.work_outline,
+                      color: scheme.onBackground,
+                    ),
                   ),
-                  value: 1,
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    setColorScheme();
-                  },
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Icon(
-                          themeChangeProvider.darkTheme
-                              ? Icons.light_mode_outlined
-                              : Icons.dark_mode_outlined,
-                          color: scheme.onBackground,
-                        ),
-                      ),
-                      Text(
-                        themeChangeProvider.darkTheme
-                            ? 'Light Mode'
-                            : 'Dark Mode',
-                        style: fontTheme,
-                      ),
-                    ],
+                  Text(
+                    'Work',
+                    style: fontTheme,
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                scrollToIndex(3);
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.folder_outlined,
+                      color: scheme.onBackground,
+                    ),
                   ),
-                  value: 1,
-                ),
-              ]));
+                  Text(
+                    'Projects',
+                    style: fontTheme,
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                scrollToIndex(4);
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.person_outline,
+                      color: scheme.onBackground,
+                    ),
+                  ),
+                  Text(
+                    'Contact',
+                    style: fontTheme,
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+            const PopupMenuDivider(),
+            PopupMenuItem(
+              onTap: () {
+                openFile("resume.pdf");
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.contact_page_outlined,
+                      color: scheme.onBackground,
+                    ),
+                  ),
+                  Text(
+                    'View Resume',
+                    style: fontTheme,
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                Future.delayed(
+                  const Duration(seconds: 0),
+                  () => openColorPickerDialog(
+                      context, setColor, setColorChoice, themeChangeProvider),
+                );
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      Icons.palette_outlined,
+                      color: scheme.onBackground,
+                    ),
+                  ),
+                  Text(
+                    'Change Color',
+                    style: fontTheme,
+                  )
+                ],
+              ),
+              value: 1,
+            ),
+            PopupMenuItem(
+              onTap: () {
+                setColorScheme();
+              },
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Icon(
+                      themeChangeProvider.darkTheme
+                          ? Icons.light_mode_outlined
+                          : Icons.dark_mode_outlined,
+                      color: scheme.onBackground,
+                    ),
+                  ),
+                  Text(
+                    themeChangeProvider.darkTheme ? 'Light Mode' : 'Dark Mode',
+                    style: fontTheme,
+                  ),
+                ],
+              ),
+              value: 1,
+            ),
+          ]);
 }
 
 extension FancyIterable on Iterable<int> {

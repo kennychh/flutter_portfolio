@@ -254,50 +254,46 @@ class _MyHomePageState extends State<MyHomePage> {
             extendBodyBehindAppBar: true,
             drawerEnableOpenDragGesture: false,
             appBar: PreferredSize(
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: getPadding(constraints)),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Container(
-                        constraints: BoxConstraints(maxWidth: 1350),
-                        child: Builder(builder: (context) {
-                          return CustomAppBar(
-                              scrollToIndex: scrollToIndex,
-                              showMenu: showMenu,
-                              showSections: showSections,
-                              moreMenu: morePopUpMenu(
-                                  themeChangeProvider: themeChangeProvider,
-                                  scheme: scheme,
-                                  setColor: _setColor,
-                                  setColorChoice: _setColorChoice,
-                                  context: context,
-                                  scrollToIndex: scrollToIndex,
-                                  setColorScheme: () {
-                                    _setColorScheme(context);
-                                  }),
-                              themePopUpMenu: themePopUpMenu(
-                                  themeChangeProvider: themeChangeProvider,
-                                  scheme: scheme,
-                                  setColor: _setColor,
-                                  setColorChoice: _setColorChoice,
-                                  context: context,
-                                  scrollToIndex: scrollToIndex,
-                                  setColorScheme: () {
-                                    _setColorScheme(context);
-                                  }),
-                              menu: fullPopUpMenu(
-                                  themeChangeProvider: themeChangeProvider,
-                                  scheme: scheme,
-                                  setColor: _setColor,
-                                  setColorChoice: _setColorChoice,
-                                  context: context,
-                                  scrollToIndex: scrollToIndex,
-                                  setColorScheme: () {
-                                    _setColorScheme(context);
-                                  }));
-                        })),
-                  ),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                      constraints: BoxConstraints(maxWidth: 1350),
+                      child: Builder(builder: (context) {
+                        return CustomAppBar(
+                            scrollToIndex: scrollToIndex,
+                            showMenu: showMenu,
+                            showSections: showSections,
+                            moreMenu: morePopUpMenu(
+                                themeChangeProvider: themeChangeProvider,
+                                scheme: scheme,
+                                setColor: _setColor,
+                                setColorChoice: _setColorChoice,
+                                context: context,
+                                scrollToIndex: scrollToIndex,
+                                setColorScheme: () {
+                                  _setColorScheme(context);
+                                }),
+                            themePopUpMenu: themePopUpMenu(
+                                themeChangeProvider: themeChangeProvider,
+                                scheme: scheme,
+                                setColor: _setColor,
+                                setColorChoice: _setColorChoice,
+                                context: context,
+                                scrollToIndex: scrollToIndex,
+                                setColorScheme: () {
+                                  _setColorScheme(context);
+                                }),
+                            menu: fullPopUpMenu(
+                                themeChangeProvider: themeChangeProvider,
+                                scheme: scheme,
+                                setColor: _setColor,
+                                setColorChoice: _setColorChoice,
+                                context: context,
+                                scrollToIndex: scrollToIndex,
+                                setColorScheme: () {
+                                  _setColorScheme(context);
+                                }));
+                      })),
                 ),
                 preferredSize: Size.fromHeight(showMenu ? 70 : 80)),
             body: LayoutBuilder(
@@ -319,15 +315,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 );
               },
-            ),
-            endDrawer: DrawerItems(
-              itemScrollController: itemScrollController,
-              setColor: _setColor,
-              setColorChoice: _setColorChoice,
-              setColorScheme: () {
-                _setColorScheme(context);
-              },
-              themeChangeProvider: themeChangeProvider,
             ),
             floatingActionButton: fab);
       }
@@ -393,59 +380,46 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         floatingActionButton: showMenu ? fab : null,
         extendBodyBehindAppBar: true,
-        endDrawer: DrawerItems(
-          itemScrollController: itemScrollController,
-          setColor: _setColor,
-          setColorChoice: _setColorChoice,
-          setColorScheme: () {
-            _setColorScheme(context);
-          },
-          themeChangeProvider: themeChangeProvider,
-        ),
         appBar: showAppBar
             ? PreferredSize(
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: getPadding(constraints)),
-                  child: Container(
-                      constraints: BoxConstraints(maxWidth: 1350),
-                      child: Builder(builder: (context) {
-                        return CustomAppBar(
-                            scrollToIndex: scrollToIndex,
-                            showMenu: showMenu,
-                            showSections: showSections,
-                            moreMenu: morePopUpMenu(
-                                themeChangeProvider: themeChangeProvider,
-                                scheme: scheme,
-                                setColor: _setColor,
-                                setColorChoice: _setColorChoice,
-                                context: context,
-                                scrollToIndex: scrollToIndex,
-                                setColorScheme: () {
-                                  _setColorScheme(context);
-                                }),
-                            themePopUpMenu: themePopUpMenu(
-                                themeChangeProvider: themeChangeProvider,
-                                scheme: scheme,
-                                setColor: _setColor,
-                                setColorChoice: _setColorChoice,
-                                context: context,
-                                scrollToIndex: scrollToIndex,
-                                setColorScheme: () {
-                                  _setColorScheme(context);
-                                }),
-                            menu: fullPopUpMenu(
-                                themeChangeProvider: themeChangeProvider,
-                                scheme: scheme,
-                                setColor: _setColor,
-                                setColorChoice: _setColorChoice,
-                                context: context,
-                                scrollToIndex: scrollToIndex,
-                                setColorScheme: () {
-                                  _setColorScheme(context);
-                                }));
-                      })),
-                ),
+                child: Container(
+                    constraints: BoxConstraints(maxWidth: 1350),
+                    child: Builder(builder: (context) {
+                      return CustomAppBar(
+                          scrollToIndex: scrollToIndex,
+                          showMenu: showMenu,
+                          showSections: showSections,
+                          moreMenu: morePopUpMenu(
+                              themeChangeProvider: themeChangeProvider,
+                              scheme: scheme,
+                              setColor: _setColor,
+                              setColorChoice: _setColorChoice,
+                              context: context,
+                              scrollToIndex: scrollToIndex,
+                              setColorScheme: () {
+                                _setColorScheme(context);
+                              }),
+                          themePopUpMenu: themePopUpMenu(
+                              themeChangeProvider: themeChangeProvider,
+                              scheme: scheme,
+                              setColor: _setColor,
+                              setColorChoice: _setColorChoice,
+                              context: context,
+                              scrollToIndex: scrollToIndex,
+                              setColorScheme: () {
+                                _setColorScheme(context);
+                              }),
+                          menu: fullPopUpMenu(
+                              themeChangeProvider: themeChangeProvider,
+                              scheme: scheme,
+                              setColor: _setColor,
+                              setColorChoice: _setColorChoice,
+                              context: context,
+                              scrollToIndex: scrollToIndex,
+                              setColorScheme: () {
+                                _setColorScheme(context);
+                              }));
+                    })),
                 preferredSize: Size.fromHeight(showMenu ? 70 : 80))
             : null,
       );
