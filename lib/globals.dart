@@ -233,6 +233,8 @@ void mailToHelper() async {
 void openColorPickerDialog(BuildContext context, Function setColor,
     Function setColorChoice, DarkThemeProvider themeProvider) {
   ColorScheme scheme = Theme.of(context).colorScheme;
+  var radioListTileTheme = GoogleFonts.poppins(
+      color: scheme.onSurfaceVariant, fontWeight: FontWeight.w500);
   showDialog<void>(
     context: context,
     builder: (context) => AlertDialog(
@@ -260,7 +262,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Purple',
-                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
+                style: radioListTileTheme,
               )),
           RadioListTile(
               activeColor: scheme.onSurfaceVariant,
@@ -272,7 +274,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Blue',
-                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
+                style: radioListTileTheme,
               )),
           RadioListTile(
               activeColor: scheme.onSurfaceVariant,
@@ -284,7 +286,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Green',
-                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
+                style: radioListTileTheme,
               )),
           RadioListTile(
               activeColor: scheme.onSurfaceVariant,
@@ -296,7 +298,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Orange',
-                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
+                style: radioListTileTheme,
               )),
           RadioListTile(
               activeColor: scheme.onSurfaceVariant,
@@ -308,7 +310,7 @@ void openColorPickerDialog(BuildContext context, Function setColor,
               },
               title: Text(
                 'Pink',
-                style: GoogleFonts.poppins(color: scheme.onSurfaceVariant),
+                style: radioListTileTheme,
               )),
         ],
       ),
