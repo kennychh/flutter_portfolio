@@ -11,7 +11,7 @@ class Contact extends StatelessWidget {
     ColorScheme scheme = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-          constraints: const BoxConstraints(maxHeight: 600),
+          constraints: const BoxConstraints(maxHeight: 650),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
