@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/components/glassMorphism.dart';
 import '../globals.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -32,11 +33,12 @@ class CustomAppBar extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       return Align(
         alignment: Alignment.topCenter,
-        child: Container(
+        child: GlassMorphism(
           padding: EdgeInsets.symmetric(horizontal: getPadding(constraints)),
           constraints:
               BoxConstraints(maxWidth: 1350 + getPadding(constraints) * 2),
           height: showSections ? 70 : 80,
+          blur: 20,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -184,7 +186,6 @@ class CustomAppBar extends StatelessWidget {
                     )
             ],
           ),
-          width: MediaQuery.of(context).size.width,
           color: scheme.background,
         ),
       );
