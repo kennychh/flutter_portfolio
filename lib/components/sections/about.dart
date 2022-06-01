@@ -428,9 +428,11 @@ class About extends StatelessWidget {
                       ],
                     ),
                   )),
-              Container(
-                width: 50,
-              ),
+              showSeperatedAssets
+                  ? Container()
+                  : Container(
+                      width: 50,
+                    ),
               showSeperatedAssets
                   ? Container()
                   : AboutAssets(shouldShrinkAssets: shouldShrinkAssets)
