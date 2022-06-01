@@ -91,6 +91,8 @@ flutter:
     - assets/blue_gradient.png
     - assets/orange_gradient.png
     - assets/memoji.png
+    - assets/memoji_1.png
+    - assets/memoji_2.png
     - assets/resume.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
