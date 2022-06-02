@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/color_schemes.dart';
@@ -16,6 +17,9 @@ const seed = Color(0xFF5F51A4);
 var colors = ['purple', 'blue', 'green', 'orange', 'pink'];
 var selectedColor = 'purple';
 var selected = colors.indexOf(selectedColor);
+
+double previousScrollPosition = 0;
+double previousScrollPositionSave = 0;
 
 Map<String, ColorScheme?> darkColorSchemes = {
   'purple': purpleDarkColorScheme,

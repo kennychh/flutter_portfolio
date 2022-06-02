@@ -18,7 +18,8 @@ class Work extends StatelessWidget {
             spaceH25,
             Text(
               'Work Experience',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
+                  fontFamily: 'Eiko',
                   color: scheme.onBackground,
                   fontSize: 40,
                   fontWeight: FontWeight.w500),
@@ -43,7 +44,8 @@ class Work extends StatelessWidget {
           spaceH25,
           Text(
             'Work Experience',
-            style: GoogleFonts.poppins(
+            style: TextStyle(
+                fontFamily: 'Eiko',
                 color: scheme.onBackground,
                 fontSize: 45,
                 fontWeight: FontWeight.w500),

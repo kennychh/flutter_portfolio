@@ -18,7 +18,8 @@ class Projects extends StatelessWidget {
             spaceH25,
             Text(
               'Projects',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
+                  fontFamily: 'Eiko',
                   color: scheme.onBackground,
                   fontSize: 40,
                   fontWeight: FontWeight.w500),
@@ -44,7 +45,8 @@ class Projects extends StatelessWidget {
           spaceH25,
           Text(
             'Projects',
-            style: GoogleFonts.poppins(
+            style: TextStyle(
+                fontFamily: 'Eiko',
                 color: scheme.onBackground,
                 fontSize: 45,
                 fontWeight: FontWeight.w500),

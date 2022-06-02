@@ -29,7 +29,8 @@ class _NotFoundPageState extends State<NotFoundPage> {
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text('Uh Oh! This page isn\'t available.',
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
+                              fontFamily: 'Eiko',
                               color: scheme.primary,
                               fontSize: 60,
                               fontWeight: FontWeight.w500)),
@@ -40,8 +41,10 @@ class _NotFoundPageState extends State<NotFoundPage> {
                         primary: scheme.onSecondaryContainer,
                         backgroundColor: scheme.secondaryContainer,
                         padding: const EdgeInsets.all(20.0),
-                        textStyle: GoogleFonts.poppins(
-                            fontSize: 16, fontWeight: FontWeight.w500),
+                        textStyle: TextStyle(
+                            fontFamily: 'Eiko',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500),
                       ),
                       onPressed: () {
                         Navigator.pushNamed(context, '/');

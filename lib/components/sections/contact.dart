@@ -20,7 +20,8 @@ class Contact extends StatelessWidget {
               FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text('Thanks for stopping by!',
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
+                          fontFamily: 'Eiko',
                           color: scheme.primary,
                           fontSize: 45,
                           fontWeight: FontWeight.w500))),

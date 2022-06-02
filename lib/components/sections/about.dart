@@ -35,7 +35,8 @@ class About extends StatelessWidget {
             spaceH25,
             Text(
               'About Me',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
+                  fontFamily: 'Eiko',
                   color: scheme.onBackground,
                   fontSize: 40,
                   fontWeight: FontWeight.w500),
@@ -43,7 +44,8 @@ class About extends StatelessWidget {
             spaceH10,
             Text(
               'Get to know about me',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
+                  fontFamily: 'Eiko',
                   color: scheme.secondary,
                   fontSize: 24,
                   fontWeight: FontWeight.w500),
@@ -81,7 +83,8 @@ class About extends StatelessWidget {
             spaceH50,
             Text(
               'Technical tools',
-              style: GoogleFonts.poppins(
+              style: TextStyle(
+                  fontFamily: 'Eiko',
                   color: scheme.secondary,
                   fontSize: 24,
                   fontWeight: FontWeight.w500),
@@ -111,7 +114,7 @@ class About extends StatelessWidget {
                     child: Text(
                       'Languages',
                       style: GoogleFonts.poppins(
-                          color: scheme.secondary,
+                          color: scheme.onBackground,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
@@ -136,7 +139,7 @@ class About extends StatelessWidget {
                     child: Text(
                       'Dev Tools',
                       style: GoogleFonts.poppins(
-                          color: scheme.secondary,
+                          color: scheme.onBackground,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
@@ -161,7 +164,7 @@ class About extends StatelessWidget {
                     child: Text(
                       'IDEs',
                       style: GoogleFonts.poppins(
-                          color: scheme.secondary,
+                          color: scheme.onBackground,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
@@ -195,14 +198,16 @@ class About extends StatelessWidget {
                       children: [
                         Text(
                           'About',
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
+                              fontFamily: 'Eiko',
                               color: scheme.onBackground,
                               fontSize: 45,
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
                           'Get to know about me',
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
+                              fontFamily: 'Eiko',
                               color: scheme.secondary,
                               fontSize: 30,
                               fontWeight: FontWeight.w500),
@@ -305,7 +310,8 @@ class About extends StatelessWidget {
                         spaceH50,
                         Text(
                           'Technical tools I\'ve been working with',
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
+                              fontFamily: 'Eiko',
                               color: scheme.secondary,
                               fontSize: 30,
                               fontWeight: FontWeight.w500),
@@ -383,7 +389,7 @@ class About extends StatelessWidget {
                                         Text(
                                           'Languages',
                                           style: GoogleFonts.poppins(
-                                              color: scheme.secondary,
+                                              color: scheme.onBackground,
                                               fontSize: 18,
                                               fontWeight: FontWeight.w500),
                                         ),
@@ -399,7 +405,7 @@ class About extends StatelessWidget {
                                         Text(
                                           'Dev Tools',
                                           style: GoogleFonts.poppins(
-                                              color: scheme.secondary,
+                                              color: scheme.onBackground,
                                               fontSize: 18,
                                               fontWeight: FontWeight.w500),
                                         ),
@@ -415,7 +421,7 @@ class About extends StatelessWidget {
                                         Text(
                                           'IDEs',
                                           style: GoogleFonts.poppins(
-                                              color: scheme.secondary,
+                                              color: scheme.onBackground,
                                               fontSize: 18,
                                               fontWeight: FontWeight.w500),
                                         ),

@@ -32,163 +32,159 @@ class CustomAppBar extends StatelessWidget {
     );
     return LayoutBuilder(builder: (context, constraints) {
       return Align(
-        alignment: Alignment.topCenter,
-        child: GlassMorphism(
-          padding: EdgeInsets.symmetric(horizontal: getPadding(constraints)),
-          constraints:
-              BoxConstraints(maxWidth: 1350 + getPadding(constraints) * 2),
-          height: showSections ? 70 : 80,
-          blur: 20,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          alignment: Alignment.topCenter,
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              Row(
-                children: [
-                  Text(
-                    'Kenny Chan',
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w500,
-                      color: scheme.primary,
-                      fontSize: showSections ? 20 : 23,
-                    ),
-                  ),
-                  showSections
-                      ? Container()
-                      : Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 28),
-                              child: TextButton(
-                                child: Text(
-                                  'Home',
-                                  style: fontTheme,
-                                ),
-                                onPressed: () {
-                                  scrollToIndex(0);
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: TextButton(
-                                child: Text(
-                                  'About',
-                                  style: fontTheme,
-                                ),
-                                onPressed: () {
-                                  scrollToIndex(1);
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: TextButton(
-                                child: Text(
-                                  'Work',
-                                  style: fontTheme,
-                                ),
-                                onPressed: () {
-                                  scrollToIndex(2);
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: TextButton(
-                                child: Text(
-                                  'Projects',
-                                  style: fontTheme,
-                                ),
-                                onPressed: () {
-                                  scrollToIndex(3);
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: TextButton(
-                                child: Text(
-                                  'Contact',
-                                  style: fontTheme,
-                                ),
-                                onPressed: () {
-                                  scrollToIndex(4);
-                                },
-                              ),
-                            ),
-                          ],
-                        )
-                ],
+              GlassMorphism(
+                constraints: BoxConstraints(minHeight: showSections ? 70 : 80),
+                blur: 20,
+                opacity: 0,
+                child: Container(),
               ),
-              showMenu
-                  ? showSections
-                      ? menu
-                      : moreMenu
-                  : Row(
+              Container(
+                constraints: BoxConstraints(
+                    maxWidth: 1350 + getPadding(constraints) * 2),
+                padding:
+                    EdgeInsets.symmetric(horizontal: getPadding(constraints)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
                       children: [
-                        Container(child: themePopUpMenu),
-                        Padding(
-                          padding: EdgeInsets.only(left: 24),
-                          child: TextButton(
-                            child: Text(
-                              'Resume',
-                              style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w500,
-                                color: scheme.onSecondaryContainer,
-                                fontSize: 16,
-                              ),
-                            ),
-                            onPressed: () {
-                              openFile("resume.pdf");
-                            },
-                            style: TextButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 20),
-                                backgroundColor: scheme.surface,
-                                shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: scheme.secondaryContainer,
-                                        width: 2),
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(16.0),
-                                        topRight: Radius.circular(16.0),
-                                        bottomLeft: Radius.circular(16.0),
-                                        bottomRight: Radius.circular(16.0)))),
+                        Text(
+                          'KC',
+                          style: TextStyle(
+                            fontFamily: 'Eiko',
+                            fontWeight: FontWeight.w500,
+                            color: scheme.primary,
+                            fontSize: showSections ? 20 : 23,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 24),
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 20),
-                                backgroundColor: scheme.tertiaryContainer,
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(16.0),
-                                        topRight: Radius.circular(16.0),
-                                        bottomLeft: Radius.circular(16.0),
-                                        bottomRight: Radius.circular(16.0)))),
-                            onPressed: () {
-                              mailToHelper();
-                            },
-                            child: Text(
-                              'Contact Me',
-                              style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w500,
-                                color: scheme.onTertiaryContainer,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        )
+                        showSections
+                            ? Container()
+                            : Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 28),
+                                    child: TextButton(
+                                      child: Text(
+                                        'Home',
+                                        style: fontTheme,
+                                      ),
+                                      onPressed: () {
+                                        scrollToIndex(0);
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: TextButton(
+                                      child: Text(
+                                        'About',
+                                        style: fontTheme,
+                                      ),
+                                      onPressed: () {
+                                        scrollToIndex(1);
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: TextButton(
+                                      child: Text(
+                                        'Work',
+                                        style: fontTheme,
+                                      ),
+                                      onPressed: () {
+                                        scrollToIndex(2);
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: TextButton(
+                                      child: Text(
+                                        'Projects',
+                                        style: fontTheme,
+                                      ),
+                                      onPressed: () {
+                                        scrollToIndex(3);
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 20),
+                                    child: TextButton(
+                                      child: Text(
+                                        'Contact',
+                                        style: fontTheme,
+                                      ),
+                                      onPressed: () {
+                                        scrollToIndex(4);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              )
                       ],
-                    )
+                    ),
+                    showMenu
+                        ? showSections
+                            ? menu
+                            : moreMenu
+                        : Row(
+                            children: [
+                              Container(child: themePopUpMenu),
+                              Padding(
+                                padding: EdgeInsets.only(left: 12),
+                                child: IconButton(
+                                  tooltip: 'Resume',
+                                  icon: Icon(
+                                    Icons.contact_page_outlined,
+                                    color: scheme.onBackground,
+                                  ),
+                                  onPressed: () {
+                                    openFile("resume.pdf");
+                                  },
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 24),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 12),
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 20),
+                                      backgroundColor: scheme.tertiaryContainer,
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(16.0),
+                                              topRight: Radius.circular(16.0),
+                                              bottomLeft: Radius.circular(16.0),
+                                              bottomRight:
+                                                  Radius.circular(16.0)))),
+                                  onPressed: () {
+                                    mailToHelper();
+                                  },
+                                  child: Text(
+                                    'Contact Me',
+                                    style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w500,
+                                      color: scheme.onTertiaryContainer,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          )
+                  ],
+                ),
+              )
             ],
-          ),
-          color: scheme.background,
-        ),
-      );
+          ));
     });
   }
 }

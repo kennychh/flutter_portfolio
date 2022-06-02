@@ -3,6 +3,8 @@
 import 'package:adaptive_components/adaptive_components.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:portfolio/components/customAppBar.dart';
 import 'package:portfolio/components/sections/contact.dart';
 import 'package:portfolio/dark_theme_provider.dart';
@@ -144,40 +146,75 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   int? pageIndex;
   bool isMouse = false;
   bool isNavigationRailExtended = false;
+  late AnimationController _ColorAnimationController;
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
   ItemPosition itemPosition =
       ItemPosition(index: 0, itemLeadingEdge: 0, itemTrailingEdge: 1);
   GlobalKey<NavigationRailSectionState> navigationRailGlobalKey = GlobalKey();
+  late final Function _colorTween = (ColorScheme scheme, bool darkMode) {
+    return ColorTween(
+            begin: scheme.background.withOpacity(darkMode ? 0.5 : 0.2),
+            end: scheme.background)
+        .animate(_ColorAnimationController);
+  };
+
+  @override
+  bool get wantKeepAlive => true;
   @override
   void initState() {
     super.initState();
     getItemPosition();
+    _ColorAnimationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 0));
+    _colorTween(ColorScheme scheme, bool darkMode) {
+      return ColorTween(
+              begin: scheme.background.withOpacity(darkMode ? 0.5 : 0.2),
+              end: scheme.background)
+          .animate(_ColorAnimationController);
+    }
+
+    ;
   }
 
   void getItemPosition() {
     itemPositionsListener.itemPositions.addListener(() {
-      var firstItem = itemPositionsListener.itemPositions.value.first;
-      itemPosition = firstItem;
-      if (itemPosition.index != pageIndex) {
-        navigationRailGlobalKey.currentState
-            ?.onDestinationSelected(itemPosition.index, shouldScroll: false);
-      }
+      itemPosition = itemPositionsListener.itemPositions.value.first;
+    });
+  }
+
+  bool _scrollListener(ScrollNotification scrollInfo) {
+    if (scrollInfo.metrics.axis == Axis.vertical) {
+      _ColorAnimationController.animateTo(
+          (scrollInfo.metrics.pixels + previousScrollPositionSave) / 550);
+      previousScrollPosition =
+          scrollInfo.metrics.pixels + previousScrollPositionSave;
+      return true;
+    }
+    return false;
+  }
+
+  void handlePreviousScrollPosition(double position) {
+    setState(() {
+      previousScrollPosition = position;
     });
   }
 
   void _setColorScheme(BuildContext context) {
+    previousScrollPositionSave = previousScrollPosition;
     var darkMode = Theme.of(context).brightness == Brightness.dark;
     MyApp.of(context)?.changeTheme(darkMode ? ThemeMode.light : ThemeMode.dark);
   }
 
   void _setColor(String color) {
     MyApp.of(context)?.changeColor(color);
+    previousScrollPositionSave = previousScrollPosition;
   }
 
   void _setColorChoice(int selected, String color) {
@@ -188,18 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (itemScrollController.isAttached) {
       itemScrollController.scrollTo(
           index: index,
-          duration: const Duration(seconds: 1),
-          curve: Curves.ease);
-    }
-  }
-
-  void scrollToMouseScroll(int index, double alignment, bool down) {
-    double offset = down ? -0.15 : 0.15;
-    if (itemScrollController.isAttached) {
-      itemScrollController.scrollTo(
-          index: index,
-          alignment: alignment + offset,
-          duration: const Duration(milliseconds: 400),
+          duration: const Duration(seconds: 2),
           curve: Curves.ease);
     }
   }
@@ -248,178 +274,97 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       );
-      if (constraints.isMobile) {
-        return Scaffold(
-            backgroundColor: scheme.background,
-            extendBodyBehindAppBar: true,
-            drawerEnableOpenDragGesture: false,
-            appBar: PreferredSize(
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                      constraints: BoxConstraints(maxWidth: 1350),
-                      child: Builder(builder: (context) {
-                        return CustomAppBar(
-                            scrollToIndex: scrollToIndex,
-                            showMenu: showMenu,
-                            showSections: showSections,
-                            moreMenu: morePopUpMenu(
-                                themeChangeProvider: themeChangeProvider,
-                                scheme: scheme,
-                                setColor: _setColor,
-                                setColorChoice: _setColorChoice,
-                                context: context,
-                                scrollToIndex: scrollToIndex,
-                                setColorScheme: () {
-                                  _setColorScheme(context);
-                                }),
-                            themePopUpMenu: themePopUpMenu(
-                                themeChangeProvider: themeChangeProvider,
-                                scheme: scheme,
-                                setColor: _setColor,
-                                setColorChoice: _setColorChoice,
-                                context: context,
-                                scrollToIndex: scrollToIndex,
-                                setColorScheme: () {
-                                  _setColorScheme(context);
-                                }),
-                            menu: fullPopUpMenu(
-                                themeChangeProvider: themeChangeProvider,
-                                scheme: scheme,
-                                setColor: _setColor,
-                                setColorChoice: _setColorChoice,
-                                context: context,
-                                scrollToIndex: scrollToIndex,
-                                setColorScheme: () {
-                                  _setColorScheme(context);
-                                }));
-                      })),
-                ),
-                preferredSize: Size.fromHeight(showMenu ? 70 : 80)),
-            body: LayoutBuilder(
-              builder: (context, constraints) {
-                return ScrollablePositionedList.builder(
+      return Scaffold(
+        backgroundColor: scheme.background,
+        body: NotificationListener<ScrollNotification>(
+          onNotification: _scrollListener,
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Image.asset(
+                gradientImage.imageUrl,
+                fit: BoxFit.cover,
+                height: double.infinity,
+                width: double.infinity,
+                alignment: Alignment.center,
+              ),
+              AnimatedBuilder(
+                animation: _ColorAnimationController,
+                builder: (context, child) => Container(
+                    constraints: BoxConstraints(minHeight: 0),
+                    color: _colorTween(Theme.of(context).colorScheme,
+                            Theme.of(context).brightness == Brightness.dark)
+                        .value),
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height,
+                    maxWidth: MediaQuery.of(context).size.width),
+                child: ScrollablePositionedList.builder(
                   key: UniqueKey(),
                   initialScrollIndex: itemPosition.index,
                   initialAlignment: itemPosition.itemLeadingEdge,
                   itemScrollController: itemScrollController,
                   itemPositionsListener: itemPositionsListener,
+                  itemCount: componentList.length,
                   padding:
                       EdgeInsets.symmetric(horizontal: getPadding(constraints)),
-                  itemCount: componentList.length,
                   itemBuilder: (context, index) {
-                    return AdaptiveContainer(
-                      columnSpan: 12,
-                      child: componentList[index],
+                    return Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                        constraints: BoxConstraints(
+                          maxWidth: 1350,
+                        ),
+                        child: componentList[index],
+                      ),
                     );
                   },
-                );
-              },
-            ),
-            floatingActionButton: fab);
-      }
-      return Scaffold(
-        backgroundColor: scheme.background,
-        body: LayoutBuilder(
-          builder: (context, constraints) {
-            return SafeArea(
-                bottom: false,
-                top: false,
-                child: Row(
-                  children: <Widget>[
-                    !showAppBar
-                        ? Stack(
-                            alignment: Alignment.bottomCenter,
-                            children: [
-                              NavigationRailSection(
-                                key: navigationRailGlobalKey,
-                                onSelectItem: handlePageIndexChanged,
-                                selectedIndex: pageIndex,
-                                scrollToIndex: scrollToIndex,
-                                isExtended: isNavigationRailExtended,
-                              ),
-                              fullPopUpMenu(
-                                  themeChangeProvider: themeChangeProvider,
-                                  scheme: scheme,
-                                  setColor: _setColor,
-                                  setColorChoice: _setColorChoice,
-                                  context: context,
-                                  scrollToIndex: scrollToIndex,
-                                  setColorScheme: () {
-                                    _setColorScheme(context);
-                                  })
-                            ],
-                          )
-                        : Container(),
-                    Expanded(
-                      child: ScrollablePositionedList.builder(
-                        key: UniqueKey(),
-                        initialScrollIndex: itemPosition.index,
-                        initialAlignment: itemPosition.itemLeadingEdge,
-                        itemScrollController: itemScrollController,
-                        itemPositionsListener: itemPositionsListener,
-                        itemCount: componentList.length,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: getPadding(constraints)),
-                        itemBuilder: (context, index) {
-                          return Align(
-                            alignment: Alignment.topCenter,
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 1350,
-                              ),
-                              child: componentList[index],
-                            ),
-                          );
-                        },
-                      ),
-                    )
-                  ],
-                ));
-          },
+                ),
+              )
+            ],
+          ),
         ),
         floatingActionButton: showMenu ? fab : null,
         extendBodyBehindAppBar: true,
         appBar: showAppBar
             ? PreferredSize(
-                child: Container(
-                    constraints: BoxConstraints(maxWidth: 1350),
-                    child: Builder(builder: (context) {
-                      return CustomAppBar(
+                child: Builder(builder: (context) {
+                  return CustomAppBar(
+                      scrollToIndex: scrollToIndex,
+                      showMenu: showMenu,
+                      showSections: showSections,
+                      moreMenu: morePopUpMenu(
+                          themeChangeProvider: themeChangeProvider,
+                          scheme: scheme,
+                          setColor: _setColor,
+                          setColorChoice: _setColorChoice,
+                          context: context,
                           scrollToIndex: scrollToIndex,
-                          showMenu: showMenu,
-                          showSections: showSections,
-                          moreMenu: morePopUpMenu(
-                              themeChangeProvider: themeChangeProvider,
-                              scheme: scheme,
-                              setColor: _setColor,
-                              setColorChoice: _setColorChoice,
-                              context: context,
-                              scrollToIndex: scrollToIndex,
-                              setColorScheme: () {
-                                _setColorScheme(context);
-                              }),
-                          themePopUpMenu: themePopUpMenu(
-                              themeChangeProvider: themeChangeProvider,
-                              scheme: scheme,
-                              setColor: _setColor,
-                              setColorChoice: _setColorChoice,
-                              context: context,
-                              scrollToIndex: scrollToIndex,
-                              setColorScheme: () {
-                                _setColorScheme(context);
-                              }),
-                          menu: fullPopUpMenu(
-                              themeChangeProvider: themeChangeProvider,
-                              scheme: scheme,
-                              setColor: _setColor,
-                              setColorChoice: _setColorChoice,
-                              context: context,
-                              scrollToIndex: scrollToIndex,
-                              setColorScheme: () {
-                                _setColorScheme(context);
-                              }));
-                    })),
+                          setColorScheme: () {
+                            _setColorScheme(context);
+                          }),
+                      themePopUpMenu: themePopUpMenu(
+                          themeChangeProvider: themeChangeProvider,
+                          scheme: scheme,
+                          setColor: _setColor,
+                          setColorChoice: _setColorChoice,
+                          context: context,
+                          scrollToIndex: scrollToIndex,
+                          setColorScheme: () {
+                            _setColorScheme(context);
+                          }),
+                      menu: fullPopUpMenu(
+                          themeChangeProvider: themeChangeProvider,
+                          scheme: scheme,
+                          setColor: _setColor,
+                          setColorChoice: _setColorChoice,
+                          context: context,
+                          scrollToIndex: scrollToIndex,
+                          setColorScheme: () {
+                            _setColorScheme(context);
+                          }));
+                }),
                 preferredSize: Size.fromHeight(showMenu ? 70 : 80))
             : null,
       );

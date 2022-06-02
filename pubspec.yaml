@@ -76,9 +76,9 @@ flutter:
         - asset: fonts/Poppins-Bold.ttf
         - asset: fonts/Poppins-ExtraBold.ttf
 
-    - family: AppIcons
+    - family: Eiko
       fonts:
-        - asset: fonts/AppIcons.ttf
+        - asset: fonts/PPEiko-Medium.otf
 
   # To add assets to your application, add an assets section, like this:
   assets:
