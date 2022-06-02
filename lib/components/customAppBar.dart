@@ -55,7 +55,7 @@ class CustomAppBar extends StatelessWidget {
                         Text(
                           'KC',
                           style: TextStyle(
-                            fontFamily: 'Eiko',
+                            fontFamily: 'Rany',
                             fontWeight: FontWeight.w500,
                             color: scheme.primary,
                             fontSize: showSections ? 20 : 23,
@@ -159,17 +159,13 @@ class CustomAppBar extends StatelessWidget {
                                           horizontal: 24, vertical: 20),
                                       backgroundColor: scheme.tertiaryContainer,
                                       shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(16.0),
-                                              topRight: Radius.circular(16.0),
-                                              bottomLeft: Radius.circular(16.0),
-                                              bottomRight:
-                                                  Radius.circular(16.0)))),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(16)))),
                                   onPressed: () {
                                     mailToHelper();
                                   },
                                   child: Text(
-                                    'Contact Me',
+                                    'Let\'s Chat',
                                     style: GoogleFonts.poppins(
                                       fontWeight: FontWeight.w500,
                                       color: scheme.onTertiaryContainer,

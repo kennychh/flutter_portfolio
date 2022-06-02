@@ -19,7 +19,7 @@ class Work extends StatelessWidget {
             Text(
               'Work Experience',
               style: TextStyle(
-                  fontFamily: 'Eiko',
+                  fontFamily: 'Rany',
                   color: scheme.onBackground,
                   fontSize: 40,
                   fontWeight: FontWeight.w500),
@@ -45,7 +45,7 @@ class Work extends StatelessWidget {
           Text(
             'Work Experience',
             style: TextStyle(
-                fontFamily: 'Eiko',
+                fontFamily: 'Rany',
                 color: scheme.onBackground,
                 fontSize: 45,
                 fontWeight: FontWeight.w500),

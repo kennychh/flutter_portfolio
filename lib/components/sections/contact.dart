@@ -21,7 +21,7 @@ class Contact extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                   child: Text('Thanks for stopping by!',
                       style: TextStyle(
-                          fontFamily: 'Eiko',
+                          fontFamily: 'Rany',
                           color: scheme.primary,
                           fontSize: 45,
                           fontWeight: FontWeight.w500))),

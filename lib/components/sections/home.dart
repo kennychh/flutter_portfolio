@@ -19,17 +19,18 @@ class Home extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: Text('Kenny Chan',
                     style: TextStyle(
-                        fontFamily: 'Eiko',
-                        color: scheme.primary,
+                        fontFamily: 'Rany',
+                        color: scheme.onBackground,
                         fontSize: 150,
                         fontWeight: FontWeight.w500)),
               ),
+              spaceH50,
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
                   'Software Developer',
                   style: TextStyle(
-                      fontFamily: 'Eiko',
+                      fontFamily: 'Rany',
                       color: scheme.secondary,
                       fontSize: 30,
                       fontWeight: FontWeight.w500),

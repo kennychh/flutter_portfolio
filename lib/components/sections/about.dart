@@ -36,7 +36,7 @@ class About extends StatelessWidget {
             Text(
               'About Me',
               style: TextStyle(
-                  fontFamily: 'Eiko',
+                  fontFamily: 'Rany',
                   color: scheme.onBackground,
                   fontSize: 40,
                   fontWeight: FontWeight.w500),
@@ -45,7 +45,7 @@ class About extends StatelessWidget {
             Text(
               'Get to know about me',
               style: TextStyle(
-                  fontFamily: 'Eiko',
+                  fontFamily: 'Rany',
                   color: scheme.secondary,
                   fontSize: 24,
                   fontWeight: FontWeight.w500),
@@ -84,7 +84,7 @@ class About extends StatelessWidget {
             Text(
               'Technical tools',
               style: TextStyle(
-                  fontFamily: 'Eiko',
+                  fontFamily: 'Rany',
                   color: scheme.secondary,
                   fontSize: 24,
                   fontWeight: FontWeight.w500),
@@ -199,15 +199,16 @@ class About extends StatelessWidget {
                         Text(
                           'About',
                           style: TextStyle(
-                              fontFamily: 'Eiko',
+                              fontFamily: 'Rany',
                               color: scheme.onBackground,
                               fontSize: 45,
                               fontWeight: FontWeight.w500),
                         ),
+                        spaceH10,
                         Text(
                           'Get to know about me',
                           style: TextStyle(
-                              fontFamily: 'Eiko',
+                              fontFamily: 'Rany',
                               color: scheme.secondary,
                               fontSize: 30,
                               fontWeight: FontWeight.w500),
@@ -311,7 +312,7 @@ class About extends StatelessWidget {
                         Text(
                           'Technical tools I\'ve been working with',
                           style: TextStyle(
-                              fontFamily: 'Eiko',
+                              fontFamily: 'Rany',
                               color: scheme.secondary,
                               fontSize: 30,
                               fontWeight: FontWeight.w500),

@@ -160,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage>
   GlobalKey<NavigationRailSectionState> navigationRailGlobalKey = GlobalKey();
   late final Function _colorTween = (ColorScheme scheme, bool darkMode) {
     return ColorTween(
-            begin: scheme.background.withOpacity(darkMode ? 0.5 : 0.2),
+            begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.2),
             end: scheme.background)
         .animate(_ColorAnimationController);
   };
@@ -175,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage>
         AnimationController(vsync: this, duration: Duration(seconds: 0));
     _colorTween(ColorScheme scheme, bool darkMode) {
       return ColorTween(
-              begin: scheme.background.withOpacity(darkMode ? 0.5 : 0.2),
+              begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.2),
               end: scheme.background)
           .animate(_ColorAnimationController);
     }
