@@ -120,10 +120,11 @@ class _MyAppState extends State<MyApp> {
 
   void changeColor(String _color) {
     setState(() {
-      themeChangeProvider.gradientImageUrl = "./assets/${_color}_gradient.png";
+      themeChangeProvider.gradientImageUrl =
+          "./assets/${_color}_gradient_1.png";
       themeChangeProvider.color = _color;
       gradientImage = ParallaxItem(
-        imageUrl: "./assets/${_color}_gradient.png",
+        imageUrl: "./assets/${_color}_gradient_1.png",
       );
     });
   }

@@ -11,7 +11,8 @@ class Contact extends StatelessWidget {
     ColorScheme scheme = Theme.of(context).colorScheme;
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-          constraints: const BoxConstraints(maxHeight: 650),
+          constraints:
+              BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -19,7 +20,7 @@ class Contact extends StatelessWidget {
               const Spacer(),
               FittedBox(
                   fit: BoxFit.scaleDown,
-                  child: Text('Thanks for stopping by!',
+                  child: Text('Get in touch',
                       style: TextStyle(
                           fontFamily: 'Rany',
                           color: scheme.primary,

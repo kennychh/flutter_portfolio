@@ -84,6 +84,18 @@ flutter:
       fonts:
         - asset: fonts/Rany-Medium.otf
 
+    - family: Enjoy
+      fonts:
+        - asset: fonts/Enjoy-Regular.otf
+
+    - family: Quanty
+      fonts:
+        - asset: fonts/Quanty.otf
+
+    - family: Visuelt
+      fonts:
+        - asset: fonts/VisueltPro-Medium.ttf
+
     - family: NeueMontreal
       fonts:
         - asset: fonts/PPNeueMontreal-Book.otf
@@ -105,7 +117,11 @@ flutter:
     - assets/memoji_1.png
     - assets/memoji_2.png
     - assets/resume.pdf
-    - assets/background.png
+    - assets/purple_gradient_1.png
+    - assets/pink_gradient_1.png
+    - assets/green_gradient_1.png
+    - assets/blue_gradient_1.png
+    - assets/orange_gradient_1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

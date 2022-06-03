@@ -9,7 +9,7 @@ class DarkThemeProvider with ChangeNotifier {
       SchedulerBinding.instance.window.platformBrightness == Brightness.dark;
   String _color = 'purple';
   int _selected = colors.indexOf('purple');
-  String _gradientImageUrl = './assets/purple_gradient.png';
+  String _gradientImageUrl = './assets/purple_gradient_1.png';
 
   bool get darkTheme => _darkTheme;
   String get color => _color;

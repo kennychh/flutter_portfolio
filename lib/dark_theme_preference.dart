@@ -47,6 +47,6 @@ class DarkThemePreference {
 
   Future<String> getGradientImageUrl() async {
     var prefs = await Hive.openBox('Storage');
-    return prefs.get(GRADIENT_IMAGE_STATUS) ?? './assets/purple_gradient.png';
+    return prefs.get(GRADIENT_IMAGE_STATUS) ?? './assets/purple_gradient_1.png';
   }
 }

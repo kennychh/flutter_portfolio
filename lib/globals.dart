@@ -113,7 +113,7 @@ const projectsItems = [
 ];
 
 var gradientImage = const ParallaxItem(
-  imageUrl: './assets/purple_gradient.png',
+  imageUrl: './assets/purple_gradient_1.png',
 );
 
 extension BreakpointUtils on BoxConstraints {
