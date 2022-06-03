@@ -52,31 +52,32 @@ class CustomAppBar extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          'KC',
-                          style: TextStyle(
-                            fontFamily: 'Rany',
-                            fontWeight: FontWeight.w500,
-                            color: scheme.onBackground,
-                            fontSize: showSections ? 20 : 23,
+                        TextButton(
+                          style: ButtonStyle(
+                            splashFactory: NoSplash.splashFactory,
+                            overlayColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                return Colors.transparent;
+                              },
+                            ),
                           ),
+                          child: Text(
+                            'KC',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w500,
+                              color: scheme.onBackground,
+                              fontSize: showSections ? 20 : 23,
+                            ),
+                          ),
+                          onPressed: () {
+                            scrollToIndex(0);
+                          },
                         ),
                         showSections
                             ? Container()
                             : Row(
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 28),
-                                    child: TextButton(
-                                      child: Text(
-                                        'Home',
-                                        style: fontTheme,
-                                      ),
-                                      onPressed: () {
-                                        scrollToIndex(0);
-                                      },
-                                    ),
-                                  ),
                                   Padding(
                                     padding: EdgeInsets.only(left: 20),
                                     child: TextButton(

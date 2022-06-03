@@ -21,10 +21,12 @@ class Contact extends StatelessWidget {
               FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text('Get in touch',
-                      style: GoogleFonts.poppins(
-                          color: scheme.primary,
-                          fontSize: 45,
-                          fontWeight: FontWeight.w500))),
+                      style: TextStyle(
+                          fontFamily: 'Euclid',
+                          letterSpacing: -4,
+                          color: scheme.onBackground,
+                          fontSize: 130,
+                          fontWeight: FontWeight.w600))),
               spaceH25,
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 760),

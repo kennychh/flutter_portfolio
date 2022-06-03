@@ -96,6 +96,13 @@ flutter:
       fonts:
         - asset: fonts/VisueltPro-Medium.ttf
 
+    - family: Euclid
+      fonts:
+        - asset: fonts/Euclid-Medium.ttf
+          weight: 500
+        - asset: fonts/Euclid-SemiBold.ttf
+          weight: 600
+
     - family: NeueMontreal
       fonts:
         - asset: fonts/PPNeueMontreal-Book.otf

@@ -19,12 +19,12 @@ class Home extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: Text('Kenny Chan',
                     style: TextStyle(
-                        fontFamily: 'Rany',
+                        fontFamily: 'Euclid',
+                        letterSpacing: -4,
                         color: scheme.onBackground,
                         fontSize: 130,
-                        fontWeight: FontWeight.w500)),
+                        fontWeight: FontWeight.w600)),
               ),
-              spaceH25,
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
@@ -37,7 +37,7 @@ class Home extends StatelessWidget {
               ),
               spaceH25,
               ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 760),
+                constraints: BoxConstraints(maxWidth: 720),
                 child: Text(
                   textAlign: TextAlign.center,
                   homeDescription,

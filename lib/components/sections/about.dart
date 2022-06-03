@@ -34,11 +34,13 @@ class About extends StatelessWidget {
             appBarOffsetContainer,
             spaceH25,
             Text(
-              'About Me',
-              style: GoogleFonts.poppins(
+              'About',
+              style: TextStyle(
+                  fontFamily: 'Euclid',
+                  letterSpacing: -1,
                   color: scheme.onBackground,
                   fontSize: 40,
-                  fontWeight: FontWeight.w500),
+                  fontWeight: FontWeight.w600),
             ),
             spaceH10,
             Text(
@@ -195,10 +197,12 @@ class About extends StatelessWidget {
                       children: [
                         Text(
                           'About',
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
+                              fontFamily: 'Euclid',
+                              letterSpacing: -1,
                               color: scheme.onBackground,
                               fontSize: 45,
-                              fontWeight: FontWeight.w500),
+                              fontWeight: FontWeight.w600),
                         ),
                         spaceH10,
                         Text(
