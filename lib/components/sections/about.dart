@@ -35,8 +35,7 @@ class About extends StatelessWidget {
             spaceH25,
             Text(
               'About Me',
-              style: TextStyle(
-                  fontFamily: 'Rany',
+              style: GoogleFonts.poppins(
                   color: scheme.onBackground,
                   fontSize: 40,
                   fontWeight: FontWeight.w500),
@@ -44,8 +43,7 @@ class About extends StatelessWidget {
             spaceH10,
             Text(
               'Get to know about me',
-              style: TextStyle(
-                  fontFamily: 'Rany',
+              style: GoogleFonts.poppins(
                   color: scheme.secondary,
                   fontSize: 24,
                   fontWeight: FontWeight.w500),
@@ -83,8 +81,7 @@ class About extends StatelessWidget {
             spaceH50,
             Text(
               'Technical tools',
-              style: TextStyle(
-                  fontFamily: 'Rany',
+              style: GoogleFonts.poppins(
                   color: scheme.secondary,
                   fontSize: 24,
                   fontWeight: FontWeight.w500),
@@ -198,8 +195,7 @@ class About extends StatelessWidget {
                       children: [
                         Text(
                           'About',
-                          style: TextStyle(
-                              fontFamily: 'Rany',
+                          style: GoogleFonts.poppins(
                               color: scheme.onBackground,
                               fontSize: 45,
                               fontWeight: FontWeight.w500),
@@ -207,8 +203,7 @@ class About extends StatelessWidget {
                         spaceH10,
                         Text(
                           'Get to know about me',
-                          style: TextStyle(
-                              fontFamily: 'Rany',
+                          style: GoogleFonts.poppins(
                               color: scheme.secondary,
                               fontSize: 30,
                               fontWeight: FontWeight.w500),
@@ -311,8 +306,7 @@ class About extends StatelessWidget {
                         spaceH50,
                         Text(
                           'Technical tools I\'ve been working with',
-                          style: TextStyle(
-                              fontFamily: 'Rany',
+                          style: GoogleFonts.poppins(
                               color: scheme.secondary,
                               fontSize: 30,
                               fontWeight: FontWeight.w500),

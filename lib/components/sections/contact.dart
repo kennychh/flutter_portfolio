@@ -21,8 +21,7 @@ class Contact extends StatelessWidget {
               FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text('Get in touch',
-                      style: TextStyle(
-                          fontFamily: 'Rany',
+                      style: GoogleFonts.poppins(
                           color: scheme.primary,
                           fontSize: 45,
                           fontWeight: FontWeight.w500))),

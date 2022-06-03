@@ -29,8 +29,7 @@ class _NotFoundPageState extends State<NotFoundPage> {
                     FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text('Uh Oh! This page isn\'t available.',
-                          style: TextStyle(
-                              fontFamily: 'Rany',
+                          style: GoogleFonts.poppins(
                               color: scheme.primary,
                               fontSize: 60,
                               fontWeight: FontWeight.w500)),

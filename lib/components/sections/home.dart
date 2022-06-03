@@ -21,16 +21,15 @@ class Home extends StatelessWidget {
                     style: TextStyle(
                         fontFamily: 'Rany',
                         color: scheme.onBackground,
-                        fontSize: 150,
+                        fontSize: 130,
                         fontWeight: FontWeight.w500)),
               ),
-              spaceH50,
+              spaceH25,
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
                   'Software Developer',
-                  style: TextStyle(
-                      fontFamily: 'Rany',
+                  style: GoogleFonts.poppins(
                       color: scheme.secondary,
                       fontSize: 30,
                       fontWeight: FontWeight.w500),
