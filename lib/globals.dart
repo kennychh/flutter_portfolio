@@ -14,8 +14,8 @@ import 'components/parallax.dart';
 const seed = Color(0xFF5F51A4);
 
 // Color Schemes
-var colors = ['purple', 'blue', 'green', 'orange', 'pink'];
-var selectedColor = 'purple';
+var colors = ['Purple', 'Blue', 'Green', 'Orange', 'Pink'];
+var selectedColor = 'Purple';
 var selected = colors.indexOf(selectedColor);
 
 TextStyle textFont(ColorScheme scheme,
@@ -52,19 +52,19 @@ double previousScrollPosition = 0;
 double previousScrollPositionSave = 0;
 
 Map<String, ColorScheme?> darkColorSchemes = {
-  'purple': purpleDarkColorScheme,
-  'blue': blueDarkColorScheme,
-  'green': greenDarkColorScheme,
-  'orange': orangeDarkColorScheme,
-  'pink': pinkDarkColorScheme
+  'Purple': purpleDarkColorScheme,
+  'Blue': blueDarkColorScheme,
+  'Green': greenDarkColorScheme,
+  'Orange': orangeDarkColorScheme,
+  'Pink': pinkDarkColorScheme
 };
 
 Map<String, ColorScheme?> lightColorSchemes = {
-  'purple': purpleLightColorScheme,
-  'blue': blueLightColorScheme,
-  'green': greenLightColorScheme,
-  'orange': orangeLightColorScheme,
-  'pink': pinkLightColorScheme
+  'Purple': purpleLightColorScheme,
+  'Blue': blueLightColorScheme,
+  'Green': greenLightColorScheme,
+  'Orange': orangeLightColorScheme,
+  'Pink': pinkLightColorScheme
 };
 
 // Whitespace
@@ -279,74 +279,35 @@ void openColorPickerDialog(BuildContext context, Function setColor,
             fontWeight: FontWeight.w500,
             color: scheme.onBackground,
           )),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(
-              child: ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: 0, minWidth: 400),
-          )),
-          RadioListTile(
-              activeColor: scheme.onSurfaceVariant,
-              value: 0,
-              selected: selected == 0,
-              groupValue: selected,
-              onChanged: (value) {
-                setColorChoice(0, 'purple');
-              },
-              title: Text(
-                'Purple',
-                style: radioListTileTheme,
-              )),
-          RadioListTile(
-              activeColor: scheme.onSurfaceVariant,
-              value: 1,
-              selected: selected == 1,
-              groupValue: selected,
-              onChanged: (value) {
-                setColorChoice(1, 'blue');
-              },
-              title: Text(
-                'Blue',
-                style: radioListTileTheme,
-              )),
-          RadioListTile(
-              activeColor: scheme.onSurfaceVariant,
-              value: 2,
-              selected: selected == 2,
-              groupValue: selected,
-              onChanged: (value) {
-                setColorChoice(2, 'green');
-              },
-              title: Text(
-                'Green',
-                style: radioListTileTheme,
-              )),
-          RadioListTile(
-              activeColor: scheme.onSurfaceVariant,
-              value: 3,
-              selected: selected == 3,
-              groupValue: selected,
-              onChanged: (value) {
-                setColorChoice(3, 'orange');
-              },
-              title: Text(
-                'Orange',
-                style: radioListTileTheme,
-              )),
-          RadioListTile(
-              activeColor: scheme.onSurfaceVariant,
-              value: 4,
-              selected: selected == 4,
-              groupValue: selected,
-              onChanged: (value) {
-                setColorChoice(4, 'pink');
-              },
-              title: Text(
-                'Pink',
-                style: radioListTileTheme,
-              )),
-        ],
+      content: Container(
+        width: MediaQuery.of(context).size.width < 730 ? double.maxFinite : 500,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.4,
+              ),
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: colors.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return RadioListTile(
+                        activeColor: scheme.onSurfaceVariant,
+                        title: Text(
+                          colors[index],
+                          style: radioListTileTheme,
+                        ),
+                        value: index,
+                        selected: selected == index,
+                        groupValue: selected,
+                        onChanged: (value) {
+                          setColorChoice(index, colors[index]);
+                        });
+                  }),
+            ),
+          ],
+        ),
       ),
       actions: <Widget>[
         TextButton(
@@ -406,6 +367,7 @@ PopupMenuButton themePopUpMenu(
       padding: EdgeInsets.zero,
       tooltip: 'More',
       color: scheme.surface,
+      position: PopupMenuPosition.under,
       icon: Align(
         alignment: Alignment.centerRight,
         child: Icon(Icons.auto_awesome_outlined, color: scheme.onBackground),
@@ -475,8 +437,8 @@ PopupMenuButton morePopUpMenu(
   return PopupMenuButton<int>(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       padding: EdgeInsets.zero,
+      position: PopupMenuPosition.under,
       tooltip: 'More',
-      elevation: 20,
       color: scheme.surface,
       icon: Align(
         alignment: Alignment.centerRight,
@@ -568,6 +530,7 @@ PopupMenuButton fullPopUpMenu(
   return PopupMenuButton<int>(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       padding: EdgeInsets.zero,
+      position: PopupMenuPosition.under,
       tooltip: 'Menu',
       color: scheme.surface,
       icon: Align(

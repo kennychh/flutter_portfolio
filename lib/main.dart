@@ -160,12 +160,10 @@ class _MyHomePageState extends State<MyHomePage>
   ItemPosition itemPosition =
       ItemPosition(index: 0, itemLeadingEdge: 0, itemTrailingEdge: 1);
   GlobalKey<NavigationRailSectionState> navigationRailGlobalKey = GlobalKey();
-  late final Function _colorTween = (ColorScheme scheme, bool darkMode) {
-    return ColorTween(
-            begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.3),
-            end: scheme.background)
-        .animate(_ColorAnimationController);
-  };
+  _colorTween(ColorScheme scheme, bool darkMode) => ColorTween(
+          begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.2),
+          end: scheme.background)
+      .animate(_ColorAnimationController);
 
   @override
   bool get wantKeepAlive => true;
@@ -175,12 +173,6 @@ class _MyHomePageState extends State<MyHomePage>
     getItemPosition();
     _ColorAnimationController =
         AnimationController(vsync: this, duration: Duration(seconds: 0));
-    _colorTween(ColorScheme scheme, bool darkMode) {
-      return ColorTween(
-              begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.3),
-              end: scheme.background)
-          .animate(_ColorAnimationController);
-    }
 
     ;
   }
