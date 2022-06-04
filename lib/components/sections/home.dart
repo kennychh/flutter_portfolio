@@ -7,7 +7,9 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
+
     return LayoutBuilder(builder: (context, constraints) {
+      double titleFontSize = constraints.isTablet ? 72 : 55;
       return Container(
           constraints:
               BoxConstraints(minHeight: MediaQuery.of(context).size.height),
@@ -15,35 +17,22 @@ class Home extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               appBarOffsetContainer,
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text('Kenny Chan',
-                    style: TextStyle(
-                        fontFamily: 'Euclid',
-                        letterSpacing: -4,
-                        color: scheme.onBackground,
-                        fontSize: 130,
-                        fontWeight: FontWeight.w600)),
-              ),
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  'Software Developer',
-                  style: GoogleFonts.poppins(
-                      color: scheme.secondary,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w500),
-                ),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 780),
+                child: Text('Software Developer with a passion for design',
+                    textAlign: TextAlign.center,
+                    style: titleFont(scheme,
+                        letterSpacing: -4, fontSize: titleFontSize)),
               ),
               spaceH25,
               ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 720),
+                constraints: const BoxConstraints(maxWidth: 760),
                 child: Text(
                   textAlign: TextAlign.center,
                   homeDescription,
                   style: GoogleFonts.poppins(
                       color: scheme.onBackground,
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.w400),
                 ),
               ),

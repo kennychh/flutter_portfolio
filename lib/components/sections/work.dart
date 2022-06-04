@@ -18,12 +18,7 @@ class Work extends StatelessWidget {
             spaceH25,
             Text(
               'Work Experience',
-              style: TextStyle(
-                  fontFamily: 'Euclid',
-                  letterSpacing: -1,
-                  color: scheme.onBackground,
-                  fontSize: 40,
-                  fontWeight: FontWeight.w600),
+              style: titleFont(scheme, fontSize: 40),
             ),
             spaceH25,
             for (final item in workExperienceItems)
@@ -45,12 +40,7 @@ class Work extends StatelessWidget {
           spaceH25,
           Text(
             'Work Experience',
-            style: TextStyle(
-                fontFamily: 'Euclid',
-                letterSpacing: -1,
-                color: scheme.onBackground,
-                fontSize: 45,
-                fontWeight: FontWeight.w600),
+            style: titleFont(scheme),
           ),
           spaceH50,
           for (final item in workExperienceItems)

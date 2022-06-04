@@ -18,6 +18,36 @@ var colors = ['purple', 'blue', 'green', 'orange', 'pink'];
 var selectedColor = 'purple';
 var selected = colors.indexOf(selectedColor);
 
+TextStyle textFont(ColorScheme scheme,
+        {FontWeight fontWeight = FontWeight.w400, double fontSize = 18}) =>
+    TextStyle(
+        fontFamily: 'Euclid',
+        color: scheme.onBackground,
+        fontSize: fontSize,
+        fontWeight: fontWeight);
+
+TextStyle titleFont(ColorScheme scheme,
+        {FontWeight fontWeight = FontWeight.w600,
+        double fontSize = 45,
+        double letterSpacing = -1}) =>
+    TextStyle(
+        fontFamily: 'Euclid',
+        letterSpacing: letterSpacing,
+        color: scheme.onBackground,
+        fontSize: fontSize,
+        fontWeight: fontWeight);
+
+TextStyle subtitleFont(ColorScheme scheme,
+        {FontWeight fontWeight = FontWeight.w500,
+        double fontSize = 30,
+        double letterSpacing = -1}) =>
+    TextStyle(
+        fontFamily: 'Euclid',
+        letterSpacing: letterSpacing,
+        color: scheme.secondary,
+        fontSize: fontSize,
+        fontWeight: fontWeight);
+
 double previousScrollPosition = 0;
 double previousScrollPositionSave = 0;
 
@@ -71,7 +101,7 @@ const aboutDescription2 =
 const aboutTechToolsDescription =
     'Throughout my journey as a Software Developer, I have acquired various skills that helped me build a multitude of digital experiences, using different programming languages, tools, etc. I am experienced in building mobile apps with React Native, and I am expanding my knowledge with Flutter to create apps for mobile and the web. Here are other notable technical skills that I am also proficient with:';
 const homeDescription =
-    'I\'m currently majoring in Cognitive Science and minoring in Computer Science at University of Toronto. I specialize in implementing elegant and user-friendly digital experiences.';
+    'Hi there, I\'m Kenny! I specialize in implementing elegant and user-friendly digital experiences.';
 
 const contactDescription =
     'Feel free to reach out anytime! Whether you have a question, a job opportunity, or just want to chat, my inbox is always open!';

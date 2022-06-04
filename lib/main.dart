@@ -23,6 +23,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:provider/provider.dart';
+import 'dart:math' as math;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -161,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage>
   GlobalKey<NavigationRailSectionState> navigationRailGlobalKey = GlobalKey();
   late final Function _colorTween = (ColorScheme scheme, bool darkMode) {
     return ColorTween(
-            begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.2),
+            begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.3),
             end: scheme.background)
         .animate(_ColorAnimationController);
   };
@@ -176,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage>
         AnimationController(vsync: this, duration: Duration(seconds: 0));
     _colorTween(ColorScheme scheme, bool darkMode) {
       return ColorTween(
-              begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.2),
+              begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.3),
               end: scheme.background)
           .animate(_ColorAnimationController);
     }

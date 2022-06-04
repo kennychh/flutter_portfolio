@@ -35,26 +35,18 @@ class About extends StatelessWidget {
             spaceH25,
             Text(
               'About',
-              style: TextStyle(
-                  fontFamily: 'Euclid',
-                  letterSpacing: -1,
-                  color: scheme.onBackground,
-                  fontSize: 40,
-                  fontWeight: FontWeight.w600),
+              style: titleFont(scheme, fontSize: 40),
             ),
             spaceH10,
             Text(
               'Get to know about me',
-              style: GoogleFonts.poppins(
-                  color: scheme.secondary,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500),
+              style: subtitleFont(scheme, fontSize: 24),
             ),
             spaceH25,
             AspectRatio(
               aspectRatio: 16 / 9,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(32),
+                borderRadius: BorderRadius.circular(36),
                 child: Container(
                   decoration: BoxDecoration(color: scheme.surface),
                   child: Image.asset(
@@ -83,10 +75,7 @@ class About extends StatelessWidget {
             spaceH50,
             Text(
               'Technical tools',
-              style: GoogleFonts.poppins(
-                  color: scheme.secondary,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500),
+              style: subtitleFont(scheme, fontSize: 26),
             ),
             spaceH25,
             Align(
@@ -197,12 +186,7 @@ class About extends StatelessWidget {
                       children: [
                         Text(
                           'About',
-                          style: TextStyle(
-                              fontFamily: 'Euclid',
-                              letterSpacing: -1,
-                              color: scheme.onBackground,
-                              fontSize: 45,
-                              fontWeight: FontWeight.w600),
+                          style: titleFont(scheme),
                         ),
                         spaceH10,
                         Text(

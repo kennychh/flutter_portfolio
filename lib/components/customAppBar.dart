@@ -63,9 +63,10 @@ class CustomAppBar extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            'KC',
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w500,
+                            'Kenny Chan',
+                            style: TextStyle(
+                              fontFamily: 'Euclid',
+                              fontWeight: FontWeight.w600,
                               color: scheme.onBackground,
                               fontSize: showSections ? 20 : 23,
                             ),
