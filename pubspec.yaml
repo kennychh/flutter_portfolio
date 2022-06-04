@@ -117,22 +117,17 @@ flutter:
     - assets/hellofresh.jpg
     - assets/weather.png
     - assets/weather_js.png
-    - assets/purple_gradient.png
-    - assets/pink_gradient.png
-    - assets/green_gradient.png
-    - assets/blue_gradient.png
-    - assets/orange_gradient.png
     - assets/memoji.png
     - assets/memoji_1.png
     - assets/memoji_2.png
     - assets/resume.pdf
-    - assets/purple_gradient_1.png
-    - assets/pink_gradient_1.png
-    - assets/green_gradient_1.png
-    - assets/blue_gradient_1.png
-    - assets/orange_gradient_1.png
-    - assets/purple_gradient_2.png
-    - assets/purple_gradient_3.png
+    - assets/Purple_gradient_1.png
+    - assets/Pink_gradient_1.png
+    - assets/Green_gradient_1.png
+    - assets/Blue_gradient_1.png
+    - assets/Orange_gradient_1.png
+    - assets/Purple_gradient_2.png
+    - assets/Purple_gradient_3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
