@@ -159,7 +159,7 @@ class CustomAppBar extends StatelessWidget {
                                   style: TextButton.styleFrom(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 24, vertical: 20),
-                                      backgroundColor: scheme.tertiaryContainer,
+                                      backgroundColor: scheme.primaryContainer,
                                       shape: const RoundedRectangleBorder(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(16)))),
@@ -170,7 +170,7 @@ class CustomAppBar extends StatelessWidget {
                                     'Let\'s Chat',
                                     style: GoogleFonts.poppins(
                                       fontWeight: FontWeight.w500,
-                                      color: scheme.onTertiaryContainer,
+                                      color: scheme.onPrimaryContainer,
                                       fontSize: 16,
                                     ),
                                   ),

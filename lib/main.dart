@@ -160,10 +160,9 @@ class _MyHomePageState extends State<MyHomePage>
   ItemPosition itemPosition =
       ItemPosition(index: 0, itemLeadingEdge: 0, itemTrailingEdge: 1);
   GlobalKey<NavigationRailSectionState> navigationRailGlobalKey = GlobalKey();
-  _colorTween(ColorScheme scheme, bool darkMode) => ColorTween(
-          begin: scheme.surface.withOpacity(darkMode ? 0.5 : 0.2),
-          end: scheme.background)
-      .animate(_ColorAnimationController);
+  _colorTween(ColorScheme scheme, bool darkMode) =>
+      ColorTween(begin: scheme.surface, end: scheme.background)
+          .animate(_ColorAnimationController);
 
   @override
   bool get wantKeepAlive => true;
@@ -258,13 +257,13 @@ class _MyHomePageState extends State<MyHomePage>
             bottom: getPadding(constraints) - 16),
         child: FloatingActionButton(
           elevation: 0,
-          backgroundColor: scheme.tertiaryContainer,
+          backgroundColor: scheme.primaryContainer,
           onPressed: () {
             mailToHelper();
           },
           child: Icon(
             Icons.chat_bubble_outline,
-            color: scheme.onTertiaryContainer,
+            color: scheme.onPrimaryContainer,
           ),
         ),
       );
@@ -275,21 +274,21 @@ class _MyHomePageState extends State<MyHomePage>
           child: Stack(
             clipBehavior: Clip.none,
             children: [
-              Image.asset(
-                gradientImage.imageUrl,
-                fit: BoxFit.cover,
-                height: double.infinity,
-                width: double.infinity,
-                alignment: Alignment.center,
-              ),
-              AnimatedBuilder(
-                animation: _ColorAnimationController,
-                builder: (context, child) => Container(
-                    constraints: BoxConstraints(minHeight: 0),
-                    color: _colorTween(Theme.of(context).colorScheme,
-                            Theme.of(context).brightness == Brightness.dark)
-                        .value),
-              ),
+              // Image.asset(
+              //   "./assets/Slide 16_9 - 2.png",
+              //   fit: BoxFit.cover,
+              //   height: double.infinity,
+              //   width: double.infinity,
+              //   alignment: Alignment.center,
+              // ),
+              // AnimatedBuilder(
+              //   animation: _ColorAnimationController,
+              //   builder: (context, child) => Container(
+              //       constraints: BoxConstraints(minHeight: 0),
+              //       color: _colorTween(Theme.of(context).colorScheme,
+              //               Theme.of(context).brightness == Brightness.dark)
+              //           .value),
+              // ),
               ConstrainedBox(
                 constraints: BoxConstraints(
                     maxHeight: MediaQuery.of(context).size.height,
